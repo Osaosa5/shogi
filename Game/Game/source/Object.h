@@ -18,7 +18,7 @@ public:
 
 protected:
 	// オブジェクトの基本情報
-	int		_modelHandle;	// モデルハンドル
+	int		_handle;	// モデルハンドル
 	VECTOR	_pos;		// 位置
 	VECTOR	_rot;		// 回転
 

@@ -9,7 +9,5 @@ public:
 	~Light();
 
 	bool Terminate() override;
-	bool Process() override;
-	bool Render() override;
 };
 

@@ -6,7 +6,7 @@ Object::Object()
 	_name = "";
 	_id = 1;
 
-	_modelHandle = -1;
+	_handle = -1;
 	_pos = VGet(0, 0, 0);
 	_rot = VGet(0, 0, 0);
 }

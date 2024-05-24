@@ -73,9 +73,6 @@ bool ModeGame::Render()
 	// ‚yƒoƒbƒtƒ@‚Ö‚Ì‘‚«‚İ‚ğ—LŒø‚É‚·‚é
 	SetWriteZBuffer3D(TRUE);
 
-	// ‚R‚c‹óŠÔã‚É‹…‚ğ•`‰æ‚·‚é
-	//DrawSphere3D(VGet(0, 0, 0), 80.0f, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
-
 	// ƒIƒuƒWƒFƒNƒg‚ğ•`‰æ
 	_objectManager->Render();
 

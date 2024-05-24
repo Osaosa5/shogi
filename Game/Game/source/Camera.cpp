@@ -31,7 +31,3 @@ bool Camera::Process()
 	return true;
 }
 
-bool Camera::Render()
-{
-	return true;
-}
