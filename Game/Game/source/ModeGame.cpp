@@ -1,0 +1,58 @@
+/*
+ ModeGame.cpp
+ 作成日：2024/05/21
+ 編集日：2024/05/21
+ 概要：実際にゲームをプレイするモード
+*/
+
+#include "AppFrame.h"
+#include "ApplicationMain.h"
+
+#include "ModeGame.h"
+#include "ModeEnd.h"
+
+bool ModeGame::Initialize()
+{
+	if (!base::Initialize()) { return false; }
+
+	return true;
+}
+
+bool ModeGame::Terminate() 
+{
+	base::Terminate();
+
+	return true;
+}
+
+bool ModeGame::Process() 
+{
+	base::Process();
+
+	// 入力情報を取得
+	auto app = ApplicationMain::GetInstance();
+	int trg = app->GetTrg();
+
+	// Zキーが押されたら終了モードに遷移
+	if (trg & PAD_INPUT_1) {
+		auto mdServer = ModeServer::GetInstance();
+		mdServer->Del(this);
+		mdServer->Add(new ModeEnd(),1,"end");
+	}
+
+
+
+	return true;
+}
+
+bool ModeGame::Render() 
+{
+	base::Render();
+
+	// モード名を表示
+	std::string name = ModeServer::GetInstance()->GetName(this);
+	DrawFormatString(0, 0, GetColor(255, 255, 255), name.c_str());
+
+	return true;
+}
+
