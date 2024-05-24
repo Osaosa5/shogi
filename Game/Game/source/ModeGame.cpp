@@ -11,9 +11,17 @@
 #include "ModeGame.h"
 #include "ModeEnd.h"
 
+#include "ObjectManager.h"
+#include "Camera.h"
+
 bool ModeGame::Initialize()
 {
 	if (!base::Initialize()) { return false; }
+
+	// オブジェクト管理を生成
+	_objectManager = new ObjectManager();
+	// カメラを追加
+	_objectManager->Add(new Camera(),"camera");
 
 	return true;
 }
@@ -21,6 +29,9 @@ bool ModeGame::Initialize()
 bool ModeGame::Terminate() 
 {
 	base::Terminate();
+
+	// オブジェクト管理を削除
+	delete _objectManager;
 
 	return true;
 }
@@ -40,7 +51,8 @@ bool ModeGame::Process()
 		mdServer->Add(new ModeEnd(),1,"end");
 	}
 
-
+	// オブジェクトを更新
+	_objectManager->Process();
 
 	return true;
 }
@@ -48,6 +60,18 @@ bool ModeGame::Process()
 bool ModeGame::Render() 
 {
 	base::Render();
+
+	// Ｚバッファを有効にする
+	SetUseZBuffer3D(TRUE);
+
+	// Ｚバッファへの書き込みを有効にする
+	SetWriteZBuffer3D(TRUE);
+
+	// ３Ｄ空間上に球を描画する
+	DrawSphere3D(VGet(0, 0, 0), 80.0f, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
+
+	// オブジェクトを描画
+	_objectManager->Render();
 
 	// モード名を表示
 	std::string name = ModeServer::GetInstance()->GetName(this);

@@ -11,5 +11,8 @@ public:
 	virtual bool Process();
 	virtual bool Render();
 
-protected:
+private:
+	// オブジェクト管理
+	class ObjectManager* _objectManager;
+
 }; 

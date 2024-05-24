@@ -54,7 +54,7 @@
     <ClCompile Include="source\ObjectManager.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="source\Model.cpp">
+    <ClCompile Include="source\Camera.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,7 +80,7 @@
     <ClInclude Include="source\Object.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="source\Model.h">
+    <ClInclude Include="source\Camera.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
   </ItemGroup>
