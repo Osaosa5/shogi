@@ -2,21 +2,16 @@
 
 ShogiBan::ShogiBan()
 {
-}
-
-ShogiBan::~ShogiBan()
-{
-}
-
-bool ShogiBan::Initialize()
-{
 	// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
 	_modelHandle = MV1LoadModel("res/3D/«Šû”Õ/sho_giban.mv1");
 	// ˆÊ’uî•ñ
 	_pos = VGet(0, 0, 0);
 	_rot = VGet(0, 0, 0);
 
-	return true;
+}
+
+ShogiBan::~ShogiBan()
+{
 }
 
 bool ShogiBan::Terminate()

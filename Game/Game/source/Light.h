@@ -2,11 +2,11 @@
 
 #include "Object.h"
 
-class ShogiBan : public Object
+class Light : public Object
 {
 public:
-	ShogiBan();
-	~ShogiBan();
+	Light();
+	~Light();
 
 	bool Terminate() override;
 	bool Process() override;

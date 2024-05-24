@@ -2,24 +2,20 @@
 
 Camera::Camera()
 {
-	_pos = VGet(0, 100, -500);
-	_direction = VGet(0, 0, 0);
+	_pos = VGet(0, 60, -50);
+	_direction = VGet(0, 10, 0);
 	_clipNear = 0.1f;
 	_clipFar = 1000.0f;
-}
-
-Camera::~Camera()
-{
-}
-
-bool Camera::Initialize()
-{
+	
 	// カメラの手前クリップ距離と奥クリップ距離を設定する
 	SetCameraNearFar(_clipNear, _clipFar);
 	// カメラの位置と注視点を設定する
 	SetCameraPositionAndTarget_UpVecY(_pos, _direction);
 
-	return true;
+}
+
+Camera::~Camera()
+{
 }
 
 bool Camera::Terminate()

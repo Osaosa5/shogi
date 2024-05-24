@@ -13,6 +13,7 @@
 
 #include "ObjectManager.h"
 #include "Camera.h"
+#include "Light.h"
 #include "ShogiBan.h"
 
 bool ModeGame::Initialize()
@@ -23,6 +24,8 @@ bool ModeGame::Initialize()
 	_objectManager = new ObjectManager();
 	// ƒJƒƒ‰‚ð’Ç‰Á
 	_objectManager->Add(new Camera(),"camera");
+	// ƒ‰ƒCƒg‚ð’Ç‰Á
+	_objectManager->Add(new Light(), "light");
 	// «Šû”Õ‚ð’Ç‰Á
 	_objectManager->Add(new ShogiBan(), "shogiban");
 

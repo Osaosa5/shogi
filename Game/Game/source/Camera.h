@@ -10,7 +10,6 @@ public:
 	Camera();
 	~Camera();
 
-	bool Initialize() override;
 	bool Terminate() override;
 	bool Process() override;
 	bool Render() override;

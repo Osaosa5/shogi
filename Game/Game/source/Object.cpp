@@ -15,11 +15,6 @@ Object::~Object()
 {
 }
 
-bool Object::Initialize()
-{
-	return true;
-}
-
 bool Object::Terminate()
 {
 	return true;

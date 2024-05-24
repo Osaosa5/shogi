@@ -12,7 +12,6 @@ public:
 	Object();
 	virtual ~Object();
 
-	virtual bool Initialize();
 	virtual bool Terminate();
 	virtual bool Process();
 	virtual bool Render();
