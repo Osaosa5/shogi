@@ -164,6 +164,7 @@
     <ClCompile Include="source\ModeTitle.cpp" />
     <ClCompile Include="source\Object.cpp" />
     <ClCompile Include="source\ObjectManager.cpp" />
+    <ClCompile Include="source\ShogiBan.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Camera.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="source\ModeGame.h" />
     <ClInclude Include="source\ModeTitle.h" />
     <ClInclude Include="source\ObjectManager.h" />
+    <ClInclude Include="source\ShogiBan.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

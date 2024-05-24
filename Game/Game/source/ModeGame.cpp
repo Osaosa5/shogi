@@ -13,6 +13,7 @@
 
 #include "ObjectManager.h"
 #include "Camera.h"
+#include "ShogiBan.h"
 
 bool ModeGame::Initialize()
 {
@@ -22,6 +23,8 @@ bool ModeGame::Initialize()
 	_objectManager = new ObjectManager();
 	// ƒJƒƒ‰‚ğ’Ç‰Á
 	_objectManager->Add(new Camera(),"camera");
+	// «Šû”Õ‚ğ’Ç‰Á
+	_objectManager->Add(new ShogiBan(), "shogiban");
 
 	return true;
 }
@@ -68,7 +71,7 @@ bool ModeGame::Render()
 	SetWriteZBuffer3D(TRUE);
 
 	// ‚R‚c‹óŠÔã‚É‹…‚ğ•`‰æ‚·‚é
-	DrawSphere3D(VGet(0, 0, 0), 80.0f, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
+	//DrawSphere3D(VGet(0, 0, 0), 80.0f, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
 
 	// ƒIƒuƒWƒFƒNƒg‚ğ•`‰æ
 	_objectManager->Render();

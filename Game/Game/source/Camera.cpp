@@ -2,7 +2,7 @@
 
 Camera::Camera()
 {
-	_pos = VGet(0, 0, -300);
+	_pos = VGet(0, 100, -500);
 	_direction = VGet(0, 0, 0);
 	_clipNear = 0.1f;
 	_clipFar = 1000.0f;
