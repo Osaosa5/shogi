@@ -16,6 +16,10 @@ public:
 	virtual bool Process();
 	virtual bool Render();
 
+	int GetHandle() const { return _handle; }
+	VECTOR GetPos() const { return _pos; }
+	VECTOR GetRot() const { return _rot; }
+
 protected:
 	// オブジェクトの基本情報
 	int		_handle;	// モデルハンドル

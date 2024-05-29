@@ -16,6 +16,7 @@
 #include "Light.h"
 #include "ShogiBan.h"
 #include "Tatami.h"
+#include "Fuhyo.h"
 
 bool ModeGame::Initialize()
 {
@@ -29,6 +30,8 @@ bool ModeGame::Initialize()
 	_objectManager->Add(new Light(), "light");
 	// «Šû”Õ‚ğ’Ç‰Á
 	_objectManager->Add(new ShogiBan(), "shogiban");
+	// •à•º‚ğ’Ç‰Á
+	_objectManager->Add(new Fuhyo(_objectManager), "fuhyo1");
 	// ô‚ğ’Ç‰Á
 	_objectManager->Add(new Tatami(VGet(44,-10,15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");
