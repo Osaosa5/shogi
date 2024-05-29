@@ -22,13 +22,17 @@ bool Fuhyo::Terminate()
 
 bool Fuhyo::Process()
 {
-	Move();
 	Koma::Process();
+	Move();
+	HitTestProcess();
 	return true;
 }
 
 bool Fuhyo::Render()
 {
+
+	_rot.x = DEG2RAD(90);
+	MV1SetRotationXYZ(_handle, _rot);
 	MV1SetPosition(_handle, _pos);
 	MV1DrawModel(_handle);
 

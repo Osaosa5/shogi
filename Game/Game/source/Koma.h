@@ -15,8 +15,10 @@ public:
 	virtual bool Render();
 
 	virtual bool Move();
+	void HitTestProcess();
 
 private:
 	ObjectManager* _objManajer;
+	VECTOR _oldPos;
 };
 
