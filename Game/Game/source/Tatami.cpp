@@ -4,7 +4,7 @@
 Tatami::Tatami(VECTOR pos)
 {
 	// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
-	_handle = MV1LoadModel("res/3D/ô.mv1");
+	_handle = MV1LoadModel("res/3D/tatami/ImageToStl.com_772_tatami.mv1");
 	// ˆÊ’uî•ñ
 	_pos = pos;
 }

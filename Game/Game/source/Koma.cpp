@@ -33,9 +33,9 @@ bool Koma::Move()
 	return true;
 }
 
-void Koma::HitTestProcess()
+void Koma::HitTest()
 {
-	float colSubY = 1.0f;
+	float colSubY = 40.0f;
 	// ‹î‚Ì“–‚½‚è”»’è
 	MV1_COLL_RESULT_POLY hitPoly;
 	auto shogiBan = _objManajer->Get("shogiban");

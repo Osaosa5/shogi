@@ -15,7 +15,7 @@ public:
 	virtual bool Render();
 
 	virtual bool Move();
-	void HitTestProcess();
+	void HitTest();
 
 private:
 	ObjectManager* _objManajer;

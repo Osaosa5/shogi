@@ -4,7 +4,7 @@
 
 Fuhyo::Fuhyo(ObjectManager* objManajer) : Koma(objManajer)
 {
-	_handle = MV1LoadModel("res/3D/«Šû‹î•à•º.mv1");
+	_handle = MV1LoadModel("res/3D/shogi/fuhyo.mv1");
 	// ˆÊ’uî•ñ
 	_pos = VGet(0, 30, 0);
 	_rot = VGet(0, 0, 0);
@@ -24,15 +24,12 @@ bool Fuhyo::Process()
 {
 	Koma::Process();
 	Move();
-	HitTestProcess();
+	HitTest();
 	return true;
 }
 
 bool Fuhyo::Render()
 {
-
-	_rot.x = DEG2RAD(90);
-	MV1SetRotationXYZ(_handle, _rot);
 	MV1SetPosition(_handle, _pos);
 	MV1DrawModel(_handle);
 
