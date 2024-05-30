@@ -20,6 +20,8 @@ public:
 	VECTOR GetPos() const { return _pos; }
 	VECTOR GetRot() const { return _rot; }
 
+	virtual void DebugRenderPos();
+
 protected:
 	// オブジェクトの基本情報
 	int		_handle;	// モデルハンドル

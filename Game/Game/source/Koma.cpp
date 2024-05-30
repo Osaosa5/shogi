@@ -25,6 +25,21 @@ bool Koma::Process()
 
 bool Koma::Render()
 {
+	float colSubY = 40.0f;
+	// ‹î‚Ì“–‚½‚è”»’è
+	MV1_COLL_RESULT_POLY hitPoly;
+	auto shogiBan = _objManajer->Get("shogiban");
+	auto shogiBanHandle = shogiBan->GetHandle();
+	hitPoly = MV1CollCheck_Line(shogiBanHandle, 2,
+		VAdd(_pos, VGet(0, colSubY, 0)),
+		VAdd(_pos, VGet(0, -999, 0)));
+	if (hitPoly.HitFlag) {
+		DrawTriangle3D(
+			hitPoly.Position[0],
+			hitPoly.Position[1],
+			hitPoly.Position[2], GetColor(0, 255, 255), TRUE);
+	}
+	
 	return true;
 }
 
@@ -55,3 +70,4 @@ void Koma::HitTest()
 	}
 
 }
+

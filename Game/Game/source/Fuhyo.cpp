@@ -30,9 +30,10 @@ bool Fuhyo::Process()
 
 bool Fuhyo::Render()
 {
+	Koma::Render();
 	MV1SetPosition(_handle, _pos);
 	MV1DrawModel(_handle);
-
+	Object::DebugRenderPos();
 	return true;
 }
 
