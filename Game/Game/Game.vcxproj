@@ -168,6 +168,7 @@
     <ClCompile Include="source\Object.cpp" />
     <ClCompile Include="source\ObjectManager.cpp" />
     <ClCompile Include="source\ShogiBan.cpp" />
+    <ClCompile Include="source\Square.cpp" />
     <ClCompile Include="source\Tatami.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +184,7 @@
     <ClInclude Include="source\ModeTitle.h" />
     <ClInclude Include="source\ObjectManager.h" />
     <ClInclude Include="source\ShogiBan.h" />
+    <ClInclude Include="source\Square.h" />
     <ClInclude Include="source\Tatami.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -78,6 +78,9 @@
     <ClCompile Include="source\Fuhyo.cpp">
       <Filter>ソース ファイル\Koma</Filter>
     </ClCompile>
+    <ClCompile Include="source\Square.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="source\Fuhyo.h">
       <Filter>ヘッダー ファイル\Koma</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Square.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
