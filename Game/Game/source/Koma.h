@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Object.h"
+#include "Shogi.h"
 #include "ObjectManager.h"
 #include "ShogiBan.h"
 
-class Koma : public Object
+class Koma : public Shogi
 {
 public:
 	Koma(ObjectManager* objManajer);

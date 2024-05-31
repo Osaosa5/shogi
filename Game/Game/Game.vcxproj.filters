@@ -31,11 +31,23 @@
     <Filter Include="ヘッダー ファイル\Object">
       <UniqueIdentifier>{8cb1eb86-a819-4577-9e97-6f40f6a65843}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Koma">
-      <UniqueIdentifier>{b9674ce9-2b1d-4c0c-8bc6-eb884fcecbbc}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\Shogi">
+      <UniqueIdentifier>{070971ff-efd0-4ed6-ade3-1ee1a8d0719a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Koma">
+    <Filter Include="ヘッダー ファイル\Shogi\ShogiBoard">
+      <UniqueIdentifier>{0cf3a4ac-a6bb-4f26-8b37-38e37ec70579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Shogi\Koma">
       <UniqueIdentifier>{a87d58e7-d3fe-4e5c-afa2-a41a5c000c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Shogi">
+      <UniqueIdentifier>{6e5302a3-241e-43d9-a3ce-408620178c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Shogi\ShogiBoard">
+      <UniqueIdentifier>{c670b90d-f2b3-4045-8ae0-374547b5e593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Shogi\Koma">
+      <UniqueIdentifier>{b9674ce9-2b1d-4c0c-8bc6-eb884fcecbbc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,9 +72,6 @@
     <ClCompile Include="source\ObjectManager.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="source\ShogiBan.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\Light.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -73,13 +82,19 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\Koma.cpp">
-      <Filter>ソース ファイル\Koma</Filter>
+      <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
     <ClCompile Include="source\Fuhyo.cpp">
-      <Filter>ソース ファイル\Koma</Filter>
+      <Filter>ソース ファイル\Shogi\Koma</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ShogiBan.cpp">
+      <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
     </ClCompile>
     <ClCompile Include="source\Square.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Shogi.cpp">
+      <Filter>ソース ファイル\Shogi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,9 +119,6 @@
     <ClInclude Include="source\Object.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="source\ShogiBan.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="source\Light.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -117,13 +129,19 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="source\Koma.h">
-      <Filter>ヘッダー ファイル\Koma</Filter>
+      <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
     <ClInclude Include="source\Fuhyo.h">
-      <Filter>ヘッダー ファイル\Koma</Filter>
+      <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ShogiBan.h">
+      <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
     </ClInclude>
     <ClInclude Include="source\Square.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Shogi.h">
+      <Filter>ヘッダー ファイル\Shogi</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
