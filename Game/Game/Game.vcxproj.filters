@@ -1,147 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="ソース ファイル\App">
-      <UniqueIdentifier>{6d5c4f90-2147-4401-b7b4-70c4d545d98c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Mode">
-      <UniqueIdentifier>{0207a30a-70e0-429c-b395-bd4804dc833f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\App">
-      <UniqueIdentifier>{72eb2ace-6daf-48bb-8a38-583bbcf795ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Mode">
-      <UniqueIdentifier>{b8713867-0d63-466c-890a-18a0e65a7bff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Object">
-      <UniqueIdentifier>{7efce574-4a95-48a6-b3b1-7db7a475e204}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Object">
-      <UniqueIdentifier>{8cb1eb86-a819-4577-9e97-6f40f6a65843}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Shogi">
-      <UniqueIdentifier>{070971ff-efd0-4ed6-ade3-1ee1a8d0719a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Shogi\ShogiBoard">
-      <UniqueIdentifier>{0cf3a4ac-a6bb-4f26-8b37-38e37ec70579}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Shogi\Koma">
-      <UniqueIdentifier>{a87d58e7-d3fe-4e5c-afa2-a41a5c000c9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Shogi">
-      <UniqueIdentifier>{6e5302a3-241e-43d9-a3ce-408620178c57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Shogi\ShogiBoard">
-      <UniqueIdentifier>{c670b90d-f2b3-4045-8ae0-374547b5e593}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Shogi\Koma">
-      <UniqueIdentifier>{b9674ce9-2b1d-4c0c-8bc6-eb884fcecbbc}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="source\Camera.cpp" />
+    <ClCompile Include="source\Fuhyo.cpp" />
+    <ClCompile Include="source\Koma.cpp" />
+    <ClCompile Include="source\Light.cpp" />
+    <ClCompile Include="source\ModeEnd.cpp" />
+    <ClCompile Include="source\ModeGame.cpp" />
+    <ClCompile Include="source\ModeTitle.cpp" />
+    <ClCompile Include="source\Object.cpp" />
+    <ClCompile Include="source\ObjectManager.cpp" />
+    <ClCompile Include="source\ShogiBan.cpp" />
+    <ClCompile Include="source\Square.cpp" />
+    <ClCompile Include="source\Tatami.cpp" />
+    <ClCompile Include="source\ApplicationGlobal.cpp" />
+    <ClCompile Include="source\ApplicationMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\ApplicationGlobal.cpp">
-      <Filter>ソース ファイル\App</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ApplicationMain.cpp">
-      <Filter>ソース ファイル\App</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ModeGame.cpp">
-      <Filter>ソース ファイル\Mode</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ModeTitle.cpp">
-      <Filter>ソース ファイル\Mode</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ModeEnd.cpp">
-      <Filter>ソース ファイル\Mode</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Object.cpp">
-      <Filter>ソース ファイル\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ObjectManager.cpp">
-      <Filter>ソース ファイル\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Light.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Camera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Tatami.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Koma.cpp">
-      <Filter>ソース ファイル\Shogi\Koma</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Fuhyo.cpp">
-      <Filter>ソース ファイル\Shogi\Koma</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ShogiBan.cpp">
-      <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Square.cpp">
-      <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Shogi.cpp">
-      <Filter>ソース ファイル\Shogi</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="source\ApplicationGlobal.h">
-      <Filter>ヘッダー ファイル\App</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ApplicationMain.h">
-      <Filter>ヘッダー ファイル\App</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ModeGame.h">
-      <Filter>ヘッダー ファイル\Mode</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ModeTitle.h">
-      <Filter>ヘッダー ファイル\Mode</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ModeEnd.h">
-      <Filter>ヘッダー ファイル\Mode</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ObjectManager.h">
-      <Filter>ヘッダー ファイル\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Object.h">
-      <Filter>ヘッダー ファイル\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Light.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Camera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Tatami.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Koma.h">
-      <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Fuhyo.h">
-      <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ShogiBan.h">
-      <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Square.h">
-      <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Shogi.h">
-      <Filter>ヘッダー ファイル\Shogi</Filter>
-    </ClInclude>
+    <ClInclude Include="source\Camera.h" />
+    <ClInclude Include="source\Fuhyo.h" />
+    <ClInclude Include="source\Koma.h" />
+    <ClInclude Include="source\Light.h" />
+    <ClInclude Include="source\Object.h" />
+    <ClInclude Include="source\ApplicationGlobal.h" />
+    <ClInclude Include="source\ApplicationMain.h" />
+    <ClInclude Include="source\ModeEnd.h" />
+    <ClInclude Include="source\ModeGame.h" />
+    <ClInclude Include="source\ModeTitle.h" />
+    <ClInclude Include="source\ObjectManager.h" />
+    <ClInclude Include="source\ShogiBan.h" />
+    <ClInclude Include="source\Square.h" />
+    <ClInclude Include="source\Tatami.h" />
   </ItemGroup>
 </Project>
