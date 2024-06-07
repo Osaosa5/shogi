@@ -33,7 +33,7 @@
     <ClCompile Include="source\Mode\ModeServer.cpp">
       <Filter>ModeServer</Filter>
     </ClCompile>
-    <ClCompile Include="source\CFile\CFile.cpp">
+    <ClCompile Include="source\File\CFile.cpp">
       <Filter>CFile</Filter>
     </ClCompile>
     <ClCompile Include="source\MyMath\mymath.cpp">
@@ -45,6 +45,7 @@
     <ClCompile Include="source\ResourceManager\ResourceManager.cpp">
       <Filter>ResourceManager</Filter>
     </ClCompile>
+    <ClCompile Include="source\File\JSONFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -60,7 +61,7 @@
     <ClInclude Include="source\Mode\ModeServer.h">
       <Filter>ModeServer</Filter>
     </ClInclude>
-    <ClInclude Include="source\CFile\CFile.h">
+    <ClInclude Include="source\File\CFile.h">
       <Filter>CFile</Filter>
     </ClInclude>
     <ClInclude Include="source\MyMath\mymath.h">
@@ -72,5 +73,6 @@
     <ClInclude Include="source\ResourceManager\ResourceManager.h">
       <Filter>ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="source\File\JSONFile.h" />
   </ItemGroup>
 </Project>

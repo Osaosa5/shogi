@@ -23,7 +23,7 @@ bool ModeGame::Initialize()
 	if (!base::Initialize()) { return false; }
 
 	ResourceManager::Init();
-
+	
 	// オブジェクト管理を生成
 	_objectManager = new ObjectManager();
 	// カメラを追加
@@ -37,6 +37,10 @@ bool ModeGame::Initialize()
 	// 畳を追加
 	_objectManager->Add(new Tatami(VGet(44,-10,15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");
+
+	nlohmann::json j;
+	j["name"] = "test";
+	JSONFile jsonFile("JSON/data.json", j);
 
 	return true;
 }
