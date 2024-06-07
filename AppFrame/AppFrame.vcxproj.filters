@@ -16,6 +16,9 @@
     <Filter Include="Vector">
       <UniqueIdentifier>{7cd7589c-883f-4c96-9655-eac30e7d6e4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ResourceManager">
+      <UniqueIdentifier>{108ff2df-d252-40dd-a58c-5f35e1d94128}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Application\ApplicationBase.cpp">
@@ -38,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="source\Vector\Vector2.cpp">
       <Filter>Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ResourceManager\ResourceManager.cpp">
+      <Filter>ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +68,9 @@
     </ClInclude>
     <ClInclude Include="source\Vector\Vector2.h">
       <Filter>Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ResourceManager\ResourceManager.h">
+      <Filter>ResourceManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

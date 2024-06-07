@@ -22,6 +22,8 @@ bool ModeGame::Initialize()
 {
 	if (!base::Initialize()) { return false; }
 
+	ResourceManager::Init();
+
 	// オブジェクト管理を生成
 	_objectManager = new ObjectManager();
 	// カメラを追加
@@ -42,6 +44,8 @@ bool ModeGame::Initialize()
 bool ModeGame::Terminate() 
 {
 	base::Terminate();
+
+	ResourceManager::Release();
 
 	// オブジェクト管理を削除
 	delete _objectManager;

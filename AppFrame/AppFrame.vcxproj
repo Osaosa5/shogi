@@ -166,6 +166,7 @@
     <ClCompile Include="source\Mode\ModeBase.cpp" />
     <ClCompile Include="source\Mode\ModeServer.cpp" />
     <ClCompile Include="source\MyMath\mymath.cpp" />
+    <ClCompile Include="source\ResourceManager\ResourceManager.cpp" />
     <ClCompile Include="source\Vector\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="source\Mode\ModeBase.h" />
     <ClInclude Include="source\Mode\ModeServer.h" />
     <ClInclude Include="source\MyMath\mymath.h" />
+    <ClInclude Include="source\ResourceManager\ResourceManager.h" />
     <ClInclude Include="source\Vector\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -7,3 +7,4 @@
 #include "CFile/CFile.h"
 #include "MyMath/mymath.h"
 #include "Vector/Vector2.h"
+#include "ResourceManager/ResourceManager.h"
