@@ -31,7 +31,15 @@ bool ModeGame::Initialize()
 	// «Šû”Õ‚ð’Ç‰Á
 	_objectManager->Add(new ShogiBan(), "shogiban");
 	// •à•º‚ð’Ç‰Á
-	_objectManager->Add(new Fuhyo(_objectManager), "fuhyo1");
+	for (int i = 0; i < 18; i++) {
+		std::string name = "fuhyo" + std::to_string(i);
+		if (i < 9) {
+			_objectManager->Add(new Fuhyo(_objectManager, VGet(i * 3.6f + -14.5f, 10, -15.3f)), name.c_str());
+		}
+		else {
+			_objectManager->Add(new Fuhyo(_objectManager, VGet(i * 3.6f + -46.9f, 10, 16)), name.c_str());
+		}
+	}
 	// ô‚ð’Ç‰Á
 	_objectManager->Add(new Tatami(VGet(44,-10,15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");
