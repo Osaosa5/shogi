@@ -2,12 +2,9 @@
 #include "Fuhyo.h"
 #include "ApplicationMain.h"
 
-Fuhyo::Fuhyo(ObjectManager* objManajer) : Koma(objManajer)
+Fuhyo::Fuhyo(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer) : Koma(objManajer, pos, kPlayer)
 {
 	_handle = MV1LoadModel("res/3D/shogi/fuhyo.mv1");
-	// à íuèÓïÒ
-	_pos = VGet(0, 30, 0);
-	_rot = VGet(0, 0, 0);
 }
 
 Fuhyo::~Fuhyo()
@@ -30,10 +27,11 @@ bool Fuhyo::Process()
 
 bool Fuhyo::Render()
 {
-	Koma::Render();
+	//Koma::Render();
+	MV1SetRotationXYZ(_handle, _rot);
 	MV1SetPosition(_handle, _pos);
 	MV1DrawModel(_handle);
-	Object::DebugRenderPos();
+	//Object::DebugRenderPos();
 	return true;
 }
 

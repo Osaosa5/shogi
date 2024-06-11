@@ -7,7 +7,7 @@
 class Koma : public Shogi
 {
 public:
-	Koma(ObjectManager* objManajer);
+	Koma(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer);
 	virtual ~Koma();
 
 	virtual bool Terminate();
