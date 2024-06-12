@@ -108,6 +108,9 @@
     <ClCompile Include="source\GoldGeneral.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
+    <ClCompile Include="source\King.cpp">
+      <Filter>ソース ファイル\Shogi\Koma</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -165,6 +168,9 @@
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
     <ClInclude Include="source\GoldGeneral.h">
+      <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
+    </ClInclude>
+    <ClInclude Include="source\King.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
   </ItemGroup>

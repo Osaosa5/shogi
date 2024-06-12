@@ -22,6 +22,7 @@
 #include "Knight.h"
 #include "SilverGeneral.h"
 #include "GoldGeneral.h"
+#include "King.h"
 
 bool ModeGame::Initialize()
 {
@@ -130,7 +131,9 @@ bool ModeGame::ObjectAdd()
 	// ‹à«‚ğ’Ç‰Á
 	_objectManager->Add(new GoldGeneral(_objectManager, VGet(-3.6f, komaY, nineRow), player1), "gold1");
 	_objectManager->Add(new GoldGeneral(_objectManager, VGet(3.4f,  komaY, nineRow), player1), "gold2");
-
+	// ‰¤«‚ğ’Ç‰Á
+	_objectManager->Add(new King(_objectManager, VGet(-0.1f, komaY, nineRow), player1), "king1");
+	
 	// player2‚Ì‹î
 	auto player2 = Shogi::PLAYER_TYPE::kPlayer2;
 	// •à•º‚ğ’Ç‰Á
@@ -157,6 +160,8 @@ bool ModeGame::ObjectAdd()
 	// ‹à«‚ğ’Ç‰Á
 	_objectManager->Add(new GoldGeneral(_objectManager, VGet(-3.6f, komaY, oneRow), player2), "gold3");
 	_objectManager->Add(new GoldGeneral(_objectManager, VGet(3.4f,  komaY, oneRow), player2), "gold4");
+	// ‰¤«‚ğ’Ç‰Á
+	_objectManager->Add(new King(_objectManager, VGet(-0.1f, komaY, oneRow), player2), "king2");
 
 	// ô‚ğ’Ç‰Á
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");

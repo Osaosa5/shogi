@@ -161,6 +161,7 @@
     <ClCompile Include="source\Camera.cpp" />
     <ClCompile Include="source\Fuhyo.cpp" />
     <ClCompile Include="source\GoldGeneral.cpp" />
+    <ClCompile Include="source\King.cpp" />
     <ClCompile Include="source\Knight.cpp" />
     <ClCompile Include="source\Koma.cpp" />
     <ClCompile Include="source\Lance.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="source\Camera.h" />
     <ClInclude Include="source\Fuhyo.h" />
     <ClInclude Include="source\GoldGeneral.h" />
+    <ClInclude Include="source\King.h" />
     <ClInclude Include="source\Knight.h" />
     <ClInclude Include="source\Koma.h" />
     <ClInclude Include="source\Lance.h" />
