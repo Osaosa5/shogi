@@ -114,6 +114,9 @@
     <ClCompile Include="source\Bishop.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
+    <ClCompile Include="source\Rook.cpp">
+      <Filter>ソース ファイル\Shogi\Koma</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -177,6 +180,9 @@
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
     <ClInclude Include="source\Bishop.h">
+      <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Rook.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
   </ItemGroup>

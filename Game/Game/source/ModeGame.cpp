@@ -24,6 +24,7 @@
 #include "GoldGeneral.h"
 #include "King.h"
 #include "Bishop.h"
+#include "Rook.h"
 
 bool ModeGame::Initialize()
 {
@@ -122,6 +123,9 @@ bool ModeGame::ObjectAdd()
 	// Šps‚ð’Ç‰Á
 	float eightRow = -11.6f;
 	_objectManager->Add(new Bishop(_objectManager, VGet(-10.6f, komaY, eightRow), player1), "bishop1");
+	// ”òŽÔ‚ð’Ç‰Á
+	_objectManager->Add(new Rook(_objectManager, VGet(10.6f, komaY, eightRow), player1), "rook1");
+	
 	// ŽÔ‚ð’Ç‰Á
 	float nineRow = -15.4f;
 	_objectManager->Add(new Lance(_objectManager, VGet(-14.3f, komaY, nineRow), player1), "lance1");
@@ -151,9 +155,13 @@ bool ModeGame::ObjectAdd()
 	_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f,   komaY, threeRow), player2), "fuhyo16");
 	_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f,  komaY, threeRow), player2), "fuhyo17");
 	_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f,  komaY, threeRow), player2), "fuhyo18");
+	
 	// Šps‚ð’Ç‰Á
 	float twoRow = 11.8f;
 	_objectManager->Add(new Bishop(_objectManager, VGet(10.6f, komaY, twoRow), player2), "bishop2");
+	// ”òŽÔ‚ð’Ç‰Á
+	_objectManager->Add(new Rook(_objectManager, VGet(-10.6f, komaY, twoRow), player2), "rook2");
+	
 	// ŽÔ‚ð’Ç‰Á
 	float oneRow = 15.7f;
 	_objectManager->Add(new Lance(_objectManager, VGet(-14.3f, komaY, oneRow), player2), "lance3");
