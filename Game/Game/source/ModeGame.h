@@ -11,6 +11,8 @@ public:
 	bool Process()override;
 	bool Render()override;
 
+	bool ObjectAdd();
+
 private:
 	// オブジェクト管理
 	class ObjectManager* _objectManager;

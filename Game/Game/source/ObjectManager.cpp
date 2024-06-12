@@ -336,17 +336,17 @@ int ObjectManager::Render()
 			(*ite)->Render();
 		}
 	}
-	// objリストの先頭を取得
-	lstObject::iterator it = _vObject.begin();
-	// objリストの末尾までループ
-	for (; it != _vObject.end(); ++it)
-	{
-		// 削除リストに登録されていないか
-		if (!IsDelRegister((*it)))
-		{
-			// オブジェクトの描画
-			(*it)->DebugRenderPos();
-		}
-	}
+	//// objリストの先頭を取得
+	//lstObject::iterator it = _vObject.begin();
+	//// objリストの末尾までループ
+	//for (; it != _vObject.end(); ++it)
+	//{
+	//	// 削除リストに登録されていないか
+	//	if (!IsDelRegister((*it)))
+	//	{
+	//		// オブジェクトの描画
+	//		(*it)->DebugRenderPos();
+	//	}
+	//}
 	return 0;
 }
