@@ -99,6 +99,9 @@
     <ClCompile Include="source\Lance.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
+    <ClCompile Include="source\Knight.cpp">
+      <Filter>ソース ファイル\Shogi\Koma</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -147,6 +150,9 @@
       <Filter>ヘッダー ファイル\Shogi</Filter>
     </ClInclude>
     <ClInclude Include="source\Lance.h">
+      <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Knight.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
   </ItemGroup>

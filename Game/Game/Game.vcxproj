@@ -160,6 +160,7 @@
     <ClCompile Include="source\ApplicationMain.cpp" />
     <ClCompile Include="source\Camera.cpp" />
     <ClCompile Include="source\Fuhyo.cpp" />
+    <ClCompile Include="source\Knight.cpp" />
     <ClCompile Include="source\Koma.cpp" />
     <ClCompile Include="source\Lance.cpp" />
     <ClCompile Include="source\Light.cpp" />
@@ -176,6 +177,7 @@
   <ItemGroup>
     <ClInclude Include="source\Camera.h" />
     <ClInclude Include="source\Fuhyo.h" />
+    <ClInclude Include="source\Knight.h" />
     <ClInclude Include="source\Koma.h" />
     <ClInclude Include="source\Lance.h" />
     <ClInclude Include="source\Light.h" />

@@ -18,6 +18,7 @@
 #include "Tatami.h"
 #include "Fuhyo.h"
 #include "Lance.h"
+#include "Knight.h"
 
 bool ModeGame::Initialize()
 {
@@ -117,6 +118,9 @@ bool ModeGame::ObjectAdd()
 	float nineRow = -15.4f;
 	_objectManager->Add(new Lance(_objectManager, VGet(-14.3f, komaY, nineRow), player1), "lance1");
 	_objectManager->Add(new Lance(_objectManager, VGet(14.2f,  komaY, nineRow), player1), "lance2");
+	// Œj”n‚ğ’Ç‰Á
+	_objectManager->Add(new Knight(_objectManager, VGet(-10.6f, komaY, nineRow), player1), "knight1");
+	_objectManager->Add(new Knight(_objectManager, VGet(10.6f,  komaY, nineRow), player1), "knight2");
 
 	// player2‚Ì‹î
 	auto player2 = Shogi::PLAYER_TYPE::kPlayer2;
@@ -135,6 +139,9 @@ bool ModeGame::ObjectAdd()
 	float oneRow = 15.7f;
 	_objectManager->Add(new Lance(_objectManager, VGet(-14.3f, komaY, oneRow), player2), "lance3");
 	_objectManager->Add(new Lance(_objectManager, VGet(14.2f,  komaY, oneRow), player2), "lance4");
+	// Œj”n‚ğ’Ç‰Á
+	_objectManager->Add(new Knight(_objectManager, VGet(-10.6f, komaY, oneRow), player2), "knight3");
+	_objectManager->Add(new Knight(_objectManager, VGet(10.6f,  komaY, oneRow), player2), "knight4");
 
 	// ô‚ğ’Ç‰Á
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");
