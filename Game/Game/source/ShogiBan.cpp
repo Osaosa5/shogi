@@ -3,7 +3,7 @@
 ShogiBan::ShogiBan()
 {
 	// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
-	_handle = MV1LoadModel("res/3D/«Šû”Õ/sho_giban.mv1");
+	_handle = RM::MV1LoadModel("res/3D/«Šû”Õ/sho_giban.mv1");
 	// ˆÊ’uî•ñ
 	_pos = VGet(0, 0, 0);
 	_rot = VGet(0, 0, 0);

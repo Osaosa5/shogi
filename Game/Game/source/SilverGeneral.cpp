@@ -5,7 +5,7 @@
 SilverGeneral::SilverGeneral(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer) : Koma(objManajer, pos, kPlayer)
 {
 	// モデル読み込み
-	_handle = MV1LoadModel("res/3D/shogi/gin.mv1");
+	_handle = RM::MV1LoadModel("res/3D/shogi/gin.mv1");
 }
 
 SilverGeneral::~SilverGeneral()
@@ -26,10 +26,7 @@ bool SilverGeneral::Process()
 
 bool SilverGeneral::Render()
 {
-	// 角度と位置をセットして描画
-	MV1SetRotationXYZ(_handle, _rot);
-	MV1SetPosition(_handle, _pos);
-	MV1DrawModel(_handle);
-	
+	Koma::Render();
+
 	return true;
 }

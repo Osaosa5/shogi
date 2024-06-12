@@ -6,7 +6,7 @@
 Fuhyo::Fuhyo(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer) 
 	: Koma(objManajer, pos, kPlayer)
 {
-	_handle = MV1LoadModel("res/3D/shogi/fuhyo.mv1");
+	_handle = RM::MV1LoadModel("res/3D/shogi/fuhyo.mv1");
 }
 
 Fuhyo::~Fuhyo()
@@ -29,11 +29,8 @@ bool Fuhyo::Process()
 
 bool Fuhyo::Render()
 {
-	//Koma::Render();
-	MV1SetRotationXYZ(_handle, _rot);
-	MV1SetPosition(_handle, _pos);
-	MV1DrawModel(_handle);
-	//Object::DebugRenderPos();
+	Koma::Render();
+
 	return true;
 }
 

@@ -31,21 +31,11 @@ bool Koma::Process()
 
 bool Koma::Render()
 {
-	float colSubY = 5.0f;
-	// 駒の当たり判定
-	MV1_COLL_RESULT_POLY hitPoly;
-	auto shogiBan = _objManajer->Get("shogiban");
-	auto shogiBanHandle = shogiBan->GetHandle();
-	hitPoly = MV1CollCheck_Line(shogiBanHandle, 2,
-		VAdd(_pos, VGet(0, colSubY, 0)),
-		VAdd(_pos, VGet(0, -999, 0)));
-	if (hitPoly.HitFlag) {
-		DrawTriangle3D(
-			hitPoly.Position[0],
-			hitPoly.Position[1],
-			hitPoly.Position[2], GetColor(0, 255, 255), false);
-	}
-	DrawLine3D(VAdd(_pos, VGet(0, colSubY, 0)), VAdd(_pos, VGet(0, -999, 0)), GetColor(255, 0, 0));
+	// 角度と位置をセットして描画
+	MV1SetRotationXYZ(_handle, _rot);
+	MV1SetPosition(_handle, _pos);
+	MV1DrawModel(_handle);
+
 	return true;
 }
 
