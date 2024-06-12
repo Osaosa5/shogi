@@ -17,6 +17,7 @@
 #include "ShogiBan.h"
 #include "Tatami.h"
 #include "Fuhyo.h"
+#include "Lance.h"
 
 bool ModeGame::Initialize()
 {
@@ -96,30 +97,45 @@ bool ModeGame::ObjectAdd()
 	_objectManager->Add(new Light(), "light");
 	// «Šû”Õ‚ğ’Ç‰Á
 	_objectManager->Add(new ShogiBan(), "shogiban");
-	// •à•º‚ğ’Ç‰Á
+
+	// ‹î‚ÌYÀ•W
 	float komaY = 21.0f;
-	float komaZPlayer1 = -7.5f;
+	// player1‚Ì‹î
 	auto player1 = Shogi::PLAYER_TYPE::kPlayer1;
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-14.3f, komaY, komaZPlayer1), player1), "fuhyo1");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-10.6f, komaY, komaZPlayer1), player1), "fuhyo2");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-7.1f, komaY, komaZPlayer1), player1), "fuhyo3");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-3.6f, komaY, komaZPlayer1), player1), "fuhyo4");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-0.1f, komaY, komaZPlayer1), player1), "fuhyo5");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(3.4f, komaY, komaZPlayer1), player1), "fuhyo6");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f, komaY, komaZPlayer1), player1), "fuhyo7");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f, komaY, komaZPlayer1), player1), "fuhyo8");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f, komaY, komaZPlayer1), player1), "fuhyo9");
-	float komaZPlayer2 = 7.9f;
+	// •à•º‚ğ’Ç‰Á
+	float fuhyoZPlayer1 = -7.5f;
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-14.3f, komaY, fuhyoZPlayer1), player1), "fuhyo1");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-10.6f, komaY, fuhyoZPlayer1), player1), "fuhyo2");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-7.1f,  komaY, fuhyoZPlayer1), player1), "fuhyo3");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-3.6f,  komaY, fuhyoZPlayer1), player1), "fuhyo4");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-0.1f,  komaY, fuhyoZPlayer1), player1), "fuhyo5");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(3.4f,   komaY, fuhyoZPlayer1), player1), "fuhyo6");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f,   komaY, fuhyoZPlayer1), player1), "fuhyo7");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f,  komaY, fuhyoZPlayer1), player1), "fuhyo8");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f,  komaY, fuhyoZPlayer1), player1), "fuhyo9");
+	// Ô‚ğ’Ç‰Á
+	float lanceZPlayer1 = -15.4f;
+	_objectManager->Add(new Lance(_objectManager, VGet(-14.3f, komaY, lanceZPlayer1), player1), "lance1");
+	_objectManager->Add(new Lance(_objectManager, VGet(14.2f,  komaY, lanceZPlayer1), player1), "lance2");
+
+	// player2‚Ì‹î
 	auto player2 = Shogi::PLAYER_TYPE::kPlayer2;
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-14.3f, komaY, komaZPlayer2), player2), "fuhyo10");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-10.6f, komaY, komaZPlayer2), player2), "fuhyo11");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-7.1f, komaY, komaZPlayer2), player2), "fuhyo12");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-3.6f, komaY, komaZPlayer2), player2), "fuhyo13");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(-0.1f, komaY, komaZPlayer2), player2), "fuhyo14");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(3.4f, komaY, komaZPlayer2), player2), "fuhyo15");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f, komaY, komaZPlayer2), player2), "fuhyo16");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f, komaY, komaZPlayer2), player2), "fuhyo17");
-	_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f, komaY, komaZPlayer2), player2), "fuhyo18");
+	// •à•º‚ğ’Ç‰Á
+	float fuhyoZPlayer2 = 7.9f;
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-14.3f, komaY, fuhyoZPlayer2), player2), "fuhyo10");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-10.6f, komaY, fuhyoZPlayer2), player2), "fuhyo11");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-7.1f,  komaY, fuhyoZPlayer2), player2), "fuhyo12");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-3.6f,  komaY, fuhyoZPlayer2), player2), "fuhyo13");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-0.1f,  komaY, fuhyoZPlayer2), player2), "fuhyo14");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(3.4f,   komaY, fuhyoZPlayer2), player2), "fuhyo15");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f,   komaY, fuhyoZPlayer2), player2), "fuhyo16");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f,  komaY, fuhyoZPlayer2), player2), "fuhyo17");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f,  komaY, fuhyoZPlayer2), player2), "fuhyo18");
+	// Ô‚ğ’Ç‰Á
+	float lanceZPlayer2 = 15.7f;
+	_objectManager->Add(new Lance(_objectManager, VGet(-14.3f, komaY, lanceZPlayer2), player2), "lance3");
+	_objectManager->Add(new Lance(_objectManager, VGet(14.2f,  komaY, lanceZPlayer2), player2), "lance4");
+
 	// ô‚ğ’Ç‰Á
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");

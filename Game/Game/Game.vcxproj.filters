@@ -96,6 +96,9 @@
     <ClCompile Include="source\Shogi.cpp">
       <Filter>ソース ファイル\Shogi</Filter>
     </ClCompile>
+    <ClCompile Include="source\Lance.cpp">
+      <Filter>ソース ファイル\Shogi\Koma</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -142,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="source\Shogi.h">
       <Filter>ヘッダー ファイル\Shogi</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Lance.h">
+      <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
