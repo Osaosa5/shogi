@@ -22,6 +22,8 @@ bool ModeGame::Initialize()
 {
 	if (!base::Initialize()) { return false; }
 
+	ResourceManager::Init();
+	
 	// オブジェクト管理を生成
 	_objectManager = new ObjectManager();
 	// カメラを追加
@@ -31,15 +33,29 @@ bool ModeGame::Initialize()
 	// 将棋盤を追加
 	_objectManager->Add(new ShogiBan(), "shogiban");
 	// 歩兵を追加
-	for (int i = 0; i < 18; i++) {
-		std::string name = "fuhyo" + std::to_string(i);
-		if (i < 9) {
-			_objectManager->Add(new Fuhyo(_objectManager, VGet(i * 3.6f + -14.5f, 10, -15.3f)), name.c_str());
-		}
-		else {
-			_objectManager->Add(new Fuhyo(_objectManager, VGet(i * 3.6f + -46.9f, 10, 16)), name.c_str());
-		}
-	}
+	float komaY = 21.0f;
+	float komaZPlayer1 = -7.5f;
+	auto player1 = Shogi::PLAYER_TYPE::kPlayer1;
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-14.3f, komaY, komaZPlayer1), player1), "fuhyo1");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-10.6f, komaY, komaZPlayer1), player1), "fuhyo2");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-7.1f,  komaY, komaZPlayer1), player1), "fuhyo3");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-3.6f,  komaY, komaZPlayer1), player1), "fuhyo4");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-0.1f,  komaY, komaZPlayer1), player1), "fuhyo5");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(3.4f,   komaY, komaZPlayer1), player1), "fuhyo6");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f,   komaY, komaZPlayer1), player1), "fuhyo7");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f,  komaY, komaZPlayer1), player1), "fuhyo8");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f,  komaY, komaZPlayer1), player1), "fuhyo9");
+	float komaZPlayer2 = 7.9f;
+	auto player2 = Shogi::PLAYER_TYPE::kPlayer2;
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-14.3f, komaY, komaZPlayer2), player2), "fuhyo10");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-10.6f, komaY, komaZPlayer2), player2), "fuhyo11");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-7.1f,  komaY, komaZPlayer2), player2), "fuhyo12");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-3.6f,  komaY, komaZPlayer2), player2), "fuhyo13");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(-0.1f,  komaY, komaZPlayer2), player2), "fuhyo14");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(3.4f,   komaY, komaZPlayer2), player2), "fuhyo15");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f,   komaY, komaZPlayer2), player2), "fuhyo16");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f,  komaY, komaZPlayer2), player2), "fuhyo17");
+	_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f,  komaY, komaZPlayer2), player2), "fuhyo18");
 	// 畳を追加
 	_objectManager->Add(new Tatami(VGet(44,-10,15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");
@@ -50,6 +66,8 @@ bool ModeGame::Initialize()
 bool ModeGame::Terminate() 
 {
 	base::Terminate();
+
+	ResourceManager::Release();
 
 	// オブジェクト管理を削除
 	delete _objectManager;

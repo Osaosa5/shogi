@@ -2,10 +2,16 @@
 #include "Koma.h"
 #include "appframe.h"
 
-Koma::Koma(ObjectManager* objManajer)
+Koma::Koma(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer)
 {
 	_objManajer = objManajer;
 	_oldPos = VGet(0, 0, 0);
+	// 位置情報
+	_pos = pos;
+	// プレイヤー情報
+	_playerType = kPlayer;
+	if (_playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
+	else if (_playerType == kPlayer2) { _rot = VGet(0, DEG2RAD(180), 0); }
 }
 
 Koma::~Koma()

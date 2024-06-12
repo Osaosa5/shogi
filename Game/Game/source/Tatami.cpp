@@ -4,7 +4,7 @@
 Tatami::Tatami(VECTOR pos)
 {
 	// ƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
-	_handle = MV1LoadModel("res/3D/tatami/ImageToStl.com_772_tatami.mv1");
+	_handle = RM::MV1LoadModel("res/3D/tatami/ImageToStl.com_772_tatami.mv1");
 	// ˆÊ’uî•ñ
 	_pos = pos;
 }
@@ -15,9 +15,6 @@ Tatami::~Tatami()
 
 bool Tatami::Terminate()
 {
-	// ƒ‚ƒfƒ‹‚Ìíœ
-	MV1DeleteModel(_handle);
-
 	return true;
 }
 

@@ -8,6 +8,7 @@ class ObjectManager;
 
 class Object
 {
+	typedef ResourceManager RM;
 public:
 	Object();
 	virtual ~Object();

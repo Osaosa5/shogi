@@ -16,6 +16,9 @@
     <Filter Include="Vector">
       <UniqueIdentifier>{7cd7589c-883f-4c96-9655-eac30e7d6e4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ResourceManager">
+      <UniqueIdentifier>{108ff2df-d252-40dd-a58c-5f35e1d94128}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Application\ApplicationBase.cpp">
@@ -30,7 +33,7 @@
     <ClCompile Include="source\Mode\ModeServer.cpp">
       <Filter>ModeServer</Filter>
     </ClCompile>
-    <ClCompile Include="source\CFile\CFile.cpp">
+    <ClCompile Include="source\File\CFile.cpp">
       <Filter>CFile</Filter>
     </ClCompile>
     <ClCompile Include="source\MyMath\mymath.cpp">
@@ -39,6 +42,10 @@
     <ClCompile Include="source\Vector\Vector2.cpp">
       <Filter>Vector</Filter>
     </ClCompile>
+    <ClCompile Include="source\ResourceManager\ResourceManager.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\File\JSONFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -54,7 +61,7 @@
     <ClInclude Include="source\Mode\ModeServer.h">
       <Filter>ModeServer</Filter>
     </ClInclude>
-    <ClInclude Include="source\CFile\CFile.h">
+    <ClInclude Include="source\File\CFile.h">
       <Filter>CFile</Filter>
     </ClInclude>
     <ClInclude Include="source\MyMath\mymath.h">
@@ -63,5 +70,9 @@
     <ClInclude Include="source\Vector\Vector2.h">
       <Filter>Vector</Filter>
     </ClInclude>
+    <ClInclude Include="source\ResourceManager\ResourceManager.h">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\File\JSONFile.h" />
   </ItemGroup>
 </Project>
