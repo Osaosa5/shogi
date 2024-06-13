@@ -121,14 +121,14 @@ bool ModeGame::ObjectAdd()
 
 	// 駒のY座標
 	float komaY = 21.0f;
-
-	// player1に必要な駒を追加
+	// player1に必要な駒情報
 	auto player1 = Shogi::PLAYER_TYPE::kPlayer1;
 	float sevenRow = -7.70f; float eightRow = -11.55f; float nineRow = -15.40f;
-	// player2に必要な駒を追加
+	// player2に必要な駒情報
 	auto player2 = Shogi::PLAYER_TYPE::kPlayer2;
 	float oneRow = 15.40f; float twoRow = 11.55f; float threeRow = 7.70f;
 
+	// 駒を追加
 	for (int i = 0; i < 9; i++) {
 		float x = 3.5f * i - 14.0f;
 		std::string fuhyoPl1 = "fuhyo" + std::to_string(i + 1);
@@ -176,40 +176,6 @@ bool ModeGame::ObjectAdd()
 			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, oneRow), player2), "lance4");
 		}
 	}
-
-	// player2の駒
-	// 歩兵を追加
-	
-
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(-14.3f, komaY, threeRow), player2), "fuhyo10");
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(-10.6f, komaY, threeRow), player2), "fuhyo11");
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(-7.1f,  komaY, threeRow), player2), "fuhyo12");
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(-3.6f,  komaY, threeRow), player2), "fuhyo13");
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(-0.1f,  komaY, threeRow), player2), "fuhyo14");
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(3.4f,   komaY, threeRow), player2), "fuhyo15");
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f,   komaY, threeRow), player2), "fuhyo16");
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f,  komaY, threeRow), player2), "fuhyo17");
-	//_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f,  komaY, threeRow), player2), "fuhyo18");
-	//
-	//// 角行を追加
-	//_objectManager->Add(new Bishop(_objectManager, VGet(10.6f, komaY, twoRow), player2), "bishop2");
-	//// 飛車を追加
-	//_objectManager->Add(new Rook(_objectManager, VGet(-10.6f, komaY, twoRow), player2), "rook2");
-	//
-	//// 香車を追加
-	//_objectManager->Add(new Lance(_objectManager, VGet(-14.3f, komaY, oneRow), player2), "lance3");
-	//_objectManager->Add(new Lance(_objectManager, VGet(14.2f,  komaY, oneRow), player2), "lance4");
-	//// 桂馬を追加
-	//_objectManager->Add(new Knight(_objectManager, VGet(-10.6f, komaY, oneRow), player2), "knight3");
-	//_objectManager->Add(new Knight(_objectManager, VGet(10.6f,  komaY, oneRow), player2), "knight4");
-	//// 銀将を追加
-	//_objectManager->Add(new SilverGeneral(_objectManager, VGet(-7.1f, komaY, oneRow), player2), "silver3");
-	//_objectManager->Add(new SilverGeneral(_objectManager, VGet(7.1f,  komaY, oneRow), player2), "silver4");
-	//// 金将を追加
-	//_objectManager->Add(new GoldGeneral(_objectManager, VGet(-3.6f, komaY, oneRow), player2), "gold3");
-	//_objectManager->Add(new GoldGeneral(_objectManager, VGet(3.4f,  komaY, oneRow), player2), "gold4");
-	//// 王将を追加
-	//_objectManager->Add(new King(_objectManager, VGet(-0.1f, komaY, oneRow), player2), "king2");
 
 	// 畳を追加
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");
