@@ -1,7 +1,5 @@
 /*
  ModeGame.cpp
- 作成日：2024/05/21
- 編集日：2024/05/21
  概要：実際にゲームをプレイするモード
 */
 
@@ -87,6 +85,20 @@ bool ModeGame::Render()
 	// オブジェクトを描画
 	_objectManager->Render();
 
+	for(int i = 0; i < 9; i++) {
+		float z = 3.85f * i - 15.4f;
+		DrawLine3D(VGet(-50, 21, z), VGet(50, 21, z), GetColor(255, 0, 0));
+		DrawFormatString(0, z, GetColor(255, 255, 255), "%3.2f", z);
+	}
+
+	for(int i = 0; i < 9; i++) {
+		float x = 3.85f * i - 14.08f;
+		VECTOR WorldPos = VGet(x, 21, 50);
+		DrawLine3D(WorldPos, VGet(x, 21, -50), GetColor(255, 0, 0));
+		VECTOR localPos = ConvWorldPosToScreenPos(WorldPos);
+		DrawFormatString(localPos.x, 100, GetColor(255, 255, 255), "%3.2f", x);
+	}
+
 	// モード名を表示
 	std::string name = ModeServer::GetInstance()->GetName(this);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), name.c_str());
@@ -120,6 +132,7 @@ bool ModeGame::ObjectAdd()
 	_objectManager->Add(new Fuhyo(_objectManager, VGet(7.1f,   komaY, sevenRow), player1), "fuhyo7");
 	_objectManager->Add(new Fuhyo(_objectManager, VGet(10.6f,  komaY, sevenRow), player1), "fuhyo8");
 	_objectManager->Add(new Fuhyo(_objectManager, VGet(14.2f,  komaY, sevenRow), player1), "fuhyo9");
+	
 	// 角行を追加
 	float eightRow = -11.6f;
 	_objectManager->Add(new Bishop(_objectManager, VGet(-10.6f, komaY, eightRow), player1), "bishop1");
