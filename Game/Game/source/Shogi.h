@@ -22,14 +22,15 @@ public:
 
 	enum KOMA_TYPE	// 駒の種類
 	{
-		kNoneKoma,		// なし
 		kFuhyo,		// 歩兵
 		kKyosha,	// 香車
 		kKeima,		// 桂馬
 		kGinsho,	// 銀将
 		kKinsho,	// 金将
-		kHisha,		// 飛車
 		kKakugyo,	// 角行
+		kRyume,		// 龍馬
+		kHisha,		// 飛車
+		kRyuo,		// 竜王
 		kOsho,		// 王将
 	};
 
@@ -46,7 +47,7 @@ public:
 protected:
 	int _suji;	// 縦の列
 	int _dan;	// 横の行
-	int _elementNum;	// 配列の要素番号
+	int _mapChip;	// 配列の要素番号
 	AREA_TYPE _areaType;	// エリアの種類
 	KOMA_TYPE _komaType;	// 駒の種類
 	PLAYER_TYPE _playerType;	// プレイヤーの種類

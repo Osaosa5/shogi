@@ -15,6 +15,8 @@
 #include "ShogiBan.h"
 #include "Tatami.h"
 
+#include "Square.h"
+
 #include "Fuhyo.h"
 #include "Lance.h"
 #include "Knight.h"
@@ -30,6 +32,9 @@ bool ModeGame::Initialize()
 
 	ResourceManager::Init();
 	
+	JSONFile JSON("JSON/board.json");
+	_mapChip = JSON.Data()["map"].get<std::vector<int>>();
+
 	// オブジェクト管理を生成
 	_objectManager = new ObjectManager();
 	
@@ -44,6 +49,8 @@ bool ModeGame::Terminate()
 	base::Terminate();
 
 	ResourceManager::Release();
+
+	_mapChip.clear();
 
 	// オブジェクト管理を削除
 	delete _objectManager;
@@ -118,6 +125,23 @@ bool ModeGame::ObjectAdd()
 	_objectManager->Add(new Light(), "light");
 	// 将棋盤を追加
 	_objectManager->Add(new ShogiBan(), "shogiban");
+
+	for(int y = 0; y < 9; y++) {
+		for(int x = 0; x < 9; x++) {
+			VECTOR pos = VGet(-15.75f + 3.5f * x, 21, 13.475f - 3.85f * y);
+			std::pair<float, float> size = std::make_pair(3.5f, 3.85f);
+			int mapChip = _mapChip[y * 9 + x];
+			// プレイヤーのエリアを設定
+			std::string player;
+			if(y < 3) player = "player2";
+			else if(y > 5) player = "player1";
+			else player = "";
+			// Squareを追加
+			std::string name = "square" + std::to_string(x + y * 9);
+			_objectManager->Add(new Square(pos, size, mapChip, player), name.c_str());
+		}
+	}
+
 
 	// 駒のY座標
 	float komaY = 21.0f;

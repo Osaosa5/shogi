@@ -16,5 +16,5 @@ public:
 private:
 	// オブジェクト管理
 	class ObjectManager* _objectManager;
-
+	std::vector<int> _mapChip;
 }; 
