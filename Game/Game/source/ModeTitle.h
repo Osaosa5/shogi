@@ -10,6 +10,6 @@ public:
 	bool Terminate()override;
 	bool Process()override;
 	bool Render()override;
-
+	std::vector<int> _vMap;
 };
 
