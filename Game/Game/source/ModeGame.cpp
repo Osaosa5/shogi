@@ -126,17 +126,24 @@ bool ModeGame::ObjectAdd()
 	// 将棋盤を追加
 	_objectManager->Add(new ShogiBan(), "shogiban");
 
+	// マスを追加
 	for(int y = 0; y < 9; y++) {
 		for(int x = 0; x < 9; x++) {
-			VECTOR pos = VGet(-15.75f + 3.5f * x, 21, 13.475f - 3.85f * y);
-			std::pair<float, float> size = std::make_pair(3.5f, 3.85f);
+			// マスをx方向に3.5f、z方向に3.85fずつずらして配置
+			float w = 3.53f; float h = 3.87f;
+			VECTOR pos = VGet(-15.88f + w * x, 21, 13.55f - h * y);
+			std::pair<float, float> size = std::make_pair(w - 0.01f, h - 0.01f);
+
+			// マスのマップチップを取得
 			int mapChip = _mapChip[y * 9 + x];
-			// プレイヤーのエリアを設定
+
+			// マスの陣地がどちらのプレイヤーのものかを取得
+			// 0~2行目はplayer2、3~5行目は中立、6~8行目はplayer1
 			std::string player;
 			if(y < 3) player = "player2";
 			else if(y > 5) player = "player1";
 			else player = "";
-			// Squareを追加
+
 			std::string name = "square" + std::to_string(x + y * 9);
 			_objectManager->Add(new Square(pos, size, mapChip, player), name.c_str());
 		}
