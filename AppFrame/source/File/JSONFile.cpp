@@ -9,11 +9,9 @@ JSONFile::JSONFile(const std::string filename)
 	_filename = filename;
 
 	// ファイルを開く
-	std::ifstream ifs(filename);	// 入力をバイナリ形式で
-	if (!ifs) {
-		// 開くの失敗
-		return;
-	}
+	std::ifstream ifs(filename);
+	// ファイルを開けなかったら処理を終わらせる
+	if (!ifs) return;
 
 	ifs >> _jsonData;
 	ifs.close();
@@ -28,11 +26,10 @@ JSONFile::JSONFile(const std::string filename, nlohmann::json writeDate)
 	_filename = filename;
 
 	std::ofstream ofs(filename);
-	if(!ofs) {
-		// 開くの失敗
-		return;
-	}
+	// ファイルを開けなかったら処理を終わらせる
+	if(!ofs) return;
 
+	// ファイルに書き込むデータをシリアライズする
 	ofs << writeDate.dump() << std::endl;
 	ofs.close();
 
