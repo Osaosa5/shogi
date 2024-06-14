@@ -23,6 +23,10 @@ bool ModeGame::Initialize()
 	if (!base::Initialize()) { return false; }
 
 	ResourceManager::Init();
+
+	
+	JSONFile jsonFile("JSON/jojo.json");
+	auto j = jsonFile.Data();
 	
 	// オブジェクト管理を生成
 	_objectManager = new ObjectManager();
@@ -35,12 +39,8 @@ bool ModeGame::Initialize()
 	// 歩兵を追加
 	_objectManager->Add(new Fuhyo(_objectManager), "fuhyo1");
 	// 畳を追加
-	_objectManager->Add(new Tatami(VGet(44,-10,15)), "tatami1");
+	_objectManager->Add(new Tatami(VGet(44, j.at(4).at("pos_y"),15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");
-
-	nlohmann::json j;
-	j["name"] = "test";
-	JSONFile jsonFile("JSON/data.json", j);
 
 	return true;
 }
