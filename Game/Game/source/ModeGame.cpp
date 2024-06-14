@@ -15,6 +15,7 @@
 #include "ShogiBan.h"
 #include "Tatami.h"
 
+#include "Board.h"
 #include "Square.h"
 
 #include "Fuhyo.h"
@@ -32,9 +33,6 @@ bool ModeGame::Initialize()
 
 	ResourceManager::Init();
 	
-	JSONFile JSON("JSON/board.json");
-	_mapChip = JSON.Data()["map"].get<std::vector<int>>();
-
 	// オブジェクト管理を生成
 	_objectManager = new ObjectManager();
 	
@@ -126,29 +124,10 @@ bool ModeGame::ObjectAdd()
 	// 将棋盤を追加
 	_objectManager->Add(new ShogiBan(), "shogiban");
 
-	// マスを追加
-	for(int y = 0; y < 9; y++) {
-		for(int x = 0; x < 9; x++) {
-			// マスをx方向に3.5f、z方向に3.85fずつずらして配置
-			float w = 3.53f; float h = 3.87f;
-			VECTOR pos = VGet(-15.88f + w * x, 21, 13.55f - h * y);
-			std::pair<float, float> size = std::make_pair(w - 0.01f, h - 0.01f);
+	JSONFile JSON("JSON/board.json");
 
-			// マスのマップチップを取得
-			int mapChip = _mapChip[y * 9 + x];
-
-			// マスの陣地がどちらのプレイヤーのものかを取得
-			// 0~2行目はplayer2、3~5行目は中立、6~8行目はplayer1
-			std::string player;
-			if(y < 3) player = "player2";
-			else if(y > 5) player = "player1";
-			else player = "";
-
-			std::string name = "square" + std::to_string(x + y * 9);
-			_objectManager->Add(new Square(pos, size, mapChip, player), name.c_str());
-		}
-	}
-
+	// 将棋盤の升目の情報を追加
+	_objectManager->Add(new Board(_objectManager, JSON.Data()), "board");
 
 	// 駒のY座標
 	float komaY = 21.0f;

@@ -117,6 +117,9 @@
     <ClCompile Include="source\Rook.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
+    <ClCompile Include="source\Board.cpp">
+      <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="source\Rook.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Board.h">
+      <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,9 +25,6 @@ bool Camera::Terminate()
 
 bool Camera::Process()
 {
-	// ƒJƒƒ‰‚ÌˆÊ’u‚Æ’‹“_‚ğİ’è‚·‚é
-	//SetCameraPositionAndTarget_UpVecY(_pos, _direction);
-
 	return true;
 }
 

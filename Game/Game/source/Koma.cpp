@@ -1,6 +1,8 @@
 
 #include "Koma.h"
+
 #include "appframe.h"
+#include "Board.h"
 
 Koma::Koma(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer)
 {
@@ -26,6 +28,10 @@ bool Koma::Terminate()
 bool Koma::Process()
 {
 	_oldPos = _pos;
+
+	// Boardクラスにアクセスして、_boardChipの情報を取り出したい
+	auto board = _objManajer->Get("board");
+
 	return true;
 }
 
