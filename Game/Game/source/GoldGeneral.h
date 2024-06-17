@@ -5,7 +5,7 @@
 class GoldGeneral : public Koma
 {
 public:
-	GoldGeneral(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer);
+	GoldGeneral(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
 	~GoldGeneral();
 
 	bool Terminate()override;

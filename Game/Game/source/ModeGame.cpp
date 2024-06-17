@@ -124,9 +124,8 @@ bool ModeGame::ObjectAdd()
 	// «Šû”Õ‚ğ’Ç‰Á
 	_objectManager->Add(new ShogiBan(), "shogiban");
 
-	JSONFile JSON("JSON/board.json");
-
 	// «Šû”Õ‚Ì¡–Ú‚Ìî•ñ‚ğ’Ç‰Á
+	JSONFile JSON("JSON/board.json");
 	_objectManager->Add(new Board(_objectManager, JSON.Data()), "board");
 
 	// ‹î‚ÌYÀ•W
@@ -137,53 +136,53 @@ bool ModeGame::ObjectAdd()
 	// player2‚É•K—v‚È‹îî•ñ
 	auto player2 = Shogi::PLAYER_TYPE::kPlayer2;
 	float oneRow = 15.40f; float twoRow = 11.55f; float threeRow = 7.70f;
-
+	
 	// ‹î‚ğ’Ç‰Á
 	for (int i = 0; i < 9; i++) {
 		float x = 3.5f * i - 14.0f;
 		std::string fuhyoPl1 = "fuhyo" + std::to_string(i + 1);
 		std::string fuhyoPl2 = "fuhyo" + std::to_string(i + 10);
-		_objectManager->Add(new Fuhyo(_objectManager, VGet(x, komaY, sevenRow), player1), fuhyoPl1.c_str());
-		_objectManager->Add(new Fuhyo(_objectManager, VGet(x, komaY, threeRow), player2), fuhyoPl2.c_str());
+		_objectManager->Add(new Fuhyo(_objectManager, VGet(x, komaY, sevenRow), i, sevenRow, player1), fuhyoPl1.c_str());
+		_objectManager->Add(new Fuhyo(_objectManager, VGet(x, komaY, threeRow), i, threeRow, player2), fuhyoPl2.c_str());
 		if (i == 0) {
-			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, nineRow), player1), "lance1");
-			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, oneRow), player2), "lance2");
+			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, nineRow), i, nineRow, player1), "lance1");
+			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, oneRow), i, oneRow, player2), "lance2");
 		}
 		else if (i == 1) {
-			_objectManager->Add(new Bishop(_objectManager, VGet(x, komaY, eightRow), player1), "bishop1");
-			_objectManager->Add(new Rook(_objectManager, VGet(x, komaY, twoRow), player2), "rook1");
-			_objectManager->Add(new Knight(_objectManager, VGet(x, komaY, nineRow), player1), "knight1");
-			_objectManager->Add(new Knight(_objectManager, VGet(x, komaY, oneRow), player2), "knight2");
+			_objectManager->Add(new Bishop(_objectManager, VGet(x, komaY, eightRow), i, eightRow, player1), "bishop1");
+			_objectManager->Add(new Rook(_objectManager,	VGet(x, komaY, twoRow), i, twoRow, player2), "rook1");
+			_objectManager->Add(new Knight(_objectManager,	VGet(x, komaY, nineRow), i, nineRow, player1), "knight1");
+			_objectManager->Add(new Knight(_objectManager,	VGet(x, komaY, oneRow), i, oneRow, player2), "knight2");
 		}
 		else if (i == 2) {
-			_objectManager->Add(new SilverGeneral(_objectManager, VGet(x, komaY, nineRow), player1), "silver1");
-			_objectManager->Add(new SilverGeneral(_objectManager, VGet(x, komaY, oneRow), player2), "silver2");
+			_objectManager->Add(new SilverGeneral(_objectManager, VGet(x, komaY, nineRow), i, nineRow, player1), "silver1");
+			_objectManager->Add(new SilverGeneral(_objectManager, VGet(x, komaY, oneRow), i, oneRow, player2), "silver2");
 		}
 		else if (i == 3) {
-			_objectManager->Add(new GoldGeneral(_objectManager, VGet(x, komaY, nineRow), player1), "gold1");
-			_objectManager->Add(new GoldGeneral(_objectManager, VGet(x, komaY, oneRow), player2), "gold2");
+			_objectManager->Add(new GoldGeneral(_objectManager, VGet(x, komaY, nineRow), i, nineRow, player1), "gold1");
+			_objectManager->Add(new GoldGeneral(_objectManager, VGet(x, komaY, oneRow), i, oneRow, player2), "gold2");
 		}
 		else if (i == 4) {
-			_objectManager->Add(new King(_objectManager, VGet(x, komaY, nineRow), player1), "king1");
-			_objectManager->Add(new King(_objectManager, VGet(x, komaY, oneRow), player2), "king2");
+			_objectManager->Add(new King(_objectManager, VGet(x, komaY, nineRow), i, nineRow, player1), "king1");
+			_objectManager->Add(new King(_objectManager, VGet(x, komaY, oneRow), i, oneRow, player2), "king2");
 		}
 		else if (i == 5) {
-			_objectManager->Add(new GoldGeneral(_objectManager, VGet(x, komaY, nineRow), player1), "gold3");
-			_objectManager->Add(new GoldGeneral(_objectManager, VGet(x, komaY, oneRow), player2), "gold4");
+			_objectManager->Add(new GoldGeneral(_objectManager, VGet(x, komaY, nineRow), i, nineRow, player1), "gold3");
+			_objectManager->Add(new GoldGeneral(_objectManager, VGet(x, komaY, oneRow), i, oneRow, player2), "gold4");
 		}
 		else if (i == 6) {
-			_objectManager->Add(new SilverGeneral(_objectManager, VGet(x, komaY, nineRow), player1), "silver3");
-			_objectManager->Add(new SilverGeneral(_objectManager, VGet(x, komaY, oneRow), player2), "silver4");
+			_objectManager->Add(new SilverGeneral(_objectManager, VGet(x, komaY, nineRow), i, nineRow, player1), "silver3");
+			_objectManager->Add(new SilverGeneral(_objectManager, VGet(x, komaY, oneRow), i, oneRow, player2), "silver4");
 		}
 		else if (i == 7) {
-			_objectManager->Add(new Rook(_objectManager, VGet(x, komaY, eightRow), player1), "rook2");
-			_objectManager->Add(new Bishop(_objectManager, VGet(x, komaY, twoRow), player2), "bishop2");
-			_objectManager->Add(new Knight(_objectManager, VGet(x, komaY, nineRow), player1), "knight3");
-			_objectManager->Add(new Knight(_objectManager, VGet(x, komaY, oneRow), player2), "knight4");
+			_objectManager->Add(new Rook(_objectManager, VGet(x, komaY, eightRow), i, eightRow, player1), "rook2");
+			_objectManager->Add(new Bishop(_objectManager, VGet(x, komaY, twoRow), i, twoRow, player2), "bishop2");
+			_objectManager->Add(new Knight(_objectManager, VGet(x, komaY, nineRow), i, nineRow, player1), "knight3");
+			_objectManager->Add(new Knight(_objectManager, VGet(x, komaY, oneRow), i, oneRow, player2), "knight4");
 		}
 		else if (i == 8) {
-			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, nineRow), player1), "lance3");
-			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, oneRow), player2), "lance4");
+			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, nineRow), i, nineRow, player1), "lance3");
+			_objectManager->Add(new Lance(_objectManager, VGet(x, komaY, oneRow), i, oneRow, player2), "lance4");
 		}
 	}
 

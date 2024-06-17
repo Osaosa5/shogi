@@ -2,14 +2,17 @@
 #include "Koma.h"
 
 #include "appframe.h"
+#include "Object.h"
 #include "Board.h"
 
-Koma::Koma(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer)
+Koma::Koma(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer)
 {
 	_objManajer = objManajer;
 	_oldPos = VGet(0, 0, 0);
 	// 位置情報
 	_pos = pos;
+	// 駒の位置情報
+	_dan = dan; _suji = suji;
 	// プレイヤー情報
 	_playerType = kPlayer;
 	if (_playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
@@ -28,9 +31,6 @@ bool Koma::Terminate()
 bool Koma::Process()
 {
 	_oldPos = _pos;
-
-	// Boardクラスにアクセスして、_boardChipの情報を取り出したい
-	auto board = _objManajer->Get("board");
 
 	return true;
 }
@@ -71,5 +71,14 @@ void Koma::HitTest()
 		_pos = _oldPos;
 	}
 
+}
+
+bool Koma::GetBoard()
+{
+	// Boardクラスのポインタを取得
+	Object* obj = _objManajer->Get("board");
+	if (!obj) return false;
+	_board = dynamic_cast<Board*>(obj);
+	return true;
 }
 

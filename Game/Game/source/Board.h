@@ -14,10 +14,10 @@ public:
 	bool Process() override;
 	bool Render() override;
 
-	std::vector<int> GetBoardChip() { return _boardChip; }
+	std::vector<int> GetBoardTiles() { return _vBoardTiles; }
 
 private:
-	std::vector<int> _boardChip;
+	std::vector<int> _vBoardTiles;
 
 };
 

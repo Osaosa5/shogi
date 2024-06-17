@@ -164,9 +164,6 @@
     <ClInclude Include="source\Square.h">
       <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
     </ClInclude>
-    <ClInclude Include="source\Shogi.h">
-      <Filter>ヘッダー ファイル\Shogi</Filter>
-    </ClInclude>
     <ClInclude Include="source\Lance.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
@@ -190,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="source\Board.h">
       <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Shogi.h">
+      <Filter>ヘッダー ファイル\Shogi</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -47,7 +47,7 @@ public:
 protected:
 	int _suji;	// 縦の列
 	int _dan;	// 横の行
-	int _mapChip;	// 配列の要素番号
+	int _tile;	// 配列の要素番号
 	AREA_TYPE _areaType;	// エリアの種類
 	KOMA_TYPE _komaType;	// 駒の種類
 	PLAYER_TYPE _playerType;	// プレイヤーの種類

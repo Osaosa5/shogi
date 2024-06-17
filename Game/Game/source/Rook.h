@@ -5,7 +5,7 @@
 class Rook : public Koma
 {
 public:
-	Rook(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer);
+	Rook(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
 	~Rook();
 
 	bool Terminate()override;

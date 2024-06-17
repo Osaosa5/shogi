@@ -2,7 +2,8 @@
 #include "GoldGeneral.h"
 #include "GoldGeneral.h"
 
-GoldGeneral::GoldGeneral(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer) : Koma(objManajer, pos, kPlayer)
+GoldGeneral::GoldGeneral(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer)
+	: Koma(objManajer, pos, dan, suji, kPlayer)
 {
 	// ÉÇÉfÉãì«Ç›çûÇ›
 	_handle = RM::MV1LoadModel("res/3D/shogi/kin.mv1");

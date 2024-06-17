@@ -1,13 +1,14 @@
 #pragma once
 
 #include "Shogi.h"
+
 #include "ObjectManager.h"
-#include "ShogiBan.h"
+#include "Board.h"
 
 class Koma : public Shogi
 {
 public:
-	Koma(ObjectManager* objManajer, VECTOR pos, PLAYER_TYPE kPlayer);
+	Koma(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
 	virtual ~Koma();
 
 	virtual bool Terminate();
@@ -16,9 +17,14 @@ public:
 
 	virtual bool Move();
 	void HitTest();
+	bool GetBoard();
+
+protected:
+	VECTOR _oldPos;
 
 private:
 	ObjectManager* _objManajer;
-	VECTOR _oldPos;
+	Board* _board;
+
 };
 

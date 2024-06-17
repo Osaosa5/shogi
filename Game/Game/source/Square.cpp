@@ -1,7 +1,7 @@
 
 #include "Square.h"
 
-Square::Square(VECTOR pos, std::pair<float, float> size, int mapChip, std::string area)
+Square::Square(VECTOR pos, std::pair<float, float> size, int mapChip, std::string area, int dan, int suji)
 {
 	_pos = pos;
 	_size = size;
@@ -11,13 +11,16 @@ Square::Square(VECTOR pos, std::pair<float, float> size, int mapChip, std::strin
 	_center = VGet((_pos.x + vec.x) / 2, _pos.y, (_pos.z + vec.z) / 2);
 
 	// マップチップの種類を設定
-	_mapChip = mapChip;
-	if (!_mapChip) _komaType = (KOMA_TYPE)_mapChip;
+	_tile = mapChip;
+	if (!_tile) _komaType = (KOMA_TYPE)_tile;
 
 	// エリアの種類を設定
 	if (area == "player1") _areaType = AREA_TYPE::kPlayer1Area;
 	else if (area == "player2") _areaType = AREA_TYPE::kPlayer2Area;
 	else _areaType = AREA_TYPE::kNeutral;
+
+	// 縦の列と横の行を設定
+	_dan = dan; _suji = suji;
 }
 
 Square::~Square()

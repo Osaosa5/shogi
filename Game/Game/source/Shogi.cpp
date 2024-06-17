@@ -5,7 +5,7 @@ Shogi::Shogi()
 {
 	_suji = 0;
 	_dan = 0;
-	_mapChip = _suji * DAN_MAX + _dan;
+	_tile = _suji * DAN_MAX + _dan;
 	_areaType = AREA_TYPE::kNone;
 	_playerType = PLAYER_TYPE::kNonePlayer;
 }
