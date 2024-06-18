@@ -4,6 +4,7 @@
 #include "appframe.h"
 #include "Object.h"
 #include "Board.h"
+#include "Square.h"
 
 Koma::Koma(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer)
 {
@@ -73,6 +74,7 @@ void Koma::HitTest()
 
 }
 
+// TODO:BoardじゃなくてSquareの方がいいかもしれない
 bool Koma::GetBoard()
 {
 	// Boardクラスのポインタを取得
@@ -80,5 +82,20 @@ bool Koma::GetBoard()
 	if (!obj) return false;
 	_board = dynamic_cast<Board*>(obj);
 	return true;
+}
+
+// TODO:タイルの中央に駒をセットする 動作を確認すること！
+void Koma::SetKomaCentralTile()
+{
+	// todo:駒の位置を文字列に直し、"square"と合わせる
+	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
+
+	// todo:駒と同じ位置にあるタイルを取得する
+	Object* obj = _objManajer->Get(strSquare.c_str());
+	if (!obj) return;
+	Square* square = dynamic_cast<Square*>(obj);
+
+	// todo:タイルの中央に駒の位置をセットする
+	this->SetPos(square->GetCenter());
 }
 

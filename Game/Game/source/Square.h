@@ -12,9 +12,11 @@ public:
 	bool Process() override;
 	bool Render() override;
 
-	int GetTileNum() { return _tile; }
-	KOMA_TYPE GetKomaType() { return _komaType; }
-	AREA_TYPE GetAreaType() { return _areaType; }
+	VECTOR GetCenter() const { return _center; }
+
+	int GetTileNum() const { return _tile; }
+	KOMA_TYPE GetKomaType() const { return _komaType; }
+	AREA_TYPE GetAreaType() const { return _areaType; }
 
 private:
 	std::pair<float, float> _size;

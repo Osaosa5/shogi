@@ -19,6 +19,7 @@ public:
 
 	int GetHandle() const { return _handle; }
 	VECTOR GetPos() const { return _pos; }
+	void SetPos(VECTOR pos) { _pos = pos; }
 	VECTOR GetRot() const { return _rot; }
 
 	virtual void DebugRenderPos();

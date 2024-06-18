@@ -18,6 +18,7 @@ public:
 	virtual bool Move();
 	void HitTest();
 	bool GetBoard();
+	void SetKomaCentralTile();
 
 protected:
 	VECTOR _oldPos;
