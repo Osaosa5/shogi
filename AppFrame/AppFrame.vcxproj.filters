@@ -46,6 +46,7 @@
       <Filter>ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="source\File\JSONFile.cpp" />
+    <ClCompile Include="source\JsonManeger\JsonManeger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -74,5 +75,6 @@
       <Filter>ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="source\File\JSONFile.h" />
+    <ClInclude Include="source\JsonManeger\JsonManeger.h" />
   </ItemGroup>
 </Project>

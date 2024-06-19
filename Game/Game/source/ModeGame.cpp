@@ -33,6 +33,8 @@ bool ModeGame::Initialize()
 
 	ResourceManager::Init();
 	
+	JsonManeger::Init();
+
 	// オブジェクト管理を生成
 	_objectManager = new ObjectManager();
 	
@@ -47,6 +49,8 @@ bool ModeGame::Terminate()
 	base::Terminate();
 
 	ResourceManager::Release();
+
+	JsonManeger::Release();
 
 	_mapChip.clear();
 
@@ -125,8 +129,8 @@ bool ModeGame::ObjectAdd()
 	_objectManager->Add(new ShogiBan(), "shogiban");
 
 	// 将棋盤の升目の情報を追加
-	JSONFile JSON("JSON/board.json");
-	_objectManager->Add(new Board(_objectManager, JSON.Data()), "board");
+	nlohmann::json j = JsonManeger::LoadJsonFile("JSON/board.json");
+	_objectManager->Add(new Board(_objectManager, j), "board");
 
 	// 駒のY座標
 	float komaY = 21.0f;
