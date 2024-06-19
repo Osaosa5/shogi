@@ -13,6 +13,8 @@ Square::Square(ObjectManager* objManeger, VECTOR pos, std::pair<float, float> si
 	VECTOR vec = VAdd(_pos, VGet(_size.first, 0, _size.second));
 	_center = VGet((_pos.x + vec.x) / 2, _pos.y, (_pos.z + vec.z) / 2);
 
+	_bSelect = false;
+
 	// マップチップの種類を設定
 	_tile = mapChip;
 	if (!_tile) _komaType = (KOMA_TYPE)_tile;
@@ -44,18 +46,16 @@ bool Square::Process()
 
 bool Square::Render()
 {
+	int Cr = _bSelect ? GetColor(0, 255, 0) : GetColor(0, 0, 255);
+
 	std::unordered_map<std::string, VECTOR> box;
 	box["lUp"] = _pos;
 	box["lBottom"] = VGet(_pos.x, _pos.y, _pos.z + _size.second);
 	box["rUp"] = VGet(_pos.x + _size.first, _pos.y, _pos.z);
 	box["rBottom"] = VGet(_pos.x + _size.first, _pos.y, _pos.z + _size.second);
-	DrawTriangle3D(box["lUp"], box["lBottom"], box["rBottom"], GetColor(0, 0, 255), FALSE);
-	DrawTriangle3D(box["lUp"], box["rUp"], box["rBottom"], GetColor(0, 0, 255), FALSE);
-		
-	// Squareの中心座標を表示
-	/*VECTOR localPos = ConvWorldPosToScreenPos(_center);
-	DrawFormatString(localPos.x, localPos.y, GetColor(0, 255, 0), "x:%3.1f \nz:%3.1f", _center.x, _center.z);*/
-
+	DrawTriangle3D(box["lUp"], box["lBottom"], box["rBottom"], Cr, _bSelect);
+	DrawTriangle3D(box["lUp"], box["rUp"], box["rBottom"], Cr, _bSelect);
+	
 	return true;
 }
 

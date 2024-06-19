@@ -10,6 +10,9 @@ Player::Player(ObjectManager* objManeger, std::string player)
 	else if (player == "player2") _playerType = PLAYER_TYPE::kPlayer2;
 	else _playerType = PLAYER_TYPE::kNonePlayer;
 
+	_bSelect = false;
+	_selectSquare = std::make_pair(-1, -1);
+
 	_suji = _dan = 0;
 }
 
@@ -33,18 +36,27 @@ bool Player::Process()
 	if(trg & PAD_INPUT_UP) _suji = (_suji + (SUJI_MAX - 1)) % SUJI_MAX;
 	else if(trg & PAD_INPUT_DOWN) _suji = (_suji + 1) % SUJI_MAX;
 
+	if (trg & PAD_INPUT_4) {
+		if (_bSelect && _selectSquare == std::make_pair(_dan, _suji)) {
+			_bSelect = false;
+			_selectSquare = std::make_pair(-1, -1);
+			auto square = GetSquare(_dan, _suji);
+			square->SetSelect(!square->GetSelect());
+		}
+		else if(!_bSelect){
+			_bSelect = true;
+			_selectSquare = std::make_pair(_dan, _suji);
+			auto square = GetSquare(_dan, _suji);
+			square->SetSelect(!square->GetSelect());
+		}
+	}
+
 	return true;
 }
 
 bool Player::Render()
 {
-	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
-	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
-
-	// 駒と同じ位置にあるタイルを取得する
-	Object* obj = _objManager->Get(strSquare.c_str());
-	if (!obj) return false;
-	Square* square = dynamic_cast<Square*>(obj);
+	Square* square = GetSquare(_dan, _suji);
 
 	std::unordered_map<std::string, VECTOR> box;
 	std::pair<float, float> size = square->GetSize();
@@ -55,4 +67,24 @@ bool Player::Render()
 	box["rBottom"] = VGet(pos.x + size.first, pos.y, pos.z + size.second);
 	DrawTriangle3D(box["lUp"], box["lBottom"], box["rBottom"], GetColor(0, 0, 255), TRUE);
 	DrawTriangle3D(box["lUp"], box["rUp"], box["rBottom"], GetColor(0, 0, 255), TRUE);
+	return true;
+}
+
+Square* Player::GetSquare(int dan, int suji)
+{
+	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
+	std::string strSquare = "square" + std::to_string(suji * DAN_MAX + dan);
+
+	// 駒と同じ位置にあるタイルを取得する
+	Object* obj = _objManager->Get(strSquare.c_str());
+	if (obj) return dynamic_cast<Square*>(obj);
+	else return nullptr;
+}
+
+Board* Player::GetBoard()
+{
+	// 駒と同じ位置にあるタイルを取得する
+	Object* obj = _objManager->Get("board");
+	if (obj) return dynamic_cast<Board*>(obj);
+	else return nullptr;
 }

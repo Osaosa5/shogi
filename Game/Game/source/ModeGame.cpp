@@ -70,7 +70,7 @@ bool ModeGame::Process()
 
 	// 入力情報を取得
 	auto app = ApplicationMain::GetInstance();
-	int trg = app->GetTrg();
+	int trg = app->GetTrg(1);
 
 	// Zキーが押されたら終了モードに遷移
 	if (trg & PAD_INPUT_1) {
@@ -217,6 +217,7 @@ bool ModeGame::ObjectAdd()
 	// プレイヤーを追加
 	_objectManager->Add(new Player(_objectManager, "player1"), "player1");
 	_objectManager->Add(new Player(_objectManager, "player2"), "player2");
+
 	return true;
 }
 
