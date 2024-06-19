@@ -15,6 +15,7 @@ public:
 	bool Render() override;
 
 	std::vector<int> GetBoardTiles() { return _vBoardTiles; }
+	void SetBoardTile(int dan, int suji, int tile) { _vBoardTiles[suji * DAN_MAX + dan] = tile; }
 	int GetBoardTile(int dan, int suji) { return _vBoardTiles[suji * DAN_MAX + dan]; }
 
 private:

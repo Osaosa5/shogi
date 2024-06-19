@@ -19,9 +19,9 @@ public:
 	virtual bool Move();
 	void HitTest();
 	bool GetBoard();
-	class Square* GetSquarePutKoma();
+	class Square* GetSquarePutKoma(int dan, int suji);
 	void SetKomaCentralTile();
-	void SetKomaToSquare();
+	void SetKomaToSquare(int dan, int suji);
 
 protected:
 	VECTOR _oldPos;

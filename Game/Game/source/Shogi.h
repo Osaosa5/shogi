@@ -12,6 +12,15 @@ public:
 	virtual bool Process();
 	virtual bool Render();
 
+	int GetDan() { return _dan; }
+	void SetDan(int dan) { _dan = dan; }
+
+	int GetSuji() { return _suji; }
+	void SetSuji(int suji) { _suji = suji; }
+
+	int GetTile() { return _tile; }
+	void SetTile(int tile) { _tile = tile; }
+
 	enum AREA_TYPE	// ƒGƒŠƒA‚ÌŽí—Þ
 	{
 		kNone,		// ‚È‚µ

@@ -32,7 +32,7 @@ bool Koma::Process()
 {
 	_oldPos = _pos;
 	SetKomaCentralTile();
-
+	SetKomaToSquare(_dan, _suji);
 	return true;
 }
 
@@ -84,10 +84,10 @@ bool Koma::GetBoard()
 	return true;
 }
 
-Square* Koma::GetSquarePutKoma()
+Square* Koma::GetSquarePutKoma(int dan, int suji)
 {
 	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
-	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
+	std::string strSquare = "square" + std::to_string(suji * DAN_MAX + dan);
 
 	// 駒と同じ位置にあるタイルを取得する
 	Object* obj = _objManager->Get(strSquare.c_str());
@@ -99,7 +99,7 @@ Square* Koma::GetSquarePutKoma()
 void Koma::SetKomaCentralTile()
 {
 	if(_bSetPos) return; 
-	Square* square = GetSquarePutKoma();
+	Square* square = GetSquarePutKoma(_dan, _suji);
 
 	// タイルの中央に駒の位置をセットする
 	this->SetPos(square->GetCenter());
@@ -108,9 +108,9 @@ void Koma::SetKomaCentralTile()
 	_bSetPos = true;
 }
 
-void Koma::SetKomaToSquare()
+void Koma::SetKomaToSquare(int dan, int suji)
 {
-	Square* square = GetSquarePutKoma();
+	Square* square = GetSquarePutKoma(dan, suji);
 
 	// 設置してある駒が自分自身の場合は何もしない
 	if(square->GetKoma() == this) return;

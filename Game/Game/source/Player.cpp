@@ -31,12 +31,25 @@ bool Player::Process()
 	auto app = ApplicationMain::GetInstance();
 	int trg = app->GetTrg(player);
 
-	if (trg & PAD_INPUT_LEFT) _dan = (_dan + (DAN_MAX - 1)) % DAN_MAX;
-	else if(trg & PAD_INPUT_RIGHT) _dan = (_dan + 1) % DAN_MAX;
-	if(trg & PAD_INPUT_UP) _suji = (_suji + (SUJI_MAX - 1)) % SUJI_MAX;
-	else if(trg & PAD_INPUT_DOWN) _suji = (_suji + 1) % SUJI_MAX;
+	SelectSquare(trg);
+	
+	// 選択したマスにある駒のポインタを取得
+	Koma* koma = GetKoma(_selectSquare.first, _selectSquare.second);
 
 	if (trg & PAD_INPUT_4) {
+		if (!_bSelect && GetKoma(_dan, _suji)) {
+			_bSelect = true;
+			_selectSquare = std::make_pair(_dan, _suji);
+			auto square = GetSquare(_dan, _suji);
+			square->SetSelect(!square->GetSelect());
+		}
+		else if (_bSelect && !GetKoma(_dan, _suji)) {
+			_bSelect = false;
+			auto square = GetSquare(_selectSquare.first, _selectSquare.second);
+		}
+	}
+
+	/*if (trg & PAD_INPUT_4) {
 		if (_bSelect && _selectSquare == std::make_pair(_dan, _suji)) {
 			_bSelect = false;
 			_selectSquare = std::make_pair(-1, -1);
@@ -49,7 +62,7 @@ bool Player::Process()
 			auto square = GetSquare(_dan, _suji);
 			square->SetSelect(!square->GetSelect());
 		}
-	}
+	}*/
 
 	return true;
 }
@@ -68,6 +81,22 @@ bool Player::Render()
 	DrawTriangle3D(box["lUp"], box["lBottom"], box["rBottom"], GetColor(0, 0, 255), TRUE);
 	DrawTriangle3D(box["lUp"], box["rUp"], box["rBottom"], GetColor(0, 0, 255), TRUE);
 	return true;
+}
+
+Koma* Player::GetKoma(int dan, int suji)
+{
+	if(dan || suji < 0) return nullptr;
+	auto square = GetSquare(dan, suji);
+	if (square) return square->GetKoma();
+	return nullptr;
+}
+
+void Player::SelectSquare(int trg)
+{
+	if (trg & PAD_INPUT_LEFT) _dan = (_dan + (DAN_MAX - 1)) % DAN_MAX;
+	else if (trg & PAD_INPUT_RIGHT) _dan = (_dan + 1) % DAN_MAX;
+	if (trg & PAD_INPUT_UP) _suji = (_suji + (SUJI_MAX - 1)) % SUJI_MAX;
+	else if (trg & PAD_INPUT_DOWN) _suji = (_suji + 1) % SUJI_MAX;
 }
 
 Square* Player::GetSquare(int dan, int suji)

@@ -4,6 +4,7 @@
 #include "ObjectManager.h"
 #include "Square.h"
 #include "Board.h"
+#include "Koma.h"
 
 class Player : public Shogi
 {
@@ -14,6 +15,10 @@ public:
 	bool Terminate() override;
 	bool Process() override;
 	bool Render() override;
+
+	Koma* GetKoma(int dan, int suji);
+
+	void SelectSquare(int trg);
 
 	Square* GetSquare(int dan, int suji);
 	Board* GetBoard();

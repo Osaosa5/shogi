@@ -17,9 +17,12 @@ public:
 	KOMA_TYPE GetKomaAt();
 
 	std::pair<float, float> GetSize() const { return _size; }
+
 	VECTOR GetCenter() const { return _center; }
+
 	class Koma* GetKoma() const { return _koma; }
 	void SetKoma(Koma* koma) { _koma = koma; }
+
 	bool GetSelect() const { return _bSelect; }
 	void SetSelect(bool bSelect) { _bSelect = bSelect; }
 
