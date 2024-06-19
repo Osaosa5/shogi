@@ -38,6 +38,9 @@ bool ModeGame::Initialize()
 	// オブジェクト管理を生成
 	_objectManager = new ObjectManager();
 	
+	// データの読み込み
+	LoadData();
+
 	// _objectManagerがnullptrの場合は強制終了する
 	if(!ObjectAdd()) return false;
 
@@ -115,6 +118,22 @@ bool ModeGame::Render()
 	DrawFormatString(0, 0, GetColor(255, 255, 255), name.c_str());
 
 	return true;
+}
+
+void ModeGame::LoadData()
+{
+	JsonManeger::LoadJsonFile("JSON/board.json");
+	ResourceManager::MV1LoadModel("res/3D/shogi/kaku.mv1");
+	ResourceManager::MV1LoadModel("res/3D/shogi/fuhyo.mv1");
+	ResourceManager::MV1LoadModel("res/3D/shogi/kin.mv1");
+	ResourceManager::MV1LoadModel("res/3D/shogi/oh.mv1");
+	ResourceManager::MV1LoadModel("res/3D/shogi/gyoku.mv1");
+	ResourceManager::MV1LoadModel("res/3D/shogi/keima.mv1");
+	ResourceManager::MV1LoadModel("res/3D/shogi/kyousha.mv1");
+	ResourceManager::MV1LoadModel("res/3D/shogi/hisha.mv1");
+	ResourceManager::MV1LoadModel("res/3D/shogi/gin.mv1");
+	ResourceManager::MV1LoadModel("res/3D/将棋盤/sho_giban.mv1");
+	ResourceManager::MV1LoadModel("res/3D/tatami/ImageToStl.com_772_tatami.mv1");
 }
 
 bool ModeGame::ObjectAdd()

@@ -11,6 +11,7 @@ public:
 	bool Process()override;
 	bool Render()override;
 
+	void LoadData();
 	bool ObjectAdd();
 
 private:
