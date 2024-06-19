@@ -1,8 +1,11 @@
 
 #include "Square.h"
+#include "Object.h"
+#include "Board.h"
 
-Square::Square(VECTOR pos, std::pair<float, float> size, int mapChip, std::string area, int dan, int suji)
+Square::Square(ObjectManager* objManeger, VECTOR pos, std::pair<float, float> size, int mapChip, std::string area, int dan, int suji)
 {
+	_objManager = objManeger;
 	_pos = pos;
 	_size = size;
 
@@ -13,6 +16,7 @@ Square::Square(VECTOR pos, std::pair<float, float> size, int mapChip, std::strin
 	// マップチップの種類を設定
 	_tile = mapChip;
 	if (!_tile) _komaType = (KOMA_TYPE)_tile;
+	else _komaType = KOMA_TYPE::kNoneKoma;
 
 	// エリアの種類を設定
 	if (area == "player1") _areaType = AREA_TYPE::kPlayer1Area;
@@ -34,6 +38,7 @@ bool Square::Terminate()
 
 bool Square::Process()
 {
+	_komaType = GetKomaAt();
 	return true;
 }
 
@@ -48,8 +53,21 @@ bool Square::Render()
 	DrawTriangle3D(box["lUp"], box["rUp"], box["rBottom"], GetColor(0, 0, 255), FALSE);
 		
 	// Squareの中心座標を表示
-	VECTOR localPos = ConvWorldPosToScreenPos(_center);
-	DrawFormatString(localPos.x, localPos.y, GetColor(0, 255, 0), "x:%3.1f \nz:%3.1f", _center.x, _center.z);
+	/*VECTOR localPos = ConvWorldPosToScreenPos(_center);
+	DrawFormatString(localPos.x, localPos.y, GetColor(0, 255, 0), "x:%3.1f \nz:%3.1f", _center.x, _center.z);*/
 
 	return true;
+}
+
+Shogi::KOMA_TYPE Square::GetKomaAt()
+{
+	// ボードの情報を取得
+	Object* obj = _objManager->Get("board");
+	Board* board = nullptr;
+	if (obj) board = dynamic_cast<Board*>(obj);
+
+	// ボードのタイル情報を取得
+	std::vector tiles = board->GetBoardTiles();
+	if(tiles[_suji * DAN_MAX + _dan]) return (KOMA_TYPE)tiles[_suji * DAN_MAX + _dan];
+	else return KOMA_TYPE::kNoneKoma;
 }

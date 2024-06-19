@@ -97,7 +97,7 @@ bool ModeGame::Render()
 	// オブジェクトを描画
 	_objectManager->Render();
 
-	for(int i = 0; i < 9; i++) {
+	/*for(int i = 0; i < 9; i++) {
 		float z = 3.85f * i - 15.4f;
 		VECTOR WorldPos = VGet(-50, 21, z);
 		DrawLine3D(WorldPos, VGet(50, 21, z), GetColor(255, 0, 0));
@@ -111,7 +111,7 @@ bool ModeGame::Render()
 		DrawLine3D(WorldPos, VGet(x, 21, -50), GetColor(255, 0, 0));
 		VECTOR localPos = ConvWorldPosToScreenPos(WorldPos);
 		DrawFormatString(localPos.x * 2 - 650, 300, GetColor(255, 255, 255), "%3.2f", x);
-	}
+	}*/
 
 	// モード名を表示
 	std::string name = ModeServer::GetInstance()->GetName(this);

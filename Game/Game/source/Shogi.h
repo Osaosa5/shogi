@@ -22,6 +22,7 @@ public:
 
 	enum KOMA_TYPE	// ‹î‚Ìí—Ş
 	{
+		kNoneKoma,
 		kFuhyo,		// •à•º
 		kKyosha,	// Ô
 		kKeima,		// Œj”n

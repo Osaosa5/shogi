@@ -4,6 +4,7 @@
 
 #include "ObjectManager.h"
 #include "Board.h"
+#include "Square.h"
 
 class Koma : public Shogi
 {
@@ -18,7 +19,9 @@ public:
 	virtual bool Move();
 	void HitTest();
 	bool GetBoard();
+	class Square* GetSquarePutKoma();
 	void SetKomaCentralTile();
+	void SetKomaToSquare();
 
 protected:
 	VECTOR _oldPos;

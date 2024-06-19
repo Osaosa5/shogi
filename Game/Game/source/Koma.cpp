@@ -64,7 +64,7 @@ void Koma::HitTest()
 	if (hitPoly.HitFlag)
 	{
 		// 駒がある場合
-		_pos.y = hitPoly.HitPosition.y;
+		_pos.y = hitPoly.HitPosition.y + 0.3f;
 	}
 	else
 	{
@@ -84,23 +84,51 @@ bool Koma::GetBoard()
 	return true;
 }
 
-// TODO:タイルの中央に駒をセットする 動作を確認すること！
+Square* Koma::GetSquarePutKoma()
+{
+	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
+	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
+
+	// 駒と同じ位置にあるタイルを取得する
+	Object* obj = _objManajer->Get(strSquare.c_str());
+	if (obj) return dynamic_cast<Square*>(obj);
+	else return nullptr;
+}
+
+// タイルの中央に駒をセットする 
 void Koma::SetKomaCentralTile()
 {
 	if(_bSetPos) return; 
 
-	// todo:駒の位置を文字列に直し、同じ位置にある"square"と合わせる
-	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
+	//// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
+	//std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
 
-	// todo:駒と同じ位置にあるタイルを取得する
-	Object* obj = _objManajer->Get(strSquare.c_str());
-	if (!obj) return;
-	Square* square = dynamic_cast<Square*>(obj);
+	//// 駒と同じ位置にあるタイルを取得する
+	//Object* obj = _objManajer->Get(strSquare.c_str());
+	//if (!obj) return;
+	Square* square = GetSquarePutKoma();
 
-	// todo:タイルの中央に駒の位置をセットする
+	// タイルの中央に駒の位置をセットする
 	this->SetPos(square->GetCenter());
 
 	// 駒の位置がセットされたことを記録する
 	_bSetPos = true;
+}
+
+void Koma::SetKomaToSquare()
+{
+	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
+	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
+
+	// 駒と同じ位置にあるタイルを取得する
+	Object* obj = _objManajer->Get(strSquare.c_str());
+	if (!obj) return;
+	Square* square = dynamic_cast<Square*>(obj);
+
+	// 設置してある駒が自分自身の場合は何もしない
+	if(square->GetKoma() == this) return;
+
+	// 駒をタイルにセットする
+	square->SetKoma(this);
 }
 

@@ -34,7 +34,7 @@ Board::Board(ObjectManager* objManeger, nlohmann::json board)
 			else player = "";
 
 			std::string name = "square" + std::to_string(x + y * DAN_MAX);
-			objManeger->Add(new Square(pos, size, boardTile, player, x, y), name.c_str());
+			objManeger->Add(new Square(objManeger, pos, size, boardTile, player, x, y), name.c_str());
 		}
 	}
 }
