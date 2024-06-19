@@ -5,7 +5,7 @@
 class Knight : public Koma
 {
 public:
-	Knight(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
+	Knight(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
 	~Knight();
 
 	bool Terminate()override;

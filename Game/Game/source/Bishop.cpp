@@ -2,8 +2,8 @@
 #include "Bishop.h"
 #include "ApplicationMain.h"
 
-Bishop::Bishop(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer)
-	: Koma(objManajer, pos, dan, suji, kPlayer)
+Bishop::Bishop(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
+	: Koma(objManajer, dan, suji, kPlayer)
 {
 	// ÉÇÉfÉãì«Ç›çûÇ›
 	_handle = RM::MV1LoadModel("res/3D/shogi/kaku.mv1");

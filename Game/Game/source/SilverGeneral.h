@@ -5,7 +5,7 @@
 class SilverGeneral : public Koma
 {
 public:
-	SilverGeneral(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
+	SilverGeneral(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
 	~SilverGeneral();
 
 	bool Terminate()override;

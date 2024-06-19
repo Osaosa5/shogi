@@ -3,8 +3,8 @@
 #include "ApplicationMain.h"
 
 
-Fuhyo::Fuhyo(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer)
-	: Koma(objManajer, pos, dan, suji, kPlayer)
+Fuhyo::Fuhyo(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
+	: Koma(objManajer, dan, suji, kPlayer)
 {
 	_handle = RM::MV1LoadModel("res/3D/shogi/fuhyo.mv1");
 }

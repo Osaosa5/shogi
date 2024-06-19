@@ -5,7 +5,7 @@
 class King : public Koma
 {
 public:
-	King(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
+	King(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
 	~King();
 
 	bool Terminate()override;

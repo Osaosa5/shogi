@@ -5,7 +5,7 @@
 class Bishop : public Koma
 {
 public:
-	Bishop(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
+	Bishop(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
 	~Bishop();
 
 	bool Terminate()override;

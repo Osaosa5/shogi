@@ -6,12 +6,11 @@
 #include "Board.h"
 #include "Square.h"
 
-Koma::Koma(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer)
+Koma::Koma(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 {
 	_objManajer = objManajer;
 	_oldPos = VGet(0, 0, 0);
-	// 位置情報
-	_pos = pos;
+	_bSetPos = false;
 	// 駒の位置情報
 	_dan = dan; _suji = suji;
 	// プレイヤー情報
@@ -32,6 +31,7 @@ bool Koma::Terminate()
 bool Koma::Process()
 {
 	_oldPos = _pos;
+	SetKomaCentralTile();
 
 	return true;
 }
@@ -87,7 +87,9 @@ bool Koma::GetBoard()
 // TODO:タイルの中央に駒をセットする 動作を確認すること！
 void Koma::SetKomaCentralTile()
 {
-	// todo:駒の位置を文字列に直し、"square"と合わせる
+	if(_bSetPos) return; 
+
+	// todo:駒の位置を文字列に直し、同じ位置にある"square"と合わせる
 	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
 
 	// todo:駒と同じ位置にあるタイルを取得する
@@ -97,5 +99,8 @@ void Koma::SetKomaCentralTile()
 
 	// todo:タイルの中央に駒の位置をセットする
 	this->SetPos(square->GetCenter());
+
+	// 駒の位置がセットされたことを記録する
+	_bSetPos = true;
 }
 

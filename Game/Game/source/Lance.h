@@ -5,7 +5,7 @@
 class Lance : public Koma
 {
 public:
-	Lance(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
+	Lance(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
 	~Lance();
 
 	bool Terminate()override;

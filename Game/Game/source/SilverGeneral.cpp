@@ -2,8 +2,8 @@
 #include "SilverGeneral.h"
 #include "ApplicationMain.h"
 
-SilverGeneral::SilverGeneral(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer) 
-	: Koma(objManajer, pos, dan, suji, kPlayer)
+SilverGeneral::SilverGeneral(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer) 
+	: Koma(objManajer, dan, suji, kPlayer)
 {
 	// ƒ‚ƒfƒ‹“Ç‚İ‚İ
 	_handle = RM::MV1LoadModel("res/3D/shogi/gin.mv1");

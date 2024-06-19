@@ -5,7 +5,7 @@
 class Fuhyo : public Koma
 {
 public:
-	Fuhyo(ObjectManager* objManajer, VECTOR pos, int dan, int suji, PLAYER_TYPE kPlayer);
+	Fuhyo(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
 	~Fuhyo();
 
 	bool Terminate()override;
