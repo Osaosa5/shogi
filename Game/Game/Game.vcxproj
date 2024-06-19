@@ -173,6 +173,7 @@
     <ClCompile Include="source\ModeTitle.cpp" />
     <ClCompile Include="source\Object.cpp" />
     <ClCompile Include="source\ObjectManager.cpp" />
+    <ClCompile Include="source\Player.cpp" />
     <ClCompile Include="source\Rook.cpp" />
     <ClCompile Include="source\Shogi.cpp" />
     <ClCompile Include="source\ShogiBan.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="source\ModeGame.h" />
     <ClInclude Include="source\ModeTitle.h" />
     <ClInclude Include="source\ObjectManager.h" />
+    <ClInclude Include="source\Player.h" />
     <ClInclude Include="source\Rook.h" />
     <ClInclude Include="source\Shogi.h" />
     <ClInclude Include="source\ShogiBan.h" />

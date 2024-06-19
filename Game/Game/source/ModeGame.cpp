@@ -17,6 +17,7 @@
 
 #include "Board.h"
 #include "Square.h"
+#include "Player.h"
 
 #include "Fuhyo.h"
 #include "Lance.h"
@@ -213,6 +214,9 @@ bool ModeGame::ObjectAdd()
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");
 
+	// ƒvƒŒƒCƒ„[‚ğ’Ç‰Á
+	_objectManager->Add(new Player(_objectManager, "player1"), "player1");
+	_objectManager->Add(new Player(_objectManager, "player2"), "player2");
 	return true;
 }
 

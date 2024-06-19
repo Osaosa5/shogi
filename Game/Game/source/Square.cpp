@@ -44,7 +44,7 @@ bool Square::Process()
 
 bool Square::Render()
 {
-	std::map<std::string, VECTOR> box;
+	std::unordered_map<std::string, VECTOR> box;
 	box["lUp"] = _pos;
 	box["lBottom"] = VGet(_pos.x, _pos.y, _pos.z + _size.second);
 	box["rUp"] = VGet(_pos.x + _size.first, _pos.y, _pos.z);

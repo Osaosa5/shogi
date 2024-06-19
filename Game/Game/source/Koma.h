@@ -28,7 +28,7 @@ protected:
 	bool _bSetPos;
 
 private:
-	ObjectManager* _objManajer;
+	ObjectManager* _objManager;
 	Board* _board;
 
 };

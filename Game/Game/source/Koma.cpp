@@ -8,7 +8,7 @@
 
 Koma::Koma(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 {
-	_objManajer = objManajer;
+	_objManager = objManajer;
 	_oldPos = VGet(0, 0, 0);
 	_bSetPos = false;
 	// 駒の位置情報
@@ -56,7 +56,7 @@ void Koma::HitTest()
 	float colSubY = 40.0f;
 	// 駒の当たり判定
 	MV1_COLL_RESULT_POLY hitPoly;
-	auto shogiBan = _objManajer->Get("shogiban");
+	auto shogiBan = _objManager->Get("shogiban");
 	auto shogiBanHandle = shogiBan->GetHandle();
 	hitPoly = MV1CollCheck_Line(shogiBanHandle, 2,
 		VAdd(_pos, VGet(0, colSubY, 0)),
@@ -78,7 +78,7 @@ void Koma::HitTest()
 bool Koma::GetBoard()
 {
 	// Boardクラスのポインタを取得
-	Object* obj = _objManajer->Get("board");
+	Object* obj = _objManager->Get("board");
 	if (!obj) return false;
 	_board = dynamic_cast<Board*>(obj);
 	return true;
@@ -90,7 +90,7 @@ Square* Koma::GetSquarePutKoma()
 	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
 
 	// 駒と同じ位置にあるタイルを取得する
-	Object* obj = _objManajer->Get(strSquare.c_str());
+	Object* obj = _objManager->Get(strSquare.c_str());
 	if (obj) return dynamic_cast<Square*>(obj);
 	else return nullptr;
 }
@@ -99,13 +99,6 @@ Square* Koma::GetSquarePutKoma()
 void Koma::SetKomaCentralTile()
 {
 	if(_bSetPos) return; 
-
-	//// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
-	//std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
-
-	//// 駒と同じ位置にあるタイルを取得する
-	//Object* obj = _objManajer->Get(strSquare.c_str());
-	//if (!obj) return;
 	Square* square = GetSquarePutKoma();
 
 	// タイルの中央に駒の位置をセットする
@@ -117,13 +110,7 @@ void Koma::SetKomaCentralTile()
 
 void Koma::SetKomaToSquare()
 {
-	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
-	std::string strSquare = "square" + std::to_string(_suji * DAN_MAX + _dan);
-
-	// 駒と同じ位置にあるタイルを取得する
-	Object* obj = _objManajer->Get(strSquare.c_str());
-	if (!obj) return;
-	Square* square = dynamic_cast<Square*>(obj);
+	Square* square = GetSquarePutKoma();
 
 	// 設置してある駒が自分自身の場合は何もしない
 	if(square->GetKoma() == this) return;

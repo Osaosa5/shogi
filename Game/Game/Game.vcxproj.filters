@@ -120,6 +120,9 @@
     <ClCompile Include="source\Board.cpp">
       <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
     </ClCompile>
+    <ClCompile Include="source\Player.cpp">
+      <Filter>ソース ファイル\Shogi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -189,6 +192,9 @@
       <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
     </ClInclude>
     <ClInclude Include="source\Shogi.h">
+      <Filter>ヘッダー ファイル\Shogi</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Player.h">
       <Filter>ヘッダー ファイル\Shogi</Filter>
     </ClInclude>
   </ItemGroup>

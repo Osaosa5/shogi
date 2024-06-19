@@ -22,7 +22,7 @@ bool Fuhyo::Terminate()
 bool Fuhyo::Process()
 {
 	Koma::Process();
-	Move();
+	//Move();
 	HitTest();
 	return true;
 }
