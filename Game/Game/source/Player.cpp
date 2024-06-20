@@ -49,6 +49,9 @@ bool Player::Process()
 		}
 	}
 
+	auto kaku = _objManager->Get("kaku");
+	std::any result = kaku->Get("Dan");
+
 	/*if (trg & PAD_INPUT_4) {
 		if (_bSelect && _selectSquare == std::make_pair(_dan, _suji)) {
 			_bSelect = false;

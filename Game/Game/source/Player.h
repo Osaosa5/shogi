@@ -28,5 +28,7 @@ private:
 	bool _bSelect;
 	// _selectSquare->(dan, suji)
 	std::pair<int, int> _selectSquare;
+
+	int a;
 };
 

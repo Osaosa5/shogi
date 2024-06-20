@@ -30,6 +30,21 @@ protected:
 	VECTOR	_pos;		// 位置
 	VECTOR	_rot;		// 回転
 
+	// ゲッターとセッターを呼び出すためのコンテナ
+	std::map<std::string, std::function<std::any>> _mGets;
+	
+	
+public:
+	template<typename Func>
+	inline void AddGet(const std::string& key, Func func)
+	{
+		_mGets[key] = [func]() -> std::any {
+			return std::any(func());
+		};
+	}
+	std::any Get(const std::string& key);
+
+
 private:
 	// アクセスを許可するためにfriend宣言を行う
 	friend class ObjectManager;
@@ -38,3 +53,6 @@ private:
 	int _id;			// ID
 
 };
+
+
+
