@@ -18,14 +18,19 @@ public:
 
 	virtual bool Move();
 	void HitTest();
-	bool GetBoard();
+
 	class Square* GetSquarePutKoma(int dan, int suji);
 	void SetKomaCentralTile();
-	void SetKomaToSquare(int dan, int suji);
+
+	bool GetUpdateBoardPos() const { return _bUpdateBoardPos; }
+	void SetUpdateBoardPos(bool bUpdateBoardPos) { _bUpdateBoardPos = bUpdateBoardPos; }
+	bool GetUpdate3DPos() const { return _bUpdate3DPos; }
+	void SetUpdate3DPos(bool bUpdate3DPos) { _bUpdate3DPos = bUpdate3DPos; }
 
 protected:
 	VECTOR _oldPos;
-	bool _bSetPos;
+	bool _bUpdateBoardPos;
+	bool _bUpdate3DPos;
 
 private:
 	ObjectManager* _objManager;

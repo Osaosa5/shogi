@@ -27,6 +27,6 @@ private:
 	ObjectManager* _objManager;
 	bool _bSelect;
 	// _selectSquare->(dan, suji)
-	std::pair<int, int> _selectSquare;
+	std::pair<int, int> _saveSquare;
 };
 
