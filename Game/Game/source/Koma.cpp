@@ -3,13 +3,11 @@
 
 #include "appframe.h"
 #include "Object.h"
-#include "Board.h"
 #include "Square.h"
 
 Koma::Koma(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 {
 	_objManager = objManajer;
-	_board = nullptr;
 	_oldPos = VGet(0, 0, 0);
 	_bUpdateBoardPos = true;
 	_bUpdate3DPos = true;

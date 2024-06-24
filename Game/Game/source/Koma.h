@@ -3,7 +3,6 @@
 #include "Shogi.h"
 
 #include "ObjectManager.h"
-#include "Board.h"
 #include "Square.h"
 
 class Koma : public Shogi
@@ -34,7 +33,6 @@ protected:
 
 private:
 	ObjectManager* _objManager;
-	Board* _board;
 
 };
 

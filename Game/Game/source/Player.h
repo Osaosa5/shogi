@@ -3,7 +3,6 @@
 #include "Shogi.h"
 #include "ObjectManager.h"
 #include "Square.h"
-#include "Board.h"
 #include "Koma.h"
 
 class Player : public Shogi
@@ -21,7 +20,6 @@ public:
 	void SelectSquare(int trg);
 
 	Square* GetSquare(int dan, int suji);
-	Board* GetBoard();
 
 private:
 	ObjectManager* _objManager;

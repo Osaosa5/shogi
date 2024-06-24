@@ -114,11 +114,3 @@ Square* Player::GetSquare(int dan, int suji)
 	if (obj) return dynamic_cast<Square*>(obj);
 	else return nullptr;
 }
-
-Board* Player::GetBoard()
-{
-	// ‹î‚Æ“¯‚¶ˆÊ’u‚É‚ ‚éƒ^ƒCƒ‹‚ðŽæ“¾‚·‚é
-	Object* obj = _objManager->Get("board");
-	if (obj) return dynamic_cast<Board*>(obj);
-	else return nullptr;
-}

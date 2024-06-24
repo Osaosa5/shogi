@@ -1,7 +1,6 @@
 
 #include "Square.h"
 #include "Object.h"
-#include "Board.h"
 
 Square::Square(ObjectManager* objManeger, VECTOR pos, std::pair<float, float> size, int mapChip, std::string area, int dan, int suji)
 {
@@ -39,7 +38,7 @@ bool Square::Terminate()
 
 bool Square::Process()
 {
-	_komaType = GetKomaAt();
+	
 	return true;
 }
 
@@ -58,15 +57,3 @@ bool Square::Render()
 	return true;
 }
 
-Shogi::KOMA_TYPE Square::GetKomaAt()
-{
-	// ボードの情報を取得
-	Object* obj = _objManager->Get("board");
-	Board* board = nullptr;
-	if (obj) board = dynamic_cast<Board*>(obj);
-
-	// ボードのタイル情報を取得
-	std::vector tiles = board->GetBoardTiles();
-	if(tiles[_suji * DAN_MAX + _dan]) return (KOMA_TYPE)tiles[_suji * DAN_MAX + _dan];
-	else return KOMA_TYPE::kNoneKoma;
-}
