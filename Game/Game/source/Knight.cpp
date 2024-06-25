@@ -7,6 +7,8 @@ Knight::Knight(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/keima.mv1");
+	// コマのタイプを桂馬にする
+	_komaType = kKeima;
 }
 
 Knight::~Knight()

@@ -9,6 +9,7 @@ Koma::Koma(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 {
 	_objManager = objManajer;
 	_oldPos = VGet(0, 0, 0);
+	_bIsRegisterKomaToSquare = true;
 	_bUpdateBoardPos = true;
 	_bUpdate3DPos = true;
 	// ‹î‚ÌˆÊ’uî•ñ
@@ -32,6 +33,8 @@ bool Koma::Terminate()
 bool Koma::Process()
 {
 	_oldPos = _pos;
+
+	if(_bIsRegisterKomaToSquare) RegisterKomaToSquare();
 
 	if (_bUpdate3DPos) SetKomaCentralTile();
 
@@ -74,6 +77,13 @@ void Koma::HitTest()
 		_pos = _oldPos;
 	}
 
+}
+
+// ‹î‚ðƒ^ƒCƒ‹‚É“o˜^‚·‚é
+void Koma::RegisterKomaToSquare()
+{
+	GetSquarePutKoma(_dan, _suji)->SetKoma(this);
+	_bIsRegisterKomaToSquare = false;
 }
 
 Square* Koma::GetSquarePutKoma(int dan, int suji)

@@ -17,6 +17,7 @@ public:
 
 	virtual bool Move();
 	void HitTest();
+	void RegisterKomaToSquare();
 
 	class Square* GetSquarePutKoma(int dan, int suji);
 	void SetKomaCentralTile();
@@ -28,6 +29,7 @@ public:
 
 protected:
 	VECTOR _oldPos;
+	bool _bIsRegisterKomaToSquare;
 	bool _bUpdateBoardPos;
 	bool _bUpdate3DPos;
 
