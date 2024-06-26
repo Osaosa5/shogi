@@ -7,6 +7,8 @@ SilverGeneral::SilverGeneral(ObjectManager* objManajer, int dan, int suji, PLAYE
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/gin.mv1");
+	// コマのタイプを銀にする
+	_komaType = kGinsho;
 }
 
 SilverGeneral::~SilverGeneral()

@@ -7,6 +7,8 @@ Fuhyo::Fuhyo(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 	: Koma(objManajer, dan, suji, kPlayer)
 {
 	_handle = RM::MV1LoadModel("res/3D/shogi/fuhyo.mv1");
+	// コマのタイプを歩にする
+	_komaType = kFuhyo;
 }
 
 Fuhyo::~Fuhyo()

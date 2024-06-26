@@ -3,16 +3,18 @@
 
 #include "appframe.h"
 #include "Object.h"
-#include "Board.h"
 #include "Square.h"
 
 Koma::Koma(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 {
 	_objManager = objManajer;
 	_oldPos = VGet(0, 0, 0);
-	_bSetPos = false;
+	_bIsRegisterKomaToSquare = true;
+	_bUpdateBoardPos = true;
+	_bUpdate3DPos = true;
 	// 駒の位置情報
 	_dan = dan; _suji = suji;
+	_tile = _suji * DAN_MAX + _dan;
 	// プレイヤー情報
 	_playerType = kPlayer;
 	if (_playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
@@ -31,8 +33,11 @@ bool Koma::Terminate()
 bool Koma::Process()
 {
 	_oldPos = _pos;
-	SetKomaCentralTile();
-	SetKomaToSquare(_dan, _suji);
+
+	if(_bIsRegisterKomaToSquare) RegisterKomaToSquare();
+
+	if (_bUpdate3DPos) SetKomaCentralTile();
+
 	return true;
 }
 
@@ -74,14 +79,11 @@ void Koma::HitTest()
 
 }
 
-// TODO:BoardじゃなくてSquareの方がいいかもしれない
-bool Koma::GetBoard()
+// 駒をタイルに登録する
+void Koma::RegisterKomaToSquare()
 {
-	// Boardクラスのポインタを取得
-	Object* obj = _objManager->Get("board");
-	if (!obj) return false;
-	_board = dynamic_cast<Board*>(obj);
-	return true;
+	GetSquarePutKoma(_dan, _suji)->SetKoma(this);
+	_bIsRegisterKomaToSquare = false;
 }
 
 Square* Koma::GetSquarePutKoma(int dan, int suji)
@@ -98,24 +100,12 @@ Square* Koma::GetSquarePutKoma(int dan, int suji)
 // タイルの中央に駒をセットする 
 void Koma::SetKomaCentralTile()
 {
-	if(_bSetPos) return; 
 	Square* square = GetSquarePutKoma(_dan, _suji);
 
 	// タイルの中央に駒の位置をセットする
 	this->SetPos(square->GetCenter());
 
 	// 駒の位置がセットされたことを記録する
-	_bSetPos = true;
-}
-
-void Koma::SetKomaToSquare(int dan, int suji)
-{
-	Square* square = GetSquarePutKoma(dan, suji);
-
-	// 設置してある駒が自分自身の場合は何もしない
-	if(square->GetKoma() == this) return;
-
-	// 駒をタイルにセットする
-	square->SetKoma(this);
+	_bUpdate3DPos = false;
 }
 

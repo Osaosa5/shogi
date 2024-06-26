@@ -11,7 +11,7 @@ Player::Player(ObjectManager* objManeger, std::string player)
 	else _playerType = PLAYER_TYPE::kNonePlayer;
 
 	_bSelect = false;
-	_selectSquare = std::make_pair(-1, -1);
+	_saveSquare = std::make_pair(-1, -1);
 
 	_suji = _dan = 0;
 }
@@ -33,36 +33,73 @@ bool Player::Process()
 
 	SelectSquare(trg);
 	
-	// 選択したマスにある駒のポインタを取得
-	Koma* koma = GetKoma(_selectSquare.first, _selectSquare.second);
-
 	if (trg & PAD_INPUT_4) {
-		if (!_bSelect && GetKoma(_dan, _suji)) {
-			_bSelect = true;
-			_selectSquare = std::make_pair(_dan, _suji);
-			auto square = GetSquare(_dan, _suji);
-			square->SetSelect(!square->GetSelect());
+		// マスを選択済み
+		if (_bSelect) {
+			// 選択したマスと同じマスを選択
+				// マスを未選択にする
+			// 選択したマスと違うマスを選択
+				// コマがあるか
+					// 自分のコマ
+						// 置けないので終了
+					// 相手のコマ
+						// コマを選択したマスに動かす
+						// 選択したマスを未選択にする
+				// コマがない
+					// 駒を選択したマスに動かす
+					// 選択したマスを未選択にする
+		}	
+		// マスを未選択
+		else if (!_bSelect) {
+			auto koma = GetKoma(_dan, _suji);
+			// 自分と同じコマか
+			bool bIsMeAndSameKoma = (koma && koma->GetKomaType() == _komaType) ? true : false;
+			// コマがあるマス & 自分のコマ
+			if(bIsMeAndSameKoma) {
+				// 選択済みにする
+				_bSelect = true;
+				// 選択したマスを保存
+				_saveSquare = std::make_pair(_dan, _suji);
+				// 選択したマスを選択済みに変更
+				auto square = GetSquare(_dan, _suji);
+				square->SetSelect(!square->GetSelect());
+			}
+			// そうでない場合
+				// 未選択のまま 
 		}
-		else if (_bSelect && !GetKoma(_dan, _suji)) {
-			_bSelect = false;
-			auto square = GetSquare(_selectSquare.first, _selectSquare.second);
-		}
+			
+		//// 何も選択していない
+		//if (!_bSelect) {
+		//	_bSelect = true;
+		//	// 選択したマスを保存
+		//	_saveSquare = std::make_pair(_dan, _suji);
+		//	// 選択したマスを選択済みに変更
+		//	auto square = GetSquare(_dan, _suji);
+		//	square->SetSelect(!square->GetSelect());
+		//}
+		//// 選択済み&既に選択したマスと同じマスを選択
+		//else if (_bSelect && _saveSquare == std::make_pair(_dan, _suji)) {
+		//	_bSelect = false;
+		//	// 保存したマスを未選択に変更
+		//	auto square = GetSquare(_saveSquare.first, _saveSquare.second);
+		//	square->SetSelect(!square->GetSelect());
+		//	// 保存マスを初期化
+		//	_saveSquare = std::make_pair(-1, -1);
+		//}
+		//// 選択済み&既に選択したマスと違うマスを選択
+		//else if (_bSelect && _saveSquare != std::make_pair(_dan, _suji)) {
+		//	_bSelect = false;
+		//	// 駒を選択したマスに動かす
+		//	auto koma = GetKoma(_saveSquare.first, _saveSquare.second);
+		//	koma->SetDan(_dan); koma->SetSuji(_suji);
+		//	koma->SetUpdateBoardPos(true);
+		//	// 保存したマスを未選択に変更
+		//	auto square = GetSquare(_saveSquare.first, _saveSquare.second);
+		//	square->SetSelect(!square->GetSelect());
+		//	// 保存マスを初期化
+		//	_saveSquare = std::make_pair(-1, -1);
+		//}
 	}
-
-	/*if (trg & PAD_INPUT_4) {
-		if (_bSelect && _selectSquare == std::make_pair(_dan, _suji)) {
-			_bSelect = false;
-			_selectSquare = std::make_pair(-1, -1);
-			auto square = GetSquare(_dan, _suji);
-			square->SetSelect(!square->GetSelect());
-		}
-		else if(!_bSelect){
-			_bSelect = true;
-			_selectSquare = std::make_pair(_dan, _suji);
-			auto square = GetSquare(_dan, _suji);
-			square->SetSelect(!square->GetSelect());
-		}
-	}*/
 
 	return true;
 }
@@ -107,13 +144,5 @@ Square* Player::GetSquare(int dan, int suji)
 	// 駒と同じ位置にあるタイルを取得する
 	Object* obj = _objManager->Get(strSquare.c_str());
 	if (obj) return dynamic_cast<Square*>(obj);
-	else return nullptr;
-}
-
-Board* Player::GetBoard()
-{
-	// 駒と同じ位置にあるタイルを取得する
-	Object* obj = _objManager->Get("board");
-	if (obj) return dynamic_cast<Board*>(obj);
 	else return nullptr;
 }

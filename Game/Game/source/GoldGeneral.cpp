@@ -7,6 +7,8 @@ GoldGeneral::GoldGeneral(ObjectManager* objManajer, int dan, int suji, PLAYER_TY
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/kin.mv1");
+	// コマのタイプを金にする
+	_komaType = kKinsho;
 }
 
 GoldGeneral::~GoldGeneral()

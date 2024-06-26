@@ -117,9 +117,6 @@
     <ClCompile Include="source\Rook.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
-    <ClCompile Include="source\Board.cpp">
-      <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
-    </ClCompile>
     <ClCompile Include="source\Player.cpp">
       <Filter>ソース ファイル\Shogi</Filter>
     </ClCompile>
@@ -187,9 +184,6 @@
     </ClInclude>
     <ClInclude Include="source\Rook.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Board.h">
-      <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
     </ClInclude>
     <ClInclude Include="source\Shogi.h">
       <Filter>ヘッダー ファイル\Shogi</Filter>

@@ -14,8 +14,6 @@ public:
 	bool Process() override;
 	bool Render() override;
 
-	KOMA_TYPE GetKomaAt();
-
 	std::pair<float, float> GetSize() const { return _size; }
 
 	VECTOR GetCenter() const { return _center; }

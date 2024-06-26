@@ -7,6 +7,8 @@ Lance::Lance(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/kyousha.mv1");
+	// コマのタイプを香車にする
+	_komaType = kKyosha;
 }
 
 Lance::~Lance()

@@ -12,13 +12,13 @@ public:
 	virtual bool Process();
 	virtual bool Render();
 
-	int GetDan() { return _dan; }
+	int GetDan() const { return _dan; }
 	void SetDan(int dan) { _dan = dan; }
 
-	int GetSuji() { return _suji; }
+	int GetSuji() const { return _suji; }
 	void SetSuji(int suji) { _suji = suji; }
 
-	int GetTile() { return _tile; }
+	int GetTile() const { return _tile; }
 	void SetTile(int tile) { _tile = tile; }
 
 	enum AREA_TYPE	// ƒGƒŠƒA‚Ìí—Ş
@@ -50,6 +50,15 @@ public:
 		kPlayer1,	// Player1
 		kPlayer2	// Player2
 	};
+
+	AREA_TYPE GetAreaType() const { return _areaType; }
+	void SetAreaType(AREA_TYPE areaType) { _areaType = areaType; }
+
+	KOMA_TYPE GetKomaType() const { return _komaType; }
+	void SetKomaType(KOMA_TYPE komaType) { _komaType = komaType; }
+
+	PLAYER_TYPE GetPlayerType() const { return _playerType; }
+	void SetPlayerType(PLAYER_TYPE playerType) { _playerType = playerType; }
 
 	const int SUJI_MAX = 9;	// c‚Ì—ñ‚ÌÅ‘å”
 	const int DAN_MAX = 9;	// ‰¡‚Ìs‚ÌÅ‘å”
