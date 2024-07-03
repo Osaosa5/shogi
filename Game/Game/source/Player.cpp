@@ -64,8 +64,6 @@ bool Player::Process()
 				auto square = GetSquare(_dan, _suji);
 				square->SetSelect(!square->GetSelect());
 			}
-			// ‚»‚¤‚Å‚È‚¢ê‡
-				// –¢‘I‘ð‚Ì‚Ü‚Ü 
 		}
 			
 		//// ‰½‚à‘I‘ð‚µ‚Ä‚¢‚È‚¢
