@@ -3,12 +3,12 @@
 #include "ApplicationMain.h"
 
 Knight::Knight(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer) 
-	: Koma(objManajer, dan, suji, kPlayer)
+	: Piece(objManajer, dan, suji, kPlayer)
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/keima.mv1");
 	// コマのタイプを桂馬にする
-	_komaType = kKeima;
+	_pieceType = kKnight;
 }
 
 Knight::~Knight()
@@ -22,14 +22,14 @@ bool Knight::Terminate()
 
 bool Knight::Process()
 {
-	Koma::Process();
+	Piece::Process();
 	HitTest();
 	return true;
 }
 
 bool Knight::Render()
 {
-	Koma::Render();
+	Piece::Render();
 
 	return true;
 }

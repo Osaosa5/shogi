@@ -2,7 +2,7 @@
 
 #include "Shogi.h"
 #include "ObjectManager.h"
-#include "Koma.h"
+#include "Piece.h"
 
 class Square : public Shogi
 {
@@ -18,21 +18,21 @@ public:
 
 	VECTOR GetCenter() const { return _center; }
 
-	class Koma* GetKoma() const { return _koma; }
-	void SetKoma(Koma* koma) { _koma = koma; }
+	class Piece* GetKoma() const { return _piece; }
+	void SetKoma(Piece* piece) { _piece = piece; }
 
 	bool GetSelect() const { return _bSelect; }
 	void SetSelect(bool bSelect) { _bSelect = bSelect; }
 
 	int GetTileNum() const { return _tile; }
-	KOMA_TYPE GetKomaType() const { return _komaType; }
+	PIECE_TYPE GetKomaType() const { return _pieceType; }
 	AREA_TYPE GetAreaType() const { return _areaType; }
 
 private:
 	ObjectManager* _objManager;
 	std::pair<float, float> _size;
 	VECTOR _center;
-	Koma* _koma;
+	Piece* _piece;
 	bool _bSelect;
 };
 

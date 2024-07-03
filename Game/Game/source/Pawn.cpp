@@ -1,42 +1,42 @@
 
-#include "Fuhyo.h"
+#include "Pawn.h"
 #include "ApplicationMain.h"
 
 
-Fuhyo::Fuhyo(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
-	: Koma(objManajer, dan, suji, kPlayer)
+Pawn::Pawn(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
+	: Piece(objManajer, dan, suji, kPlayer)
 {
 	_handle = RM::MV1LoadModel("res/3D/shogi/fuhyo.mv1");
 	// コマのタイプを歩にする
-	_komaType = kFuhyo;
+	_pieceType = kPawn;
 }
 
-Fuhyo::~Fuhyo()
+Pawn::~Pawn()
 {
 }
 
-bool Fuhyo::Terminate()
+bool Pawn::Terminate()
 {
 	MV1DeleteModel(_handle);
 	return true;
 }
 
-bool Fuhyo::Process()
+bool Pawn::Process()
 {
-	Koma::Process();
+	Piece::Process();
 	//Move();
 	HitTest();
 	return true;
 }
 
-bool Fuhyo::Render()
+bool Pawn::Render()
 {
-	Koma::Render();
+	Piece::Render();
 
 	return true;
 }
 
-bool Fuhyo::Move()
+bool Pawn::Move()
 {
 	auto app = ApplicationMain::GetInstance();
 	int key = app->GetKey();

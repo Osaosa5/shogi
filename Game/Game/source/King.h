@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Koma.h"
+#include "Piece.h"
 
-class King : public Koma
+class King : public Piece
 {
 public:
 	King(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);

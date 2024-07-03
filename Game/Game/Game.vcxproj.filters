@@ -81,10 +81,10 @@
     <ClCompile Include="source\Tatami.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\Koma.cpp">
+    <ClCompile Include="source\Piece.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
-    <ClCompile Include="source\Fuhyo.cpp">
+    <ClCompile Include="source\Pawn.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
     <ClCompile Include="source\ShogiBan.cpp">
@@ -102,10 +102,10 @@
     <ClCompile Include="source\Knight.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
-    <ClCompile Include="source\SilverGeneral.cpp">
+    <ClCompile Include="source\Silver.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
-    <ClCompile Include="source\GoldGeneral.cpp">
+    <ClCompile Include="source\Gold.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
     <ClCompile Include="source\King.cpp">
@@ -152,10 +152,10 @@
     <ClInclude Include="source\Tatami.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="source\Koma.h">
+    <ClInclude Include="source\Piece.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
-    <ClInclude Include="source\Fuhyo.h">
+    <ClInclude Include="source\Pawn.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
     <ClInclude Include="source\ShogiBan.h">
@@ -170,10 +170,10 @@
     <ClInclude Include="source\Knight.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
-    <ClInclude Include="source\SilverGeneral.h">
+    <ClInclude Include="source\Silver.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
-    <ClInclude Include="source\GoldGeneral.h">
+    <ClInclude Include="source\Gold.h">
       <Filter>ヘッダー ファイル\Shogi\Koma</Filter>
     </ClInclude>
     <ClInclude Include="source\King.h">

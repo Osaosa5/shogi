@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Koma.h"
+#include "Piece.h"
 
-class Rook : public Koma
+class Rook : public Piece
 {
 public:
 	Rook(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);

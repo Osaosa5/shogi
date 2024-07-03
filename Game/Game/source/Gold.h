@@ -2,11 +2,11 @@
 
 #include "Piece.h"
 
-class Bishop : public Piece
+class Gold : public Piece
 {
 public:
-	Bishop(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
-	~Bishop();
+	Gold(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	~Gold();
 
 	bool Terminate()override;
 	bool Process()override;

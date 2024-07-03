@@ -3,12 +3,12 @@
 #include "ApplicationMain.h"
 
 King::King(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
-	: Koma(objManajer, dan, suji, kPlayer)
+	: Piece(objManajer, dan, suji, kPlayer)
 {
 	// モデル読み込み
 	_handle = (kPlayer == PLAYER_TYPE::kPlayer1) ? RM::MV1LoadModel("res/3D/shogi/oh.mv1") : RM::MV1LoadModel("res/3D/shogi/gyoku.mv1");	
 	// コマのタイプを王将にする
-	_komaType = kOsho;
+	_pieceType = kKing;
 }
 
 King::~King()
@@ -22,14 +22,14 @@ bool King::Terminate()
 
 bool King::Process()
 {
-	Koma::Process();
+	Piece::Process();
 	HitTest();
 	return true;
 }
 
 bool King::Render()
 {
-	Koma::Render();
+	Piece::Render();
 
 	return true;
 }

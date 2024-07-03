@@ -15,8 +15,8 @@ Square::Square(ObjectManager* objManeger, VECTOR pos, std::pair<float, float> si
 	_bSelect = false;
 
 	// マップチップの種類を設定
-	if (!mapChip) _komaType = (KOMA_TYPE)mapChip;
-	else _komaType = KOMA_TYPE::kNoneKoma;
+	if (!mapChip) _pieceType = (PIECE_TYPE)mapChip;
+	else _pieceType = PIECE_TYPE::kNonePiece;
 
 	// エリアの種類を設定
 	if (area == "player1") _areaType = AREA_TYPE::kPlayer1Area;

@@ -4,12 +4,12 @@
 
 
 Bishop::Bishop(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
-	: Koma(objManajer, dan, suji, kPlayer)
+	: Piece(objManajer, dan, suji, kPlayer)
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/kaku.mv1");
 	// コマのタイプを角にする
-	_komaType = kKakugyo;
+	_pieceType = kBishop;
 }
 
 Bishop::~Bishop()
@@ -23,14 +23,14 @@ bool Bishop::Terminate()
 
 bool Bishop::Process()
 {
-	Koma::Process();
+	Piece::Process();
 	HitTest();
 	return true;
 }
 
 bool Bishop::Render()
 {
-	Koma::Render();
+	Piece::Render();
 
 	return true;
 }

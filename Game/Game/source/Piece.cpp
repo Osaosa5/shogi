@@ -1,15 +1,15 @@
 
-#include "Koma.h"
+#include "Piece.h"
 
 #include "appframe.h"
 #include "Object.h"
 #include "Square.h"
 
-Koma::Koma(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
+Piece::Piece(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 {
 	_objManager = objManajer;
 	_oldPos = VGet(0, 0, 0);
-	_bIsRegisterKomaToSquare = true;
+	_bIsRegisterPieceToSquare = true;
 	_bUpdateBoardPos = true;
 	_bUpdate3DPos = true;
 	// 駒の位置情報
@@ -21,27 +21,27 @@ Koma::Koma(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 	else if (_playerType == kPlayer2) { _rot = VGet(0, DEG2RAD(180), 0); }
 }
 
-Koma::~Koma()
+Piece::~Piece()
 {
 }
 
-bool Koma::Terminate()
+bool Piece::Terminate()
 {
 	return true;
 }
 
-bool Koma::Process()
+bool Piece::Process()
 {
 	_oldPos = _pos;
 
-	if(_bIsRegisterKomaToSquare) RegisterKomaToSquare();
+	if(_bIsRegisterPieceToSquare) RegisterPieceToSquare();
 
-	if (_bUpdate3DPos) SetKomaCentralTile();
+	if (_bUpdate3DPos) SetPieceCentralTile();
 
 	return true;
 }
 
-bool Koma::Render()
+bool Piece::Render()
 {
 	// 角度と位置をセットして描画
 	MV1SetRotationXYZ(_handle, _rot);
@@ -51,12 +51,12 @@ bool Koma::Render()
 	return true;
 }
 
-bool Koma::Move()
+bool Piece::Move()
 {
 	return true;
 }
 
-void Koma::HitTest()
+void Piece::HitTest()
 {
 	float colSubY = 40.0f;
 	// 駒の当たり判定
@@ -80,13 +80,13 @@ void Koma::HitTest()
 }
 
 // 駒をタイルに登録する
-void Koma::RegisterKomaToSquare()
+void Piece::RegisterPieceToSquare()
 {
-	GetSquarePutKoma(_dan, _suji)->SetKoma(this);
-	_bIsRegisterKomaToSquare = false;
+	GetSquarePutPiece(_dan, _suji)->SetKoma(this);
+	_bIsRegisterPieceToSquare = false;
 }
 
-Square* Koma::GetSquarePutKoma(int dan, int suji)
+Square* Piece::GetSquarePutPiece(int dan, int suji)
 {
 	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
 	std::string strSquare = "square" + std::to_string(suji * DAN_MAX + dan);
@@ -98,9 +98,9 @@ Square* Koma::GetSquarePutKoma(int dan, int suji)
 }
 
 // タイルの中央に駒をセットする 
-void Koma::SetKomaCentralTile()
+void Piece::SetPieceCentralTile()
 {
-	Square* square = GetSquarePutKoma(_dan, _suji);
+	Square* square = GetSquarePutPiece(_dan, _suji);
 
 	// タイルの中央に駒の位置をセットする
 	this->SetPos(square->GetCenter());

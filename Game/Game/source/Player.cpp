@@ -51,11 +51,11 @@ bool Player::Process()
 		}	
 		// マスを未選択
 		else if (!_bSelect) {
-			auto koma = GetKoma(_dan, _suji);
+			auto piece = GetPiece(_dan, _suji);
 			// 自分と同じコマか
-			bool bIsMeAndSameKoma = (koma && koma->GetKomaType() == _komaType) ? true : false;
+			bool bIsMeAndSamePiece = (piece && piece->GetPieceType() == _pieceType) ? true : false;
 			// コマがあるマス & 自分のコマ
-			if(bIsMeAndSameKoma) {
+			if(bIsMeAndSamePiece) {
 				// 選択済みにする
 				_bSelect = true;
 				// 選択したマスを保存
@@ -118,7 +118,7 @@ bool Player::Render()
 	return true;
 }
 
-Koma* Player::GetKoma(int dan, int suji)
+Piece* Player::GetPiece(int dan, int suji)
 {
 	if(dan || suji < 0) return nullptr;
 	auto square = GetSquare(dan, suji);

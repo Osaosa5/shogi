@@ -3,7 +3,7 @@
 #include "Shogi.h"
 #include "ObjectManager.h"
 #include "Square.h"
-#include "Koma.h"
+#include "Piece.h"
 
 class Player : public Shogi
 {
@@ -15,7 +15,7 @@ public:
 	bool Process() override;
 	bool Render() override;
 
-	Koma* GetKoma(int dan, int suji);
+	Piece* GetPiece(int dan, int suji);
 
 	void SelectSquare(int trg);
 

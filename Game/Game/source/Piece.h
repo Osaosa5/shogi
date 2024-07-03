@@ -5,11 +5,11 @@
 #include "ObjectManager.h"
 #include "Square.h"
 
-class Koma : public Shogi
+class Piece : public Shogi
 {
 public:
-	Koma(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
-	virtual ~Koma();
+	Piece(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	virtual ~Piece();
 
 	virtual bool Terminate();
 	virtual bool Process();
@@ -17,10 +17,10 @@ public:
 
 	virtual bool Move();
 	void HitTest();
-	void RegisterKomaToSquare();
+	void RegisterPieceToSquare();
 
-	class Square* GetSquarePutKoma(int dan, int suji);
-	void SetKomaCentralTile();
+	class Square* GetSquarePutPiece(int dan, int suji);
+	void SetPieceCentralTile();
 
 	bool GetUpdateBoardPos() const { return _bUpdateBoardPos; }
 	void SetUpdateBoardPos(bool bUpdateBoardPos) { _bUpdateBoardPos = bUpdateBoardPos; }
@@ -29,7 +29,7 @@ public:
 
 protected:
 	VECTOR _oldPos;
-	bool _bIsRegisterKomaToSquare;
+	bool _bIsRegisterPieceToSquare;
 	bool _bUpdateBoardPos;
 	bool _bUpdate3DPos;
 

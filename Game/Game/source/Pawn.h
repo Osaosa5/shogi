@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Koma.h"
+#include "Piece.h"
 
-class Fuhyo : public Koma
+class Pawn : public Piece
 {
 public:
-	Fuhyo(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
-	~Fuhyo();
+	Pawn(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	~Pawn();
 
 	bool Terminate()override;
 	bool Process()override;

@@ -2,12 +2,12 @@
 #include "Rook.h"
 
 Rook::Rook(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer) 
-	: Koma(objManajer, dan, suji, kPlayer)
+	: Piece(objManajer, dan, suji, kPlayer)
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/hisha.mv1");
 	// コマのタイプを飛車にする
-	_komaType = kHisha;
+	_pieceType = kRook;
 }
 
 Rook::~Rook()
@@ -21,14 +21,14 @@ bool Rook::Terminate()
 
 bool Rook::Process()
 {
-	Koma::Process();
+	Piece::Process();
 	HitTest();
 	return true;
 }
 
 bool Rook::Render()
 {
-	Koma::Render();
+	Piece::Render();
 
 	return true;
 }

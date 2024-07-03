@@ -29,19 +29,19 @@ public:
 		kPlayer2Area		// Player2
 	};
 
-	enum KOMA_TYPE	// 駒の種類
+	enum PIECE_TYPE	// 駒の種類
 	{
-		kNoneKoma,
-		kFuhyo,		// 歩兵
-		kKyosha,	// 香車
-		kKeima,		// 桂馬
-		kGinsho,	// 銀将
-		kKinsho,	// 金将
-		kKakugyo,	// 角行
+		kNonePiece,
+		kPawn,		// 歩兵
+		kLance,		// 香車
+		kKnight,	// 桂馬
+		kSilver,	// 銀将
+		kGold,		// 金将
+		kBishop,	// 角行
 		kRyume,		// 龍馬
-		kHisha,		// 飛車
+		kRook,		// 飛車
 		kRyuo,		// 竜王
-		kOsho,		// 王将
+		kKing,		// 王将
 	};
 
 	enum PLAYER_TYPE	// プレイヤーの種類
@@ -54,8 +54,8 @@ public:
 	AREA_TYPE GetAreaType() const { return _areaType; }
 	void SetAreaType(AREA_TYPE areaType) { _areaType = areaType; }
 
-	KOMA_TYPE GetKomaType() const { return _komaType; }
-	void SetKomaType(KOMA_TYPE komaType) { _komaType = komaType; }
+	PIECE_TYPE GetPieceType() const { return _pieceType; }
+	void SetPieceType(PIECE_TYPE pieceType) { _pieceType = pieceType; }
 
 	PLAYER_TYPE GetPlayerType() const { return _playerType; }
 	void SetPlayerType(PLAYER_TYPE playerType) { _playerType = playerType; }
@@ -68,7 +68,7 @@ protected:
 	int _dan;	// 横の行
 	int _tile;	// 配列の要素番号
 	AREA_TYPE _areaType;	// エリアの種類
-	KOMA_TYPE _komaType;	// 駒の種類
+	PIECE_TYPE _pieceType;	// 駒の種類
 	PLAYER_TYPE _playerType;	// プレイヤーの種類
 };
 
