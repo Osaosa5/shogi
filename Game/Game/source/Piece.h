@@ -17,9 +17,7 @@ public:
 
 	virtual bool Move();
 	void HitTest();
-	void RegisterPieceToSquare();
 
-	class Square* GetSquarePutPiece(int dan, int suji);
 	void SetPieceCentralTile();
 
 	bool GetUpdateBoardPos() const { return _bUpdateBoardPos; }

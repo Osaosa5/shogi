@@ -2,7 +2,6 @@
 
 #include "Shogi.h"
 #include "ObjectManager.h"
-#include "Square.h"
 #include "Piece.h"
 
 class Player : public Shogi
@@ -15,11 +14,7 @@ public:
 	bool Process() override;
 	bool Render() override;
 
-	Piece* GetPiece(int dan, int suji);
-
-	void SelectSquare(int trg);
-
-	Square* GetSquare(int dan, int suji);
+	void SelectSquare(int trg);	
 
 private:
 	ObjectManager* _objManager;

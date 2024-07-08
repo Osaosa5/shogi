@@ -2,8 +2,7 @@
 #include "Piece.h"
 
 #include "appframe.h"
-#include "Object.h"
-#include "Square.h"
+#include "Board.h"
 
 Piece::Piece(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 {
@@ -14,7 +13,7 @@ Piece::Piece(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
 	_bUpdate3DPos = true;
 	// 駒の位置情報
 	_dan = dan; _suji = suji;
-	_tile = _suji * DAN_MAX + _dan;
+	_tile = _suji * BOARD_SIZE + _dan;
 	// プレイヤー情報
 	_playerType = kPlayer;
 	if (_playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
@@ -33,8 +32,6 @@ bool Piece::Terminate()
 bool Piece::Process()
 {
 	_oldPos = _pos;
-
-	if(_bIsRegisterPieceToSquare) RegisterPieceToSquare();
 
 	if (_bUpdate3DPos) SetPieceCentralTile();
 
@@ -79,28 +76,12 @@ void Piece::HitTest()
 
 }
 
-// 駒をタイルに登録する
-void Piece::RegisterPieceToSquare()
-{
-	GetSquarePutPiece(_dan, _suji)->SetKoma(this);
-	_bIsRegisterPieceToSquare = false;
-}
-
-Square* Piece::GetSquarePutPiece(int dan, int suji)
-{
-	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
-	std::string strSquare = "square" + std::to_string(suji * DAN_MAX + dan);
-
-	// 駒と同じ位置にあるタイルを取得する
-	Object* obj = _objManager->Get(strSquare.c_str());
-	if (obj) return dynamic_cast<Square*>(obj);
-	else return nullptr;
-}
-
 // タイルの中央に駒をセットする 
 void Piece::SetPieceCentralTile()
 {
-	Square* square = GetSquarePutPiece(_dan, _suji);
+	// 駒と同じ位置にあるタイルを取得する
+	auto board = dynamic_cast<Board*>(_objManager->Get("board"));
+	auto square = board->GetSquare(_tile);
 
 	// タイルの中央に駒の位置をセットする
 	this->SetPos(square->GetCenter());

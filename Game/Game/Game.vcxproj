@@ -159,6 +159,7 @@
     <ClCompile Include="source\ApplicationGlobal.cpp" />
     <ClCompile Include="source\ApplicationMain.cpp" />
     <ClCompile Include="source\Bishop.cpp" />
+    <ClCompile Include="source\Board.cpp" />
     <ClCompile Include="source\Camera.cpp" />
     <ClCompile Include="source\Pawn.cpp" />
     <ClCompile Include="source\Gold.cpp" />
@@ -182,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Bishop.h" />
+    <ClInclude Include="source\Board.h" />
     <ClInclude Include="source\Camera.h" />
     <ClInclude Include="source\Pawn.h" />
     <ClInclude Include="source\Gold.h" />

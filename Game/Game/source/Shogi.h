@@ -2,6 +2,11 @@
 
 #include "Object.h"
 
+namespace {
+	constexpr int BOARD_SIZE = 9;	
+	constexpr int BOARD_TILE = 81;
+}
+
 class Shogi : public Object
 {
 public:
@@ -59,9 +64,6 @@ public:
 
 	PLAYER_TYPE GetPlayerType() const { return _playerType; }
 	void SetPlayerType(PLAYER_TYPE playerType) { _playerType = playerType; }
-
-	const int SUJI_MAX = 9;	// c‚Ì—ñ‚ÌÅ‘å”
-	const int DAN_MAX = 9;	// ‰¡‚Ìs‚ÌÅ‘å”
 
 protected:
 	int _suji;	// c‚Ì—ñ

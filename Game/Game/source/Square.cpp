@@ -2,9 +2,8 @@
 #include "Square.h"
 #include "Object.h"
 
-Square::Square(ObjectManager* objManeger, VECTOR pos, std::pair<float, float> size, int mapChip, std::string area, int dan, int suji)
+Square::Square(VECTOR pos, std::pair<float, float> size, std::string area, int dan, int suji)
 {
-	_objManager = objManeger;
 	_pos = pos;
 	_size = size;
 
@@ -13,10 +12,6 @@ Square::Square(ObjectManager* objManeger, VECTOR pos, std::pair<float, float> si
 	_center = VGet((_pos.x + vec.x) / 2, _pos.y, (_pos.z + vec.z) / 2);
 
 	_bSelect = false;
-
-	// マップチップの種類を設定
-	if (!mapChip) _pieceType = (PIECE_TYPE)mapChip;
-	else _pieceType = PIECE_TYPE::kNonePiece;
 
 	// エリアの種類を設定
 	if (area == "player1") _areaType = AREA_TYPE::kPlayer1Area;

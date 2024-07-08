@@ -1,6 +1,7 @@
 
 #include "Player.h"
 #include "Square.h"
+#include "Board.h"
 #include "ApplicationMain.h"
 
 Player::Player(ObjectManager* objManeger, std::string player)
@@ -34,78 +35,17 @@ bool Player::Process()
 	SelectSquare(trg);
 	
 	if (trg & PAD_INPUT_4) {
-		// マスを選択済み
-		if (_bSelect) {
-			// 選択したマスと同じマスを選択
-				// マスを未選択にする
-			// 選択したマスと違うマスを選択
-				// コマがあるか
-					// 自分のコマ
-						// 置けないので終了
-					// 相手のコマ
-						// コマを選択したマスに動かす
-						// 選択したマスを未選択にする
-				// コマがない
-					// 駒を選択したマスに動かす
-					// 選択したマスを未選択にする
-		}	
-		// マスを未選択
-		else if (!_bSelect) {
-			auto piece = GetPiece(_dan, _suji);
-			// 自分と同じコマか
-			bool bIsMeAndSamePiece = (piece && piece->GetPieceType() == _pieceType) ? true : false;
-			// コマがあるマス & 自分のコマ
-			if(bIsMeAndSamePiece) {
-				// 選択済みにする
-				_bSelect = true;
-				// 選択したマスを保存
-				_saveSquare = std::make_pair(_dan, _suji);
-				// 選択したマスを選択済みに変更
-				auto square = GetSquare(_dan, _suji);
-				square->SetSelect(!square->GetSelect());
-			}
-		}
-			
-		//// 何も選択していない
-		//if (!_bSelect) {
-		//	_bSelect = true;
-		//	// 選択したマスを保存
-		//	_saveSquare = std::make_pair(_dan, _suji);
-		//	// 選択したマスを選択済みに変更
-		//	auto square = GetSquare(_dan, _suji);
-		//	square->SetSelect(!square->GetSelect());
-		//}
-		//// 選択済み&既に選択したマスと同じマスを選択
-		//else if (_bSelect && _saveSquare == std::make_pair(_dan, _suji)) {
-		//	_bSelect = false;
-		//	// 保存したマスを未選択に変更
-		//	auto square = GetSquare(_saveSquare.first, _saveSquare.second);
-		//	square->SetSelect(!square->GetSelect());
-		//	// 保存マスを初期化
-		//	_saveSquare = std::make_pair(-1, -1);
-		//}
-		//// 選択済み&既に選択したマスと違うマスを選択
-		//else if (_bSelect && _saveSquare != std::make_pair(_dan, _suji)) {
-		//	_bSelect = false;
-		//	// 駒を選択したマスに動かす
-		//	auto koma = GetKoma(_saveSquare.first, _saveSquare.second);
-		//	koma->SetDan(_dan); koma->SetSuji(_suji);
-		//	koma->SetUpdateBoardPos(true);
-		//	// 保存したマスを未選択に変更
-		//	auto square = GetSquare(_saveSquare.first, _saveSquare.second);
-		//	square->SetSelect(!square->GetSelect());
-		//	// 保存マスを初期化
-		//	_saveSquare = std::make_pair(-1, -1);
-		//}
-	}
 
-	return true;
+
+		return true;
+	}
 }
 
 bool Player::Render()
 {
-	Square* square = GetSquare(_dan, _suji);
-
+	auto board = dynamic_cast<Board*>(_objManager->Get("board"));
+	auto square = board->GetSquare(_suji * BOARD_SIZE + _dan);
+	
 	std::unordered_map<std::string, VECTOR> box;
 	std::pair<float, float> size = square->GetSize();
 	VECTOR pos = square->GetPos();
@@ -118,29 +58,11 @@ bool Player::Render()
 	return true;
 }
 
-Piece* Player::GetPiece(int dan, int suji)
-{
-	if(dan || suji < 0) return nullptr;
-	auto square = GetSquare(dan, suji);
-	if (square) return square->GetKoma();
-	return nullptr;
-}
-
 void Player::SelectSquare(int trg)
 {
-	if (trg & PAD_INPUT_LEFT) _dan = (_dan + (DAN_MAX - 1)) % DAN_MAX;
-	else if (trg & PAD_INPUT_RIGHT) _dan = (_dan + 1) % DAN_MAX;
-	if (trg & PAD_INPUT_UP) _suji = (_suji + (SUJI_MAX - 1)) % SUJI_MAX;
-	else if (trg & PAD_INPUT_DOWN) _suji = (_suji + 1) % SUJI_MAX;
+	if (trg & PAD_INPUT_LEFT) _dan = (_dan + (BOARD_SIZE - 1)) % BOARD_SIZE;
+	else if (trg & PAD_INPUT_RIGHT) _dan = (_dan + 1) % BOARD_SIZE;
+	if (trg & PAD_INPUT_UP) _suji = (_suji + (BOARD_SIZE - 1)) % BOARD_SIZE;
+	else if (trg & PAD_INPUT_DOWN) _suji = (_suji + 1) % BOARD_SIZE;
 }
 
-Square* Player::GetSquare(int dan, int suji)
-{
-	// 駒の位置を文字列に直し、同じ位置にある"square"と合わせる
-	std::string strSquare = "square" + std::to_string(suji * DAN_MAX + dan);
-
-	// 駒と同じ位置にあるタイルを取得する
-	Object* obj = _objManager->Get(strSquare.c_str());
-	if (obj) return dynamic_cast<Square*>(obj);
-	else return nullptr;
-}
