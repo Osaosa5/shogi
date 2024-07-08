@@ -20,5 +20,6 @@ private:
 	ObjectManager* _objManager;
 	bool _bSelect;
 	std::pair<int, int> _saveSquare;
+	int _selectedPieceIndex;
 };
 

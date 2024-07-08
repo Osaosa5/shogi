@@ -2,6 +2,8 @@
 
 Board::Board(ObjectManager* objManager)
 {
+	_objManager = objManager;
+
 	// «Šû”Õ‚Ì¡–Ú‚Ìî•ñ‚ğ’Ç‰Á
 	nlohmann::json j = JsonManeger::LoadJsonFile("JSON/board.json");
 	std::vector<int> vBoardTiles = j["map"].get<std::vector<int>>();
@@ -42,6 +44,8 @@ bool Board::Terminate()
 
 bool Board::Process()
 {
+
+
 	for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
 		_squares[i]->Process();
 	}

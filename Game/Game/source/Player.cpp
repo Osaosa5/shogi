@@ -13,6 +13,7 @@ Player::Player(ObjectManager* objManeger, std::string player)
 
 	_bSelect = false;
 	_saveSquare = std::make_pair(-1, -1);
+	_selectedPieceIndex = -1;
 
 	_suji = _dan = 0;
 }
@@ -30,12 +31,24 @@ bool Player::Process()
 {
 	int player = _playerType;
 	auto app = ApplicationMain::GetInstance();
-	int trg = app->GetTrg(player);
+	int trg = app->GetTrg(player - 1);
 
 	SelectSquare(trg);
 	
+	int index = _suji * BOARD_SIZE + _dan;
 	if (trg & PAD_INPUT_4) {
+		if (_selectedPieceIndex == -1) {
+			_selectedPieceIndex = index;
+		}
+		else {
+			// ‹î‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚éê‡A‹î‚ğˆÚ“®
+			auto board = dynamic_cast<Board*>(_objManager->Get("board"));
+			int targetPiece = board->GetSquare(index);
+			std::swap(_tileBoard[_selectedPieceIndex], _tileBoard[index]);
+			_selectedPieceIndex = -1;
 
+		}	
+		_selectedPieceIndex = index;
 
 		return true;
 	}
