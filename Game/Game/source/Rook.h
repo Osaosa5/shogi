@@ -5,7 +5,7 @@
 class Rook : public Piece
 {
 public:
-	Rook(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	Rook(ObjectManager* objManajer, int dan, int suji, std::string strPlayer);
 	~Rook();
 
 	bool Terminate()override;

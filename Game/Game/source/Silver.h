@@ -5,7 +5,7 @@
 class Silver : public Piece
 {
 public:
-	Silver(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	Silver(ObjectManager* objManajer, int dan, int suji, std::string strPlayer);
 	~Silver();
 
 	bool Terminate()override;

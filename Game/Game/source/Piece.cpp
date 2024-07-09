@@ -4,18 +4,21 @@
 #include "appframe.h"
 #include "Board.h"
 
-Piece::Piece(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
+Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 {
 	_objManager = objManajer;
 	_oldPos = VGet(0, 0, 0);
 	_bIsRegisterPieceToSquare = true;
 	_bUpdateBoardPos = true;
 	_bUpdate3DPos = true;
+
 	// 駒の位置情報
 	_dan = dan; _suji = suji;
 	_tile = _suji * BOARD_SIZE + _dan;
+
 	// プレイヤー情報
-	_playerType = kPlayer;
+	if (strPlayer == "player1") _playerType = kPlayer1;
+	else if (strPlayer == "player2") _playerType = kPlayer2;
 	if (_playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
 	else if (_playerType == kPlayer2) { _rot = VGet(0, DEG2RAD(180), 0); }
 }
@@ -80,11 +83,17 @@ void Piece::HitTest()
 void Piece::SetPieceCentralTile()
 {
 	// 駒と同じ位置にあるタイルを取得する
-	auto board = dynamic_cast<Board*>(_objManager->Get("board"));
-	auto square = board->GetSquare(_tile);
+	auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
+	int index = -1;
+	for (int y = 0; y < BOARD_SIZE; y++) {
+		for (int x = 0; x < BOARD_SIZE; x++) {
+			if(ptrBoard->GetPiece(y * BOARD_SIZE + x) == this)	index = y * BOARD_SIZE + x;
+		}
+	}
+	auto ptrSquare = ptrBoard->GetSquare(index);
 
 	// タイルの中央に駒の位置をセットする
-	this->SetPos(square->GetCenter());
+	this->SetPos(ptrSquare->GetCenter());
 
 	// 駒の位置がセットされたことを記録する
 	_bUpdate3DPos = false;

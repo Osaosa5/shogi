@@ -5,7 +5,7 @@
 class Knight : public Piece
 {
 public:
-	Knight(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	Knight(ObjectManager* objManajer, int dan, int suji, std::string strPlayer);
 	~Knight();
 
 	bool Terminate()override;

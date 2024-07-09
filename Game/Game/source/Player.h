@@ -15,6 +15,8 @@ public:
 	bool Render() override;
 
 	void SelectSquare(int trg);	
+	void SelectPiece(int index);
+	void MovePiece(int index);
 
 private:
 	ObjectManager* _objManager;

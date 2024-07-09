@@ -3,8 +3,8 @@
 #include "ApplicationMain.h"
 
 
-Pawn::Pawn(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer)
-	: Piece(objManajer, dan, suji, kPlayer)
+Pawn::Pawn(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
+	: Piece(objManajer, dan, suji, strPlayer)
 {
 	_handle = RM::MV1LoadModel("res/3D/shogi/fuhyo.mv1");
 	// コマのタイプを歩にする

@@ -144,54 +144,54 @@ bool ModeGame::ObjectAdd()
 	auto player2 = Shogi::PLAYER_TYPE::kPlayer2;
 	float oneRow = 15.40f; float twoRow = 11.55f; float threeRow = 7.70f;
 	
-	// ‹î‚ð’Ç‰Á
-	for (int i = 0; i < 9; i++) {
-		float x = 3.5f * i - 14.0f;
-		std::string fuhyoPl1 = "fuhyo" + std::to_string(i + 1);
-		std::string fuhyoPl2 = "fuhyo" + std::to_string(i + 10);
-		_objectManager->Add(new Pawn(_objectManager, i, 6, player1), fuhyoPl1.c_str());
-		_objectManager->Add(new Pawn(_objectManager, i, 2, player2), fuhyoPl2.c_str());
-		if (i == 0) {
-			_objectManager->Add(new Lance(_objectManager, i, 8, player1), "lance1");
-			_objectManager->Add(new Lance(_objectManager, i, 0, player2), "lance2");
-		}
-		else if (i == 1) {
-			_objectManager->Add(new Bishop(_objectManager,i, 7, player1), "bishop1");
-			_objectManager->Add(new Rook(_objectManager, i, 1, player2), "rook1");
-			_objectManager->Add(new Knight(_objectManager, i, 8, player1), "knight1");
-			_objectManager->Add(new Knight(_objectManager, i, 0, player2), "knight2");
-		}
-		else if (i == 2) {
-			_objectManager->Add(new Silver(_objectManager, i, 8, player1), "silver1");
-			_objectManager->Add(new Silver(_objectManager, i, 0, player2), "silver2");
-		}
-		else if (i == 3) {
-			_objectManager->Add(new Gold(_objectManager, i, 8, player1), "gold1");
-			_objectManager->Add(new Gold(_objectManager, i, 0, player2), "gold2");
-		}
-		else if (i == 4) {
-			_objectManager->Add(new King(_objectManager, i, 8, player1), "king1");
-			_objectManager->Add(new King(_objectManager, i, 0, player2), "king2");
-		}
-		else if (i == 5) {
-			_objectManager->Add(new Gold(_objectManager, i, 8, player1), "gold3");
-			_objectManager->Add(new Gold(_objectManager, i, 0, player2), "gold4");
-		}
-		else if (i == 6) {
-			_objectManager->Add(new Silver(_objectManager, i, 8, player1), "silver3");
-			_objectManager->Add(new Silver(_objectManager, i, 0, player2), "silver4");
-		}
-		else if (i == 7) {
-			_objectManager->Add(new Rook(_objectManager, i, 7, player1), "rook2");
-			_objectManager->Add(new Bishop(_objectManager, i, 1, player2), "bishop2");
-			_objectManager->Add(new Knight(_objectManager, i, 8, player1), "knight3");
-			_objectManager->Add(new Knight(_objectManager, i, 0, player2), "knight4");
-		}
-		else if (i == 8) {
-			_objectManager->Add(new Lance(_objectManager, i, 8, player1), "lance3");
-			_objectManager->Add(new Lance(_objectManager, i, 0, player2), "lance4");
-		}
-	}
+	//// ‹î‚ð’Ç‰Á
+	//for (int i = 0; i < 9; i++) {
+	//	float x = 3.5f * i - 14.0f;
+	//	std::string fuhyoPl1 = "fuhyo" + std::to_string(i + 1);
+	//	std::string fuhyoPl2 = "fuhyo" + std::to_string(i + 10);
+	//	_objectManager->Add(new Pawn(_objectManager, i, 6, player1), fuhyoPl1.c_str());
+	//	_objectManager->Add(new Pawn(_objectManager, i, 2, player2), fuhyoPl2.c_str());
+	//	if (i == 0) {
+	//		_objectManager->Add(new Lance(_objectManager, i, 8, player1), "lance1");
+	//		_objectManager->Add(new Lance(_objectManager, i, 0, player2), "lance2");
+	//	}
+	//	else if (i == 1) {
+	//		_objectManager->Add(new Bishop(_objectManager,i, 7, player1), "bishop1");
+	//		_objectManager->Add(new Rook(_objectManager, i, 1, player2), "rook1");
+	//		_objectManager->Add(new Knight(_objectManager, i, 8, player1), "knight1");
+	//		_objectManager->Add(new Knight(_objectManager, i, 0, player2), "knight2");
+	//	}
+	//	else if (i == 2) {
+	//		_objectManager->Add(new Silver(_objectManager, i, 8, player1), "silver1");
+	//		_objectManager->Add(new Silver(_objectManager, i, 0, player2), "silver2");
+	//	}
+	//	else if (i == 3) {
+	//		_objectManager->Add(new Gold(_objectManager, i, 8, player1), "gold1");
+	//		_objectManager->Add(new Gold(_objectManager, i, 0, player2), "gold2");
+	//	}
+	//	else if (i == 4) {
+	//		_objectManager->Add(new King(_objectManager, i, 8, player1), "king1");
+	//		_objectManager->Add(new King(_objectManager, i, 0, player2), "king2");
+	//	}
+	//	else if (i == 5) {
+	//		_objectManager->Add(new Gold(_objectManager, i, 8, player1), "gold3");
+	//		_objectManager->Add(new Gold(_objectManager, i, 0, player2), "gold4");
+	//	}
+	//	else if (i == 6) {
+	//		_objectManager->Add(new Silver(_objectManager, i, 8, player1), "silver3");
+	//		_objectManager->Add(new Silver(_objectManager, i, 0, player2), "silver4");
+	//	}
+	//	else if (i == 7) {
+	//		_objectManager->Add(new Rook(_objectManager, i, 7, player1), "rook2");
+	//		_objectManager->Add(new Bishop(_objectManager, i, 1, player2), "bishop2");
+	//		_objectManager->Add(new Knight(_objectManager, i, 8, player1), "knight3");
+	//		_objectManager->Add(new Knight(_objectManager, i, 0, player2), "knight4");
+	//	}
+	//	else if (i == 8) {
+	//		_objectManager->Add(new Lance(_objectManager, i, 8, player1), "lance3");
+	//		_objectManager->Add(new Lance(_objectManager, i, 0, player2), "lance4");
+	//	}
+	//}
 
 	// ô‚ð’Ç‰Á
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");

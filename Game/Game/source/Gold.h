@@ -5,7 +5,7 @@
 class Gold : public Piece
 {
 public:
-	Gold(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	Gold(ObjectManager* objManajer, int dan, int suji, std::string strPlayer);
 	~Gold();
 
 	bool Terminate()override;

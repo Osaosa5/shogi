@@ -5,7 +5,7 @@
 class Pawn : public Piece
 {
 public:
-	Pawn(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	Pawn(ObjectManager* objManajer, int dan, int suji, std::string strPlayer);
 	~Pawn();
 
 	bool Terminate()override;

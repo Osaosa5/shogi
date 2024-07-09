@@ -8,7 +8,7 @@
 class Piece : public Shogi
 {
 public:
-	Piece(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer);
 	virtual ~Piece();
 
 	virtual bool Terminate();
@@ -22,6 +22,7 @@ public:
 
 	bool GetUpdateBoardPos() const { return _bUpdateBoardPos; }
 	void SetUpdateBoardPos(bool bUpdateBoardPos) { _bUpdateBoardPos = bUpdateBoardPos; }
+
 	bool GetUpdate3DPos() const { return _bUpdate3DPos; }
 	void SetUpdate3DPos(bool bUpdate3DPos) { _bUpdate3DPos = bUpdate3DPos; }
 

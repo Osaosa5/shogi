@@ -1,8 +1,8 @@
 
 #include "Rook.h"
 
-Rook::Rook(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer) 
-	: Piece(objManajer, dan, suji, kPlayer)
+Rook::Rook(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
+	: Piece(objManajer, dan, suji, strPlayer)
 {
 	// ƒ‚ƒfƒ‹“Ç‚İ‚İ
 	_handle = RM::MV1LoadModel("res/3D/shogi/hisha.mv1");

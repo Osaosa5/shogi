@@ -38,17 +38,12 @@ bool Player::Process()
 	int index = _suji * BOARD_SIZE + _dan;
 	if (trg & PAD_INPUT_4) {
 		if (_selectedPieceIndex == -1) {
-			_selectedPieceIndex = index;
+			// もし選択されたマスに駒がある場合、駒を選択する
+			SelectPiece(index);
 		}
 		else {
-			// 駒が選択されている場合、駒を移動
-			auto board = dynamic_cast<Board*>(_objManager->Get("board"));
-			int targetPiece = board->GetSquare(index);
-			std::swap(_tileBoard[_selectedPieceIndex], _tileBoard[index]);
-			_selectedPieceIndex = -1;
-
+			MovePiece(index);
 		}	
-		_selectedPieceIndex = index;
 
 		return true;
 	}
@@ -77,5 +72,42 @@ void Player::SelectSquare(int trg)
 	else if (trg & PAD_INPUT_RIGHT) _dan = (_dan + 1) % BOARD_SIZE;
 	if (trg & PAD_INPUT_UP) _suji = (_suji + (BOARD_SIZE - 1)) % BOARD_SIZE;
 	else if (trg & PAD_INPUT_DOWN) _suji = (_suji + 1) % BOARD_SIZE;
+}
+
+void Player::SelectPiece(int index)
+{
+	// 駒が選択されていない場合、選択したマスに駒があるか確認
+	auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
+	auto ptrPiece = ptrBoard->GetPiece(index);
+	if (ptrPiece == nullptr) return;
+
+	// 駒がある場合、選択したマスの情報を保存する
+	auto ptrSquare = ptrBoard->GetSquare(index);
+	ptrSquare->SetSelect(true);
+	_selectedPieceIndex = index;
+}
+
+void Player::MovePiece(int index)
+{
+	// 駒が選択されている場合、駒を移動
+	auto board = dynamic_cast<Board*>(_objManager->Get("board"));
+	auto ptrSelectedPiece = board->GetPiece(_selectedPieceIndex);
+	auto ptrPiece = board->GetPiece(index);
+	std::swap(ptrPiece, ptrSelectedPiece);
+
+	// 駒の配列を更新
+	board->SetPiece(_selectedPieceIndex, ptrSelectedPiece);
+	board->SetPiece(index, ptrPiece);
+
+	// 選択された位置に駒がある場合、駒の位置情報を更新
+	if (ptrSelectedPiece != nullptr) ptrSelectedPiece->SetUpdate3DPos(true);
+	if (ptrPiece != nullptr) ptrPiece->SetUpdate3DPos(true);
+
+	// 選択された位置の駒を非選択状態にする
+	auto ptrSquare = board->GetSquare(_selectedPieceIndex);
+	ptrSquare->SetSelect(false);
+
+	// 選択した駒の情報を初期化
+	_selectedPieceIndex = -1;
 }
 

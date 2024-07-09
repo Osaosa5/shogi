@@ -5,7 +5,7 @@
 class Bishop : public Piece
 {
 public:
-	Bishop(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	Bishop(ObjectManager* objManajer, int dan, int suji, std::string strPlayer);
 	~Bishop();
 
 	bool Terminate()override;

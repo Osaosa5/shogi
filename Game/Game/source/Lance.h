@@ -5,7 +5,7 @@
 class Lance : public Piece
 {
 public:
-	Lance(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer);
+	Lance(ObjectManager* objManajer, int dan, int suji, std::string strPlayer);
 	~Lance();
 
 	bool Terminate()override;

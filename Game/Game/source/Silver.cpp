@@ -2,8 +2,8 @@
 #include "Silver.h"
 #include "ApplicationMain.h"
 
-Silver::Silver(ObjectManager* objManajer, int dan, int suji, PLAYER_TYPE kPlayer) 
-	: Piece(objManajer, dan, suji, kPlayer)
+Silver::Silver(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
+	: Piece(objManajer, dan, suji, strPlayer)
 {
 	// ƒ‚ƒfƒ‹“Ç‚İ‚İ
 	_handle = RM::MV1LoadModel("res/3D/shogi/gin.mv1");
