@@ -8,8 +8,6 @@ Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 {
 	_objManager = objManajer;
 	_oldPos = VGet(0, 0, 0);
-	_bIsRegisterPieceToSquare = true;
-	_bUpdateBoardPos = true;
 	_bUpdate3DPos = true;
 
 	// ‹î‚ÌˆÊ’uî•ñ

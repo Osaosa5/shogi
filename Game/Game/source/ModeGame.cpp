@@ -19,15 +19,6 @@
 #include "Board.h"
 #include "Player.h"
 
-#include "Pawn.h"
-#include "Lance.h"
-#include "Knight.h"
-#include "Silver.h"
-#include "Gold.h"
-#include "King.h"
-#include "Bishop.h"
-#include "Rook.h"
-
 bool ModeGame::Initialize()
 {
 	if(!base::Initialize()) return false; 
@@ -44,6 +35,8 @@ bool ModeGame::Initialize()
 
 	// _objectManagerがnullptrの場合は強制終了する
 	if(!ObjectAdd()) return false;
+
+	_isWin = false;
 
 	return true;
 }
@@ -73,7 +66,7 @@ bool ModeGame::Process()
 	int trg = app->GetTrg();
 
 	// Zキーが押されたら終了モードに遷移
-	if (trg & PAD_INPUT_1) {
+	if (trg & PAD_INPUT_1 && _isWin) {
 		auto mdServer = ModeServer::GetInstance();
 		mdServer->Del(this);
 		mdServer->Add(new ModeEnd(),1,"end");
@@ -101,6 +94,14 @@ bool ModeGame::Render()
 	// モード名を表示
 	std::string name = ModeServer::GetInstance()->GetName(this);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), name.c_str());
+
+	if (_isWin) {
+		std::string winner = _strWinPlayer + "の勝利! \n次に進むにはBボタンを押してください";
+		int fontSize = GetFontSize();
+		SetFontSize(64);
+		DrawFormatString(0, 20, GetColor(255, 0, 0), winner.c_str());
+		SetFontSize(fontSize);
+	}
 
 	return true;
 }
@@ -135,71 +136,13 @@ bool ModeGame::ObjectAdd()
 	// ボードを追加
 	_objectManager->Add(new Board(_objectManager), "board");
 	
-	// 駒のY座標
-	float komaY = 21.0f;
-	// player1に必要な駒情報
-	auto player1 = Shogi::PLAYER_TYPE::kPlayer1;
-	float sevenRow = -7.70f; float eightRow = -11.55f; float nineRow = -15.40f;
-	// player2に必要な駒情報
-	auto player2 = Shogi::PLAYER_TYPE::kPlayer2;
-	float oneRow = 15.40f; float twoRow = 11.55f; float threeRow = 7.70f;
-	
-	//// 駒を追加
-	//for (int i = 0; i < 9; i++) {
-	//	float x = 3.5f * i - 14.0f;
-	//	std::string fuhyoPl1 = "fuhyo" + std::to_string(i + 1);
-	//	std::string fuhyoPl2 = "fuhyo" + std::to_string(i + 10);
-	//	_objectManager->Add(new Pawn(_objectManager, i, 6, player1), fuhyoPl1.c_str());
-	//	_objectManager->Add(new Pawn(_objectManager, i, 2, player2), fuhyoPl2.c_str());
-	//	if (i == 0) {
-	//		_objectManager->Add(new Lance(_objectManager, i, 8, player1), "lance1");
-	//		_objectManager->Add(new Lance(_objectManager, i, 0, player2), "lance2");
-	//	}
-	//	else if (i == 1) {
-	//		_objectManager->Add(new Bishop(_objectManager,i, 7, player1), "bishop1");
-	//		_objectManager->Add(new Rook(_objectManager, i, 1, player2), "rook1");
-	//		_objectManager->Add(new Knight(_objectManager, i, 8, player1), "knight1");
-	//		_objectManager->Add(new Knight(_objectManager, i, 0, player2), "knight2");
-	//	}
-	//	else if (i == 2) {
-	//		_objectManager->Add(new Silver(_objectManager, i, 8, player1), "silver1");
-	//		_objectManager->Add(new Silver(_objectManager, i, 0, player2), "silver2");
-	//	}
-	//	else if (i == 3) {
-	//		_objectManager->Add(new Gold(_objectManager, i, 8, player1), "gold1");
-	//		_objectManager->Add(new Gold(_objectManager, i, 0, player2), "gold2");
-	//	}
-	//	else if (i == 4) {
-	//		_objectManager->Add(new King(_objectManager, i, 8, player1), "king1");
-	//		_objectManager->Add(new King(_objectManager, i, 0, player2), "king2");
-	//	}
-	//	else if (i == 5) {
-	//		_objectManager->Add(new Gold(_objectManager, i, 8, player1), "gold3");
-	//		_objectManager->Add(new Gold(_objectManager, i, 0, player2), "gold4");
-	//	}
-	//	else if (i == 6) {
-	//		_objectManager->Add(new Silver(_objectManager, i, 8, player1), "silver3");
-	//		_objectManager->Add(new Silver(_objectManager, i, 0, player2), "silver4");
-	//	}
-	//	else if (i == 7) {
-	//		_objectManager->Add(new Rook(_objectManager, i, 7, player1), "rook2");
-	//		_objectManager->Add(new Bishop(_objectManager, i, 1, player2), "bishop2");
-	//		_objectManager->Add(new Knight(_objectManager, i, 8, player1), "knight3");
-	//		_objectManager->Add(new Knight(_objectManager, i, 0, player2), "knight4");
-	//	}
-	//	else if (i == 8) {
-	//		_objectManager->Add(new Lance(_objectManager, i, 8, player1), "lance3");
-	//		_objectManager->Add(new Lance(_objectManager, i, 0, player2), "lance4");
-	//	}
-	//}
-
 	// 畳を追加
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");
 
 	// プレイヤーを追加
-	_objectManager->Add(new Player(_objectManager, "player1"), "player1");
-	_objectManager->Add(new Player(_objectManager, "player2"), "player2");
+	_objectManager->Add(new Player(_objectManager, "player1", this), "player1");
+	_objectManager->Add(new Player(_objectManager, "player2", this), "player2");
 
 	return true;
 }
