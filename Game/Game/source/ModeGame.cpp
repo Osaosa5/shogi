@@ -36,6 +36,10 @@ bool ModeGame::Initialize()
 	// _objectManagerがnullptrの場合は強制終了する
 	if(!ObjectAdd()) return false;
 
+	// 現在のプレイヤーをplayer1に設定
+	_currentPlayer = "player1";
+
+	// 勝利フラグを初期化
 	_isWin = false;
 
 	return true;
@@ -94,6 +98,10 @@ bool ModeGame::Render()
 	// モード名を表示
 	std::string name = ModeServer::GetInstance()->GetName(this);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), name.c_str());
+
+	// 現在のプレイヤーを表示
+	std::string currentPlayer = "現在のプレイヤー: " + _currentPlayer;
+	DrawFormatString(0, 20, GetColor(255, 255, 255), currentPlayer.c_str());
 
 	if (_isWin) {
 		std::string winner = _strWinPlayer + "の勝利! \n次に進むにはBボタンを押してください";

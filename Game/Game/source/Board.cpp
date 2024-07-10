@@ -32,6 +32,7 @@ Board::Board(ObjectManager* objManager)
 			InitPiece(index, boardTile, x, y, strPlayer);
 		}
 	}
+	// ‡@ƒ^[ƒ“‚Ìˆ—‚ğ’Ç‰Á
 
 }
 

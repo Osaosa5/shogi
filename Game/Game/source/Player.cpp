@@ -36,6 +36,11 @@ bool Player::Process()
 
 	SelectSquare(trg);
 	
+	// ターンが自分のターンでない場合、処理を行わない
+	std::string strMyName = _objManager->GetName(this);
+	std::string strCurrentPlayer = _game->GetCurrentPlayer();
+	if(strCurrentPlayer != strMyName) return false;
+
 	int index = _suji * BOARD_SIZE + _dan;
 	if (trg & PAD_INPUT_4) {
 		if (_selectedPieceIndex == -1) {
@@ -44,6 +49,7 @@ bool Player::Process()
 		}
 		else {
 			MovePiece(index);
+			_game->SetCurrentPlayer(strCurrentPlayer == "player1" ? "player2" : "player1");
 		}	
 
 		return true;
