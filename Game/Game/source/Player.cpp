@@ -5,6 +5,8 @@
 #include "ApplicationMain.h"
 #include "ModeGame.h"
 
+#define ON_DEBUG
+
 Player::Player(ObjectManager* objManeger, std::string player, ModeGame* game)
 {
 	_objManager = objManeger;
@@ -33,6 +35,13 @@ bool Player::Process()
 	int player = _playerType;
 	auto app = ApplicationMain::GetInstance();
 	int trg = app->GetTrg(player - 1);
+
+#ifdef ON_DEBUG
+	trg = app->GetTrg(player - 1);
+#else
+	trg = app->GetTrg(player);
+#endif 
+
 
 	SelectSquare(trg);
 	

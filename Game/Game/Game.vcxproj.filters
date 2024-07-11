@@ -123,6 +123,9 @@
     <ClCompile Include="source\Board.cpp">
       <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
     </ClCompile>
+    <ClCompile Include="source\ModeDebug.cpp">
+      <Filter>ソース ファイル\Mode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="source\Board.h">
       <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ModeDebug.h">
+      <Filter>ヘッダー ファイル\Mode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
