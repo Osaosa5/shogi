@@ -72,26 +72,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\DxLib;..\..\AppFrame\source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\include;$(SolutionDir)..\DxLib;..\..\AppFrame\source;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\DxLib;$(SolutionDir)$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\DxLib;..\..\AppFrame\source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\include;$(SolutionDir)..\DxLib;..\..\AppFrame\source;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\DxLib;$(SolutionDir)$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\DxLib;..\..\AppFrame\source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\include;$(SolutionDir)..\DxLib;..\..\AppFrame\source;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\DxLib;$(SolutionDir)$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\DxLib;..\..\AppFrame\source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\include;$(SolutionDir)..\DxLib;..\..\AppFrame\source;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\DxLib;$(SolutionDir)$(Platform)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -158,15 +158,40 @@
   <ItemGroup>
     <ClCompile Include="source\ApplicationGlobal.cpp" />
     <ClCompile Include="source\ApplicationMain.cpp" />
-    <ClCompile Include="source\Model.cpp" />
+    <ClCompile Include="source\Bishop.cpp" />
+    <ClCompile Include="source\Board.cpp" />
+    <ClCompile Include="source\Camera.cpp" />
+    <ClCompile Include="source\Pawn.cpp" />
+    <ClCompile Include="source\Gold.cpp" />
+    <ClCompile Include="source\King.cpp" />
+    <ClCompile Include="source\Knight.cpp" />
+    <ClCompile Include="source\Piece.cpp" />
+    <ClCompile Include="source\Lance.cpp" />
+    <ClCompile Include="source\Light.cpp" />
     <ClCompile Include="source\ModeEnd.cpp" />
     <ClCompile Include="source\ModeGame.cpp" />
     <ClCompile Include="source\ModeTitle.cpp" />
     <ClCompile Include="source\Object.cpp" />
     <ClCompile Include="source\ObjectManager.cpp" />
+    <ClCompile Include="source\Player.cpp" />
+    <ClCompile Include="source\Rook.cpp" />
+    <ClCompile Include="source\Shogi.cpp" />
+    <ClCompile Include="source\ShogiBan.cpp" />
+    <ClCompile Include="source\Silver.cpp" />
+    <ClCompile Include="source\Square.cpp" />
+    <ClCompile Include="source\Tatami.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\Model.h" />
+    <ClInclude Include="source\Bishop.h" />
+    <ClInclude Include="source\Board.h" />
+    <ClInclude Include="source\Camera.h" />
+    <ClInclude Include="source\Pawn.h" />
+    <ClInclude Include="source\Gold.h" />
+    <ClInclude Include="source\King.h" />
+    <ClInclude Include="source\Knight.h" />
+    <ClInclude Include="source\Piece.h" />
+    <ClInclude Include="source\Lance.h" />
+    <ClInclude Include="source\Light.h" />
     <ClInclude Include="source\Object.h" />
     <ClInclude Include="source\ApplicationGlobal.h" />
     <ClInclude Include="source\ApplicationMain.h" />
@@ -174,6 +199,13 @@
     <ClInclude Include="source\ModeGame.h" />
     <ClInclude Include="source\ModeTitle.h" />
     <ClInclude Include="source\ObjectManager.h" />
+    <ClInclude Include="source\Player.h" />
+    <ClInclude Include="source\Rook.h" />
+    <ClInclude Include="source\Shogi.h" />
+    <ClInclude Include="source\ShogiBan.h" />
+    <ClInclude Include="source\Silver.h" />
+    <ClInclude Include="source\Square.h" />
+    <ClInclude Include="source\Tatami.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

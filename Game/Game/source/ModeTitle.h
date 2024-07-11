@@ -6,10 +6,10 @@ class ModeTitle : public ModeBase
 {
 	typedef ModeBase base;
 public:
-	virtual bool Initialize();
-	virtual bool Terminate();
-	virtual bool Process();
-	virtual bool Render();
-
+	bool Initialize()override;
+	bool Terminate()override;
+	bool Process()override;
+	bool Render()override;
+	std::vector<int> _vMap;
 };
 

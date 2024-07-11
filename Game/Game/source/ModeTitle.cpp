@@ -11,6 +11,8 @@
 #include "ModeTitle.h"
 #include "ModeGame.h"
 
+#include <iostream>
+
 bool ModeTitle::Initialize()
 {
 	if (!base::Initialize()) { return false; }
@@ -46,8 +48,13 @@ bool ModeTitle::Render()
 	base::Render();
 
 	// ÉÇÅ[ÉhñºÇï\é¶
-	std::string name = ModeServer::GetInstance()->GetName(this);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), name.c_str());
+	auto app = ApplicationMain::GetInstance();
+	float wid = app->DispSizeW(); float hei = app->DispSizeH();
+	std::string name = "è´ä˚";
+	float size = GetFontSize();
+	SetFontSize(128);
+	DrawFormatString(wid / 2 - 156, hei / 2 - 128, GetColor(255, 255, 255), name.c_str());
+	SetFontSize(size);
 
 	return true;
 }

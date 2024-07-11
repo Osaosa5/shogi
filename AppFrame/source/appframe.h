@@ -4,6 +4,9 @@
 
 #include "DxLib.h"
 #include "Application/ApplicationBase.h"
-#include "CFile/CFile.h"
+#include "File/CFile.h"
+#include "File/JSONFile.h"
+#include "JsonManeger/JsonManeger.h"
 #include "MyMath/mymath.h"
 #include "Vector/Vector2.h"
+#include "ResourceManager/ResourceManager.h"

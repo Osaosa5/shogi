@@ -26,6 +26,6 @@ private:
 	std::string		_filename;
 
 	int		_size;
-	char* _data;
+	char*	_data;
 	bool	_success;
 };

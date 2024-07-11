@@ -6,7 +6,7 @@
 
 class ObjectManager
 {
-	typedef std::list<Object*> lstObject;
+	typedef std::vector<Object*> lstObject;
 
 public:
 	ObjectManager();

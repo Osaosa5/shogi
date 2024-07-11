@@ -1,5 +1,10 @@
 DxLib
-Game/.vs
+.vs
 Game/Game/res
 Game/Game/Log.txt
 x64
+include
+JSON
+latex
+shogi_school.pdf
+Doxyfile
