@@ -31,6 +31,7 @@ public:
 	const char *GetName(Object* pObject);	// objから名前を取得
 	const char *GetName(int id);			// idから名前を取得
 
+
 	// メインの処理
 	int ProcessInit();	// プロセスを回すための初期化
 	int Process();		// プロセスを回す

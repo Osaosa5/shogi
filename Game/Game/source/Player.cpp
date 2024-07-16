@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Square.h"
 #include "Board.h"
+#include "PieceStand.h"
 #include "ApplicationMain.h"
 #include "ModeGame.h"
 
@@ -156,6 +157,12 @@ void Player::MovePiece(int index)
 		}
 		// 相手のコマを取る
 		_vHasPieces.emplace_back(ptrPiece);
+		ptrPiece->SetPlayerType(_playerType);
+		std::string strPieceStand = "PieceStand";
+		std::string strNum = _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
+		strPieceStand += strNum;
+		auto pieceStand = dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
+		pieceStand->AddPiece(ptrPiece);
 		ptrPiece = nullptr;
 	}
 	// コマの位置を交換する

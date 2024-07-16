@@ -19,6 +19,7 @@ public:
 	void HitTest();
 
 	void SetPieceCentralTile();
+	void UpdateDirectionForPlayer(PLAYER_TYPE playerType);
 
 	bool GetUpdate3DPos() const { return _bUpdate3DPos; }
 	void SetUpdate3DPos(bool bUpdate3DPos) { _bUpdate3DPos = bUpdate3DPos; }

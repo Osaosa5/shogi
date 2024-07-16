@@ -14,6 +14,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "ShogiBan.h"
+#include "PieceStand.h"
 #include "Tatami.h"
 
 #include "Square.h"
@@ -134,6 +135,7 @@ void ModeGame::LoadData()
 	ResourceManager::MV1LoadModel("res/3D/shogi/hisha.mv1");
 	ResourceManager::MV1LoadModel("res/3D/shogi/gin.mv1");
 	ResourceManager::MV1LoadModel("res/3D/将棋盤/sho_giban.mv1");
+	ResourceManager::MV1LoadModel("res/3D/将棋の駒台.mv1");
 	ResourceManager::MV1LoadModel("res/3D/tatami/ImageToStl.com_772_tatami.mv1");
 }
 
@@ -143,14 +145,20 @@ bool ModeGame::ObjectAdd()
 
 	// カメラを追加
 	_objectManager->Add(new Camera(), "Camera");
+
 	// ライトを追加
 	_objectManager->Add(new Light(), "light");
+
 	// 将棋盤を追加
 	_objectManager->Add(new ShogiBan(), "shogiban");
 
 	// ボードを追加
 	_objectManager->Add(new Board(_objectManager), "board");
 	
+	// 駒台を追加
+	_objectManager->Add(new PieceStand(_objectManager, VGet(24, 0, -10), "player1"), "PieceStand1");
+	_objectManager->Add(new PieceStand(_objectManager, VGet(-24, 0, 10), "player2"), "PieceStand2");
+
 	// 畳を追加
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");
 	_objectManager->Add(new Tatami(VGet(-44, -10, 15)), "tatami2");

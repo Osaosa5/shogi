@@ -17,8 +17,7 @@ Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 	// プレイヤー情報
 	if (strPlayer == "player1") _playerType = kPlayer1;
 	else if (strPlayer == "player2") _playerType = kPlayer2;
-	if (_playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
-	else if (_playerType == kPlayer2) { _rot = VGet(0, DEG2RAD(180), 0); }
+	UpdateDirectionForPlayer(_playerType);
 }
 
 Piece::~Piece()
@@ -35,6 +34,8 @@ bool Piece::Process()
 	_oldPos = _pos;
 
 	if (_bUpdate3DPos) SetPieceCentralTile();
+
+	UpdateDirectionForPlayer(_playerType);
 
 	return true;
 }
@@ -95,5 +96,11 @@ void Piece::SetPieceCentralTile()
 
 	// 駒の位置がセットされたことを記録する
 	_bUpdate3DPos = false;
+}
+
+void Piece::UpdateDirectionForPlayer(PLAYER_TYPE playerType)
+{
+	if (playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
+	else if (playerType == kPlayer2) { _rot = VGet(0, DEG2RAD(180), 0); }
 }
 

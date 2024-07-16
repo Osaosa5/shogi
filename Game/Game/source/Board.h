@@ -35,6 +35,6 @@ public:
 private:
 	ObjectManager* _objManager;
 	Square* _squares[BOARD_TILE];
-	Piece* _pieces[BOARD_TILE];
+	std::vector<Piece*> _pieces;
 };
 

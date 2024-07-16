@@ -123,14 +123,17 @@
     <ClCompile Include="source\Rook.cpp">
       <Filter>ソース ファイル\Shogi\Koma</Filter>
     </ClCompile>
-    <ClCompile Include="source\Player.cpp">
-      <Filter>ソース ファイル\Shogi</Filter>
-    </ClCompile>
     <ClCompile Include="source\Board.cpp">
       <Filter>ソース ファイル\Shogi\ShogiBoard</Filter>
     </ClCompile>
     <ClCompile Include="source\ModeDebug.cpp">
       <Filter>ソース ファイル\Mode\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="source\PieceStand.cpp">
+      <Filter>ソース ファイル\Shogi</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Player.cpp">
+      <Filter>ソース ファイル\Shogi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,14 +203,17 @@
     <ClInclude Include="source\Shogi.h">
       <Filter>ヘッダー ファイル\Shogi</Filter>
     </ClInclude>
-    <ClInclude Include="source\Player.h">
-      <Filter>ヘッダー ファイル\Shogi</Filter>
-    </ClInclude>
     <ClInclude Include="source\Board.h">
       <Filter>ヘッダー ファイル\Shogi\ShogiBoard</Filter>
     </ClInclude>
     <ClInclude Include="source\ModeDebug.h">
       <Filter>ヘッダー ファイル\Mode\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="source\PieceStand.h">
+      <Filter>ヘッダー ファイル\Shogi</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Player.h">
+      <Filter>ヘッダー ファイル\Shogi</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
