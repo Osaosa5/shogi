@@ -8,6 +8,7 @@
 
 #include "ModeGame.h"
 #include "ModeEnd.h"
+#include "ModeDebug.h"
 
 #include "ObjectManager.h"
 #include "Camera.h"
@@ -68,6 +69,12 @@ bool ModeGame::Process()
 	// 入力情報を取得
 	auto app = ApplicationMain::GetInstance();
 	int trg = app->GetTrg();
+
+	// デバッグモードに遷移
+	if (trg & PAD_INPUT_10) {
+		auto mdServer = ModeServer::GetInstance();
+		mdServer->Add(new ModeDebug(_objectManager), 100, "debug");
+	}
 
 	// Zキーが押されたら終了モードに遷移
 	if (trg & PAD_INPUT_1 && _isWin) {
@@ -135,7 +142,7 @@ bool ModeGame::ObjectAdd()
 	if(!_objectManager) return false;
 
 	// カメラを追加
-	_objectManager->Add(new Camera(), "camera");
+	_objectManager->Add(new Camera(), "Camera");
 	// ライトを追加
 	_objectManager->Add(new Light(), "light");
 	// 将棋盤を追加
