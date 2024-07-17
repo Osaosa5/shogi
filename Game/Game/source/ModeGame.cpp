@@ -156,8 +156,8 @@ bool ModeGame::ObjectAdd()
 	_objectManager->Add(new Board(_objectManager), "board");
 	
 	// ‹î‘ä‚ğ’Ç‰Á
-	_objectManager->Add(new PieceStand(_objectManager, VGet(24, 0, -10), "player1"), "PieceStand1");
-	_objectManager->Add(new PieceStand(_objectManager, VGet(-24, 0, 10), "player2"), "PieceStand2");
+	_objectManager->Add(new PieceStand(_objectManager, VGet(24, 0, -10), "player2"), "PieceStand2");
+	_objectManager->Add(new PieceStand(_objectManager, VGet(-24, 0, -10), "player1"), "PieceStand1");
 
 	// ô‚ğ’Ç‰Á
 	_objectManager->Add(new Tatami(VGet(44, -10, 15)), "tatami1");

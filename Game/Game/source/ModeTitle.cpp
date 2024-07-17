@@ -37,7 +37,7 @@ bool ModeTitle::Process()
 	if (trg & PAD_INPUT_1) {
 		auto mdServer = ModeServer::GetInstance();
 		mdServer->Del(this);
-		mdServer->Add(new ModeGame(), 1, "game");
+		mdServer->Add(new ModeGame(), 1, "Game");
 	}
 
 	return true;

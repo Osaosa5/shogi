@@ -24,28 +24,31 @@ bool PieceStand::Process()
 {
 	if(_vPieces.empty()) return false;
 
+	float x = 3.f;
+	float y = 21.5f;
+	float z = 3.f;
 	for (auto& piece : _vPieces) {
 		auto type = piece->GetPieceType();
 		if (type == PIECE_TYPE::kPawn) {
-			piece->SetPos(VGet(_pos.x, _pos.y + 21.5f, _pos.z));
+			piece->SetPos(VGet(_pos.x - x, _pos.y + y, _pos.z + z));
 		}
 		else if (type == PIECE_TYPE::kLance) {
-			piece->SetPos(VGet(_pos.x, _pos.y, _pos.z));
+			piece->SetPos(VGet(_pos.x, _pos.y + y, _pos.z + z));
 		}
 		else if (type == PIECE_TYPE::kKnight) {
-			piece->SetPos(VGet(_pos.x, _pos.y, _pos.z));
+			piece->SetPos(VGet(_pos.x + x, _pos.y + y, _pos.z + z));
 		}
 		else if (type == PIECE_TYPE::kSilver) {
-			piece->SetPos(VGet(_pos.x, _pos.y, _pos.z));
+			piece->SetPos(VGet(_pos.x - x, _pos.y + y, _pos.z));
 		}
 		else if (type == PIECE_TYPE::kGold) {
-			piece->SetPos(VGet(_pos.x, _pos.y, _pos.z));
+			piece->SetPos(VGet(_pos.x, _pos.y + y, _pos.z));
 		}
 		else if (type == PIECE_TYPE::kBishop) {
-			piece->SetPos(VGet(_pos.x, _pos.y, _pos.z));
+			piece->SetPos(VGet(_pos.x + x, _pos.y + y, _pos.z));
 		}
 		else if (type == PIECE_TYPE::kRook) {
-			piece->SetPos(VGet(_pos.x, _pos.y, _pos.z));
+			piece->SetPos(VGet(_pos.x - x, _pos.y + y, _pos.z - z));
 		}
 	}
 
