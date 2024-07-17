@@ -12,7 +12,7 @@ PieceStand::PieceStand(ObjectManager* objManajer, VECTOR pos, std::string player
 
 PieceStand::~PieceStand()
 {
-	_vPieces.clear();
+	_vHasPieces.clear();
 }
 
 bool PieceStand::Terminate()
@@ -22,12 +22,12 @@ bool PieceStand::Terminate()
 
 bool PieceStand::Process()
 {
-	if(_vPieces.empty()) return false;
+	if(_vHasPieces.empty()) return false;
 
 	float x = 3.f;
 	float y = 21.5f;
 	float z = 3.f;
-	for (auto& piece : _vPieces) {
+	for (auto& piece : _vHasPieces) {
 		auto type = piece->GetPieceType();
 		if (type == PIECE_TYPE::kPawn) {
 			piece->SetPos(VGet(_pos.x - x, _pos.y + y, _pos.z + z));

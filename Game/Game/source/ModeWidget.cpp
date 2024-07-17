@@ -1,6 +1,8 @@
 
 #include "ModeWidget.h"
 
+#include "WidgetPieceNumber.h"
+
 ModeWidget::ModeWidget(ObjectManager* objManager)
 {
 	_objManager = objManager;
@@ -15,6 +17,8 @@ bool ModeWidget::Initialize()
 	if (!base::Initialize()) return false;
 
 	_ptrWidgetManager = std::make_unique<WidgetManager>();
+
+	_ptrWidgetManager->Add(new WidgetPieceNumber(_objManager), "PieceNumber");
 
 	_ptrWidgetManager->Initialize();
 

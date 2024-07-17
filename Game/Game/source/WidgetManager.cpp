@@ -3,6 +3,7 @@
 
 WidgetManager::WidgetManager()
 {
+	_idCnt = 1;
 }
 
 WidgetManager::~WidgetManager()

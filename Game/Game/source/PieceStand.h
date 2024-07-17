@@ -17,11 +17,15 @@ public:
 	bool Process() override;
 	bool Render() override;
 
-	void AddPiece(Piece* piece) { _vPieces.emplace_back(piece); }
+	void AddPiece(Piece* piece) { _vHasPieces.emplace_back(piece); }
+
+	// セッター・ゲッター
+	std::vector<Piece*> GetVPieces() const { return _vHasPieces; }
+	void SetVPieces(std::vector<Piece*> vPieces) { _vHasPieces = vPieces; }
 
 private:
 	ObjectManager* _objManager;
 	// 獲得した駒
-	std::vector<Piece*> _vPieces;
+	std::vector<Piece*> _vHasPieces;
 };
 
