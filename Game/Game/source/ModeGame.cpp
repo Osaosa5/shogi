@@ -9,6 +9,7 @@
 #include "ModeGame.h"
 #include "ModeEnd.h"
 #include "ModeDebug.h"
+#include "ModeWidget.h"
 
 #include "ObjectManager.h"
 #include "Camera.h"
@@ -44,6 +45,8 @@ bool ModeGame::Initialize()
 	// 勝利フラグを初期化
 	_isWin = false;
 
+	ModeServer::GetInstance()->Add(new ModeWidget(_objectManager), 100, "Widget");
+
 	return true;
 }
 
@@ -71,17 +74,19 @@ bool ModeGame::Process()
 	auto app = ApplicationMain::GetInstance();
 	int trg = app->GetTrg();
 
+	auto modeServer = ModeServer::GetInstance();
+
 	// デバッグモードに遷移
 	if (trg & PAD_INPUT_10) {
-		auto mdServer = ModeServer::GetInstance();
-		mdServer->Add(new ModeDebug(_objectManager), 100, "debug");
+		modeServer->Add(new ModeDebug(_objectManager), 200, "debug");
 	}
 
 	// Zキーが押されたら終了モードに遷移
 	if (trg & PAD_INPUT_1 && _isWin) {
-		auto mdServer = ModeServer::GetInstance();
-		mdServer->Del(this);
-		mdServer->Add(new ModeEnd(),1,"end");
+		auto modeWidget = modeServer->Get("Widget");
+		modeServer->Del(modeWidget);
+		modeServer->Del(this);
+		modeServer->Add(new ModeEnd(),1,"end");
 	}
 
 	// オブジェクトを更新

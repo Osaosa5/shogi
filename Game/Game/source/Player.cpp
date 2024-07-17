@@ -112,7 +112,6 @@ bool Player::Render()
 			case PIECE_TYPE::kKing:
 				DrawString(x, y, "‹Ê", cr); y += sizeY;
 				break;
-			
 		}
 	}
 

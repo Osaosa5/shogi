@@ -10,7 +10,7 @@ class ObjectManager
 
 public:
 	ObjectManager();
-	virtual ~ObjectManager();
+	~ObjectManager();
 	static ObjectManager *_lpInstance;
 	static ObjectManager *GetInstance() { return (ObjectManager*)_lpInstance; }
 

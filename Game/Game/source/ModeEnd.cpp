@@ -33,9 +33,9 @@ bool ModeEnd::Process()
 
 	// Zキーが押されたらタイトルに戻る
 	if (trg & PAD_INPUT_1) {
-		auto mdServer = ModeServer::GetInstance();
-		mdServer->Del(this);
-		mdServer->Add(new ModeTitle(), 1, "Title");
+		auto modeServer = ModeServer::GetInstance();
+		modeServer->Del(this);
+		modeServer->Add(new ModeTitle(), 1, "Title");
 	}
 
 	return true;

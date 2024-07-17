@@ -162,6 +162,10 @@
     <ClCompile Include="source\Board.cpp" />
     <ClCompile Include="source\Camera.cpp" />
     <ClCompile Include="source\ModeDebug.cpp" />
+    <ClCompile Include="source\ModeWidget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="source\Pawn.cpp" />
     <ClCompile Include="source\Gold.cpp" />
     <ClCompile Include="source\King.cpp" />
@@ -182,12 +186,21 @@
     <ClCompile Include="source\Silver.cpp" />
     <ClCompile Include="source\Square.cpp" />
     <ClCompile Include="source\Tatami.cpp" />
+    <ClCompile Include="source\Widget.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="source\WidgetManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Bishop.h" />
     <ClInclude Include="source\Board.h" />
     <ClInclude Include="source\Camera.h" />
     <ClInclude Include="source\ModeDebug.h" />
+    <ClInclude Include="source\ModeWidget.h" />
     <ClInclude Include="source\Pawn.h" />
     <ClInclude Include="source\Gold.h" />
     <ClInclude Include="source\King.h" />
@@ -210,6 +223,8 @@
     <ClInclude Include="source\Silver.h" />
     <ClInclude Include="source\Square.h" />
     <ClInclude Include="source\Tatami.h" />
+    <ClInclude Include="source\Widget.h" />
+    <ClInclude Include="source\WidgetManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
