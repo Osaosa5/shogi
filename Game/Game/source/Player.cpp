@@ -120,10 +120,8 @@ bool Player::Render()
 
 void Player::SelectSquare(int trg)
 {
-	if (trg & PAD_INPUT_LEFT) _dan = (_dan + (BOARD_SIZE - 1)) % BOARD_SIZE;
-	else if (trg & PAD_INPUT_RIGHT) _dan = (_dan + 1) % BOARD_SIZE;
-	if (trg & PAD_INPUT_UP) _suji = (_suji + (BOARD_SIZE - 1)) % BOARD_SIZE;
-	else if (trg & PAD_INPUT_DOWN) _suji = (_suji + 1) % BOARD_SIZE;
+	_dan	= SelectFocus(trg, "x", BOARD_SIZE, _dan);
+	_suji	= SelectFocus(trg, "y", BOARD_SIZE, _suji);
 }
 
 void Player::SelectPiece(int index)

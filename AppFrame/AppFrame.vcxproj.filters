@@ -47,6 +47,7 @@
     </ClCompile>
     <ClCompile Include="source\File\JSONFile.cpp" />
     <ClCompile Include="source\JsonManeger\JsonManeger.cpp" />
+    <ClCompile Include="source\EventSystem\EventSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -76,5 +77,6 @@
     </ClInclude>
     <ClInclude Include="source\File\JSONFile.h" />
     <ClInclude Include="source\JsonManeger\JsonManeger.h" />
+    <ClInclude Include="source\EventSystem\EventSystem.h" />
   </ItemGroup>
 </Project>
