@@ -59,6 +59,7 @@ bool Player::Process()
 		}
 		else {
 			MovePiece(index);
+			//TakePiece(index);
 			_game->SetCurrentPlayer(strCurrentPlayer == "player1" ? "player2" : "player1");
 		}	
 
@@ -113,22 +114,9 @@ void Player::MovePiece(int index)
 	auto board = dynamic_cast<Board*>(_objManager->Get("board"));
 	auto ptrSelectedPiece = board->GetPiece(_selectedPieceIndex);
 	auto ptrPiece = board->GetPiece(index);
-	// 相手のコマがある場合、相手のコマを取る
-	if (ptrPiece != nullptr && ptrPiece->GetPlayerType() != _playerType) {
-		if (ptrPiece->GetPieceType() == PIECE_TYPE::kKing) {
-			_game->SetWin(true);
-			_game->SetWinPlayer(_playerType == PLAYER_TYPE::kPlayer1 ? "player1" : "player2");
-		}
-		// 相手のコマを取る
-		_vHasPieces.emplace_back(ptrPiece);
-		ptrPiece->SetPlayerType(_playerType);
-		std::string strPieceStand = "PieceStand";
-		std::string strNum = _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
-		strPieceStand += strNum;
-		auto pieceStand = dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
-		pieceStand->AddPiece(ptrPiece);
-		ptrPiece = nullptr;
-	}
+
+	TakePiece(ptrPiece);
+
 	// コマの位置を交換する
 	std::swap(ptrPiece, ptrSelectedPiece);
 
@@ -146,5 +134,33 @@ void Player::MovePiece(int index)
 
 	// 選択した駒の情報を初期化
 	_selectedPieceIndex = -1;
+}
+
+void Player::TakePiece(Piece* ptrPiece)
+{
+	// 指定されたインデックスの駒が存在しない場合は処理を中断
+	if(!ptrPiece) return;
+
+	// 自分の駒を指定された場合、処理を中断
+	if(ptrPiece->GetPlayerType() == _playerType) return;
+
+	 // 相手のキングを取った場合、勝利処理を行う
+	if (ptrPiece->GetPieceType() == PIECE_TYPE::kKing) {
+		_game->SetWin(true);
+		_game->SetWinPlayer(_playerType == PLAYER_TYPE::kPlayer1 ? "player1" : "player2");
+		return;
+	}
+
+	// 相手の駒を自分の持ち駒に追加
+	_vHasPieces.emplace_back(ptrPiece);
+	ptrPiece->SetPlayerType(_playerType);
+
+	// 相手の駒を自分の駒台に置く
+	std::string strPieceStand = "PieceStand";
+	strPieceStand += (_playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2");
+	auto pieceStand = dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
+
+	pieceStand->AddPiece(ptrPiece);
+
 }
 

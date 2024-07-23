@@ -18,6 +18,7 @@ public:
 	void SelectSquare(int trg);	
 	void SelectPiece(int index);
 	void MovePiece(int index);
+	void TakePiece(Piece* ptrPiece);
 
 private:
 	ObjectManager* _objManager;
