@@ -284,6 +284,7 @@ int ObjectManager::ProcessInit()
 		lstObject::iterator ite = _vObjctAdd.begin();
 		// 追加リストの末尾までループ
 		for (; ite != _vObjctAdd.end(); ++ite) {
+			(*ite)->Initialize();
 			// オブジェクトを本リストに追加
 			_vObject.push_back((*ite));
 		}

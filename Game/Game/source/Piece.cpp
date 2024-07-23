@@ -92,7 +92,7 @@ void Piece::SetPieceCentralTile()
 	auto ptrSquare = ptrBoard->GetSquare(index);
 
 	// タイルの中央に駒の位置をセットする
-	this->SetPos(ptrSquare->GetCenter());
+	this->SetPos(ptrSquare->GetCenterPos());
 
 	// 駒の位置がセットされたことを記録する
 	_bUpdate3DPos = false;

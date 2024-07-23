@@ -7,16 +7,20 @@
 
 #include "appframe.h"
 
+constexpr int PIECE_NUM = 10;
+
 class PieceStand : public Shogi
 {
-	typedef std::vector<Piece*> vPtrPieces;
+	using vPtrSquares	= std::vector<Square*>;
+	using vPtrPieces	= std::vector<Piece*>;
 public:
 	PieceStand(ObjectManager* objManajer, VECTOR pos, std::string player);
 	~PieceStand();
 
-	bool Terminate() override;
-	bool Process() override;
-	bool Render() override;
+	bool Initialize()	override;
+	bool Terminate()	override;
+	bool Process()		override;
+	bool Render()		override;
 
 	void AddPiece(Piece* piece) { _vHasPieces.emplace_back(piece); }
 
@@ -26,6 +30,9 @@ public:
 
 private:
 	ObjectManager* _objManager;
+
+	// ‹î‘ä‚Ìƒ}ƒX
+	vPtrSquares	_vSquares;
 	// Šl“¾‚µ‚½‹î
 	vPtrPieces	_vHasPieces;
 };

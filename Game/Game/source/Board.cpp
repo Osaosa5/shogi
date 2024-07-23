@@ -12,9 +12,7 @@ Board::Board(ObjectManager* objManager)
 	for (int y = 0; y < 9; y++) {
 		for (int x = 0; x < 9; x++) {
 			// マスをx方向に3.5f、z方向に3.85fずつずらして配置
-			float w = 3.52f; float h = 3.86f;
-			VECTOR pos = VGet(-15.87f + w * x, 21, 13.54f - h * y);
-			std::pair<float, float> size = std::make_pair(w, h);
+			VECTOR pos = VGet(-15.87f + SQUARE_WIDTH * x, 21, 13.54f - SQUARE_HEIGHT * y);
 
 			// ボードのタイル情報を一つ取り出す
 			int boardTile = vBoardTiles[y * 9 + x];
@@ -28,7 +26,7 @@ Board::Board(ObjectManager* objManager)
 
 			int index = y * BOARD_SIZE + x;
 			std::string name = "square" + std::to_string(index);
-			_squares[index] = new Square(pos, size, strPlayer, x, y);
+			_squares[index] = new Square(pos, strPlayer, x, y);
 			_objManager->Add(_squares[index], name.c_str());
 			InitPiece(index, boardTile, x, y, strPlayer);
 		}

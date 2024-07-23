@@ -4,9 +4,7 @@
 #include "Widget.h"
 #include "Shogi.h"
 
-constexpr int PIECE_NUM = 7;
 constexpr int STAND_NUM = 2;
-
 
 class WidgetPieceNumber : public Widget
 {

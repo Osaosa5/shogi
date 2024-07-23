@@ -2,10 +2,10 @@
 #include "Square.h"
 #include "Object.h"
 
-Square::Square(VECTOR pos, std::pair<float, float> size, std::string area, int dan, int suji)
+Square::Square(VECTOR pos, std::string area, int dan, int suji)
 {
 	_pos = pos;
-	_size = size;
+	_size = std::make_pair(SQUARE_WIDTH, SQUARE_HEIGHT);
 
 	// Square‚Ì’†SÀ•W‚ğŒvZ
 	VECTOR vec = VAdd(_pos, VGet(_size.first, 0, _size.second));

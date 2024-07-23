@@ -2,10 +2,12 @@
 
 #include "Object.h"
 
-namespace {
-	constexpr int BOARD_SIZE = 9;	
-	constexpr int BOARD_TILE = 81;
-}
+constexpr int	BOARD_SIZE		= 9;	
+constexpr int	BOARD_TILE		= 81;
+
+constexpr float SQUARE_WIDTH	= 3.52f;
+constexpr float SQUARE_HEIGHT	= 3.86f;
+
 
 class Shogi : public Object
 {

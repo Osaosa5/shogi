@@ -7,7 +7,7 @@
 class Square : public Shogi
 {
 public:
-	Square(VECTOR pos, std::pair<float, float> size, std::string player, int dan, int suji);
+	Square(VECTOR pos, std::string player, int dan, int suji);
 	~Square();
 
 	bool Terminate() override;
@@ -16,7 +16,7 @@ public:
 
 	std::pair<float, float> GetSize() const { return _size; }
 
-	VECTOR GetCenter() const { return _center; }
+	VECTOR GetCenterPos() const { return _center; }
 
 	bool GetSelect() const { return _bSelect; }
 	void SetSelect(bool bSelect) { _bSelect = bSelect; }
