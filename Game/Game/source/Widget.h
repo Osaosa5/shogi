@@ -10,7 +10,7 @@ class Widget
 	typedef ResourceManager RM;
 public:
 	Widget(ObjectManager* ptrObjManager);
-	virtual ~Widget() = 0;
+	virtual ~Widget();
 
 	virtual bool Initialize()	= 0;
 	virtual bool Terminate()	= 0;

@@ -37,7 +37,7 @@ bool WidgetPieceNumber::Render()
 {
 	int fontSize = GetFontSize();
 	SetFontSize(20);
-	DrawString(0, 0, "PieceNumber", GetColor(255, 255, 255));
+	DrawString(100, 0, "PieceNumber", GetColor(255, 0, 0));
 	SetFontSize(fontSize);
 	return true;
 }
