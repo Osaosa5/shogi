@@ -45,6 +45,7 @@ bool WidgetManager::Process()
 		// 追加リストの末尾までループ
 		for (; ite != _vWidgetAdd.end(); ++ite) {
 			// オブジェクトを本リストに追加
+			(*ite)->Initialize();
 			_vWidget.push_back((*ite));
 		}
 		// 追加リストのクリア
@@ -125,7 +126,8 @@ void WidgetManager::Clear()
 	for (; ite != _vWidget.end(); ++ite)
 	{
 		// オブジェクトの解放
-		Release((*ite));
+		(*ite)->Terminate();
+		delete (*ite);
 	}
 	// objリストのクリア
 	_vWidget.clear();

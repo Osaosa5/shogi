@@ -9,6 +9,7 @@
 
 class PieceStand : public Shogi
 {
+	typedef std::vector<Piece*> vPtrPieces;
 public:
 	PieceStand(ObjectManager* objManajer, VECTOR pos, std::string player);
 	~PieceStand();
@@ -20,12 +21,12 @@ public:
 	void AddPiece(Piece* piece) { _vHasPieces.emplace_back(piece); }
 
 	// セッター・ゲッター
-	std::vector<Piece*> GetVPieces() const { return _vHasPieces; }
-	void SetVPieces(std::vector<Piece*> vPieces) { _vHasPieces = vPieces; }
+	vPtrPieces	GetVPieces() const				{ return _vHasPieces; }
+	void		SetVPieces(vPtrPieces vPieces)	{ _vHasPieces = vPieces; }
 
 private:
 	ObjectManager* _objManager;
 	// 獲得した駒
-	std::vector<Piece*> _vHasPieces;
+	vPtrPieces	_vHasPieces;
 };
 

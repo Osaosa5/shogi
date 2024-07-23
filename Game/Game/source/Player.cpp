@@ -81,40 +81,7 @@ bool Player::Render()
 	box["rBottom"] = VGet(pos.x + size.first, pos.y, pos.z + size.second);
 	DrawTriangle3D(box["lUp"], box["lBottom"], box["rBottom"], cr, TRUE);
 	DrawTriangle3D(box["lUp"], box["rUp"], box["rBottom"], cr, TRUE);
-
-	int x = _playerType == PLAYER_TYPE::kPlayer1 ? 0 : 32;
-	int y = 100;
-	int sizeY = 16;
-	for (auto& piece : _vHasPieces) {
-		PIECE_TYPE type = piece->GetPieceType();
-		switch (type) {
-			case PIECE_TYPE::kPawn:
-				DrawString(x, y, "ï‡", cr); y += sizeY;
-				break;
-			case PIECE_TYPE::kLance:
-				DrawString(x, y, "çÅ", cr); y += sizeY;
-				break;
-			case PIECE_TYPE::kKnight:
-				DrawString(x, y, "åj", cr); y += sizeY;
-				break;
-			case PIECE_TYPE::kSilver:
-				DrawString(x, y, "ã‚", cr); y += sizeY;
-				break;
-			case PIECE_TYPE::kGold:
-				DrawString(x, y, "ã‡", cr); y += sizeY;
-				break;
-			case PIECE_TYPE::kBishop:
-				DrawString(x, y, "äp", cr); y += sizeY;
-				break;
-			case PIECE_TYPE::kRook:
-				DrawString(x, y, "îÚ", cr); y += sizeY;
-				break;
-			case PIECE_TYPE::kKing:
-				DrawString(x, y, "ã ", cr); y += sizeY;
-				break;
-		}
-	}
-
+	
 	return true;
 }
 

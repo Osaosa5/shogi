@@ -89,6 +89,11 @@ bool ModeGame::Process()
 		modeServer->Add(new ModeEnd(),1,"end");
 	}
 
+	// Qキーが押されたらプレイヤー1のターンに強制的に変更する
+	if (trg & PAD_INPUT_2) {
+		_currentPlayer = "player1";
+	}
+
 	// オブジェクトを更新
 	_objectManager->Process();
 
