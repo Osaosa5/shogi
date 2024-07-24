@@ -4,6 +4,7 @@
 
 #include "DxLib.h"
 #include "Application/ApplicationBase.h"
+#include "Convert/Convert.h"
 #include "EventSystem/EventSystem.h"
 #include "File/CFile.h"
 #include "File/JSONFile.h"

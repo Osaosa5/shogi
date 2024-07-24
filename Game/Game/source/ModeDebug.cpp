@@ -3,6 +3,7 @@
 #include "ApplicationMain.h"
 #include "Camera.h"
 #include "ModeGame.h"
+#include "appframe.h"
 
 ModeDebug::ModeDebug(ObjectManager* objManager)
 {
@@ -32,7 +33,7 @@ bool ModeDebug::Initialize()
 		{
 			auto game = dynamic_cast<ModeGame*>(ModeServer::GetInstance()->Get("Game"));
 			game->SetDebugCurrentPlayer(!game->IsDebugCurrentPlayer());
-		};
+		};								 
 	_debugItems.emplace_back(DoNotChangeTurn);
 
 	_selectIndex = 0;
@@ -89,21 +90,23 @@ bool ModeDebug::Render()
 	float dispW = app->DispSizeW();
 	float dispH = app->DispSizeH();
 
-	float boxW = ConvertXPosToDispSize(200, dispW);
-	float boxH = ConvertYPosToDispSize(100, dispH);
-	DrawBox(0, 0, boxW, boxH, GetColor(0, 0, 0), TRUE);
+	VECTOR boxPos = ConvertPosToFullHD(VGet(200,100,0), dispW, dispH);
+	DrawBox(0, 0, boxPos.x, boxPos.y, GetColor(0, 0, 0), TRUE);
 
-	float linefeed = ConvertYPosToDispSize(20, dispH);
+	VECTOR lineFeed = ConvertPosToFullHD(VGet(0, 20, 0), dispW, dispH);
 	float y = 0;
 	int index = 0;
-	for (auto& item : _debugItems) {
-		if(index == _selectIndex) {
-			int strLength = item.name.length();
-			float x = ConvertXPosToDispSize((strLength + 1) * 16, dispW);
-			DrawString(x, y, "<-", GetColor(255, 0, 0));
+	for (auto& item : _debugItems)
+	{
+		if(index == _selectIndex) 
+		{
+			int strLength	= item.name.length();
+			VECTOR pos		= ConvertPosToFullHD(VGet((strLength + 1) * 16, y, 0), dispW, dispH);
+			float x			= ConvertXPosToDispSize((strLength + 1) * 16, dispW);
+			DrawString(pos.x, pos.y, "<-", GetColor(255, 0, 0));
 		}
 		DrawFormatString(0, y, GetColor(255, 255, 255), item.name.c_str());
-		y += linefeed;
+		y += lineFeed.y;
 		index++;
 	}
 

@@ -16,11 +16,13 @@
 int SelectFocus(int input, std::string axis, int size, int select)
 {
 	// “ü—Í‚É‰‚¶‚Ä‘I‘ğˆ‚ğ•ÏX
-	if (axis == "x") {
+	if (axis == "x") 
+	{
 		if(input & PAD_INPUT_LEFT)	return (select + size - 1) % size;
 		if(input & PAD_INPUT_RIGHT)	return (select + 1) % size;
 	}
-	else if (axis == "y") {
+	if (axis == "y") 
+	{
 		if(input & PAD_INPUT_UP)	return (select + size - 1) % size;
 		if(input & PAD_INPUT_DOWN)	return (select + 1) % size;
 	}
