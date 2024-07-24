@@ -7,8 +7,6 @@
 
 #include "appframe.h"
 
-constexpr int PIECE_NUM = 10;
-
 class PieceStand : public Shogi
 {
 	using vPtrSquares	= std::vector<Square*>;

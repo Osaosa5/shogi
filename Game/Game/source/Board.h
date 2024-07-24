@@ -20,21 +20,21 @@ public:
 	Board(ObjectManager* objManager);
 	~Board();
 
-	bool Terminate() override;
-	bool Process() override;
-	bool Render() override;
+	bool Terminate()	override;
+	bool Process()		override;
+	bool Render()		override;
 
-	Square* GetSquare(int element) { return _squares[element]; }
-	void SetSquare(int element, Square* square) { _squares[element] = square; }
+	Square* GetSquare(int element)					{ return _squares[element]; }
+	void	SetSquare(int element, Square* square)	{ _squares[element] = square; }
 
-	Piece* GetPiece(int element) { return _pieces[element]; }
-	void SetPiece(int element, Piece* piece) { _pieces[element] = piece; }
+	Piece*	GetPiece(int element)				{ return _pieces[element]; }
+	void	SetPiece(int element, Piece* piece) { _pieces[element] = piece; }
 
 	void InitPiece(int element, int tile, int dan, int suji, std::string strPlayer);
 
 private:
-	ObjectManager* _objManager;
-	Square* _squares[BOARD_TILE];
+	ObjectManager*		_objManager;
+	Square*				_squares[BOARD_TILE];
 	std::vector<Piece*> _pieces;
 };
 

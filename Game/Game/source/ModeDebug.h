@@ -11,10 +11,10 @@ public:
 	ModeDebug(ObjectManager* objManager);
 	~ModeDebug();
 
-	bool Initialize()override;
-	bool Terminate()override;
-	bool Process()override;
-	bool Render()override;
+	bool Initialize()	override;
+	bool Terminate()	override;
+	bool Process()		override;
+	bool Render()		override;
 
 	float ConvertXPosToDispSize(float pos, float dispW);
 	float ConvertYPosToDispSize(float pos, float dispH);
@@ -22,12 +22,14 @@ public:
 private:
 	ObjectManager* _objManager;
 
-	struct DEBUG_ITEM {
+	struct DEBUG_MENU 
+	{
 		std::string name;
-		bool isSelect;
-		std::function<void(ObjectManager* objManager)> func;
+		bool		isSelect;
+
+		std::function<void(ObjectManager* objManager)>	objFunc;
 	};
-	std::vector<DEBUG_ITEM> _debugItems;
+	std::vector<DEBUG_MENU> _debugItems;
 
 	int _selectIndex;
 };

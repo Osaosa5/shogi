@@ -39,6 +39,8 @@ bool Square::Process()
 
 bool Square::Render()
 {
+	if(!_bSelect) return false;
+
 	int Cr = _bSelect ? GetColor(0, 255, 0) : GetColor(0, 0, 255);
 
 	std::unordered_map<std::string, VECTOR> box;

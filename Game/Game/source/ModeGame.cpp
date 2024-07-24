@@ -43,8 +43,10 @@ bool ModeGame::Initialize()
 	_currentPlayer = "player1";
 
 	// 勝利フラグを初期化
-	_isWin = false;
+	_isWin					= false;
+	_isDebugCurrentPlayer	= false;
 
+	// UIを描画する画面を追加
 	ModeServer::GetInstance()->Add(new ModeWidget(_objectManager), 100, "Widget");
 
 	return true;
@@ -71,27 +73,21 @@ bool ModeGame::Process()
 	base::Process();
 
 	// 入力情報を取得
-	auto app = ApplicationMain::GetInstance();
-	int trg = app->GetTrg();
+	auto app	= ApplicationMain::GetInstance();
+	int trg		= app->GetTrg();
 
+	// モードサーバークラスのインスタンスを取得
 	auto modeServer = ModeServer::GetInstance();
 
 	// デバッグモードに遷移
-	if (trg & PAD_INPUT_10) {
-		modeServer->Add(new ModeDebug(_objectManager), 200, "debug");
-	}
+	if (trg & PAD_INPUT_10) modeServer->Add(new ModeDebug(_objectManager), 200, "debug");
 
 	// Zキーが押されたら終了モードに遷移
-	if (trg & PAD_INPUT_1 && _isWin) {
-		auto modeWidget = modeServer->Get("Widget");
-		modeServer->Del(modeWidget);
+	if (trg & PAD_INPUT_1 && _isWin) 
+	{
+		modeServer->Del(modeServer->Get("Widget"));
 		modeServer->Del(this);
 		modeServer->Add(new ModeEnd(),1,"end");
-	}
-
-	// Qキーが押されたらプレイヤー1のターンに強制的に変更する
-	if (trg & PAD_INPUT_2) {
-		_currentPlayer = "player1";
 	}
 
 	// オブジェクトを更新
@@ -121,7 +117,8 @@ bool ModeGame::Render()
 	std::string currentPlayer = "現在のプレイヤー: " + _currentPlayer;
 	DrawFormatString(0, 20, GetColor(255, 255, 255), currentPlayer.c_str());
 
-	if (_isWin) {
+	if (_isWin) 
+	{
 		std::string winner = _strWinPlayer + "の勝利! \n次に進むにはBボタンを押してください";
 		int fontSize = GetFontSize();
 		SetFontSize(64);
@@ -179,4 +176,17 @@ bool ModeGame::ObjectAdd()
 
 	return true;
 }
+
+void ModeGame::ChangeCurrentPlayer()
+{
+	// デバッグモードの場合はplayer1に強制的に変更
+	if (_isDebugCurrentPlayer)
+	{
+		_currentPlayer = "player1"; return;
+	}
+
+	// 現在のプレイヤーを変更
+	_currentPlayer = _currentPlayer == "player1" ? "player2" : "player1";
+}
+
 

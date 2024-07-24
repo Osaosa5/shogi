@@ -12,7 +12,7 @@ Board::Board(ObjectManager* objManager)
 	for (int y = 0; y < 9; y++) {
 		for (int x = 0; x < 9; x++) {
 			// マスをx方向に3.5f、z方向に3.85fずつずらして配置
-			VECTOR pos = VGet(-15.87f + SQUARE_WIDTH * x, 21, 13.54f - SQUARE_HEIGHT * y);
+			VECTOR pos = VGet(-15.87f + SQUARE_WIDTH * x, 21.f, 13.54f - SQUARE_HEIGHT * y);
 
 			// ボードのタイル情報を一つ取り出す
 			int boardTile = vBoardTiles[y * 9 + x];

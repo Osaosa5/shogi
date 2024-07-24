@@ -2,6 +2,7 @@
 #include "ModeDebug.h"
 #include "ApplicationMain.h"
 #include "Camera.h"
+#include "ModeGame.h"
 
 ModeDebug::ModeDebug(ObjectManager* objManager)
 {
@@ -14,19 +15,25 @@ ModeDebug::~ModeDebug()
 
 bool ModeDebug::Initialize()
 {
-	DEBUG_ITEM debugCamera;
-	debugCamera.name = "DebugCamera";
-	debugCamera.isSelect = false;
-	debugCamera.func = [](ObjectManager* objManager) {
-		auto camera = dynamic_cast<Camera*>(objManager->Get("Camera"));
-		camera->SetIsDebugCamera(true);
+	DEBUG_MENU debugCamera;
+	debugCamera.name		= "DebugCamera";
+	debugCamera.isSelect	= false;
+	debugCamera.objFunc		= [](ObjectManager* objManager) 
+		{
+			auto camera = dynamic_cast<Camera*>(objManager->Get("Camera"));
+			camera->SetIsDebugCamera(true);
 		};
 	_debugItems.emplace_back(debugCamera);
 
-	DEBUG_ITEM item;
-	item.name = "test";
-	item.isSelect = false;
-	_debugItems.emplace_back(item);
+	DEBUG_MENU DoNotChangeTurn;
+	DoNotChangeTurn.name		= "DoNotChangeTurn";
+	DoNotChangeTurn.isSelect	= false;
+	DoNotChangeTurn.objFunc		= [](ObjectManager* objManager)
+		{
+			auto game = dynamic_cast<ModeGame*>(ModeServer::GetInstance()->Get("Game"));
+			game->SetDebugCurrentPlayer(!game->IsDebugCurrentPlayer());
+		};
+	_debugItems.emplace_back(DoNotChangeTurn);
 
 	_selectIndex = 0;
 
@@ -44,21 +51,21 @@ bool ModeDebug::Process()
 	auto modeServer = ModeServer::GetInstance();
 	modeServer->SkipProcessUnderLayer();
 
-	auto app = ApplicationMain::GetInstance();
-	int trg = app->GetTrg();
+	auto	app		= ApplicationMain::GetInstance();
+	int		trg		= app->GetTrg();
 
-	int itemSize = _debugItems.size();
+	_selectIndex = SelectFocus(trg, "y", _debugItems.size(), _selectIndex);
 
-	if (trg & PAD_INPUT_UP) { _selectIndex = (_selectIndex + itemSize - 1) % itemSize; }
-	if (trg & PAD_INPUT_DOWN) { _selectIndex = (_selectIndex + 1) % itemSize; }
-
-	if (trg & PAD_INPUT_1) {
+	if (trg & PAD_INPUT_1) 
+	{
 		_debugItems[_selectIndex].isSelect = true;
-		_debugItems[_selectIndex].func(_objManager);
+		_debugItems[_selectIndex].objFunc(_objManager);
 	}
 
-	for (auto& item : _debugItems) {
-		if (item.isSelect) {
+	for (auto& item : _debugItems) 
+	{
+		if (item.isSelect) 
+		{
 			modeServer->Del(this);
 		}
 	}

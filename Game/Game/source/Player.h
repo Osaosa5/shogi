@@ -23,7 +23,6 @@ public:
 private:
 	ObjectManager* _objManager;
 	ModeGame* _game;
-	std::vector<Piece*> _vHasPieces;
 	int _selectedPieceIndex;
 };
 

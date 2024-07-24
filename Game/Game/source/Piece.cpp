@@ -9,6 +9,7 @@ Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 	_objManager = objManajer;
 	_oldPos = VGet(0, 0, 0);
 	_bUpdate3DPos = true;
+	_ownerType = OWNER_TYPE::kBoard;
 
 	// 駒の位置情報
 	_dan = dan; _suji = suji;
@@ -16,7 +17,7 @@ Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 
 	// プレイヤー情報
 	if (strPlayer == "player1") _playerType = kPlayer1;
-	else if (strPlayer == "player2") _playerType = kPlayer2;
+	if (strPlayer == "player2") _playerType = kPlayer2;
 	UpdateDirectionForPlayer(_playerType);
 }
 
@@ -100,7 +101,14 @@ void Piece::SetPieceCentralTile()
 
 void Piece::UpdateDirectionForPlayer(PLAYER_TYPE playerType)
 {
-	if (playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
-	else if (playerType == kPlayer2) { _rot = VGet(0, DEG2RAD(180), 0); }
+	if (_ownerType == OWNER_TYPE::kBoard) 
+	{
+		if (playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
+		if (playerType == kPlayer2) { _rot = VGet(0, DEG2RAD(180), 0); }
+	}
+	else if (_ownerType == OWNER_TYPE::kPieceStand)
+	{
+		_rot = VGet(0, 0, 0);
+	}
 }
 
