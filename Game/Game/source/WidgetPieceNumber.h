@@ -8,8 +8,8 @@ constexpr int STAND_NUM = 2;
 
 class WidgetPieceNumber : public Widget
 {
-	using PIECE = Shogi::PIECE_TYPE;
-	using PieceNums = std::map<PIECE, int>;
+	using PIECE		= Shogi::PIECE_TYPE;
+	using PieceNums = std::unordered_map<PIECE, int>;
 public:
 	WidgetPieceNumber(ObjectManager* ptrObjManager);
 	~WidgetPieceNumber();
@@ -20,6 +20,6 @@ public:
 	bool Render()		override;
 
 private:
-	std::map<std::string, PieceNums> _mPieceNums;
+	std::unordered_map<std::string, PieceNums> _mPieceNums;
 };
 

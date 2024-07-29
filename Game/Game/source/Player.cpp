@@ -15,13 +15,23 @@ Player::Player(ObjectManager* objManeger, std::string player, ModeGame* game)
 
 	if (player == "player1") _playerType = PLAYER_TYPE::kPlayer1;
 	if (player == "player2") _playerType = PLAYER_TYPE::kPlayer2;
-	
-	_selectedPieceIndex = -1;
-	_suji = _dan = 0;
 }
 
 Player::~Player()
 {
+}
+
+bool Player::Initialize()
+{
+	_suji = _dan = 0;
+	_selectedPieceIndex = -1;
+
+	_selectSquareBoard = std::make_pair(_dan, _suji);
+	_selectSquareStand = std::make_pair(_dan, _suji);
+
+	_state = PLAYER_STATE::kSelectBoardSquare;
+
+	return true;
 }
 
 bool Player::Terminate()
@@ -41,6 +51,19 @@ bool Player::Process()
 	trg = app->GetTrg(player);
 #endif 
 
+	// 将棋盤選択か駒台選択かを切り替える
+	if (trg & PAD_INPUT_2)
+	{
+		if (_state == PLAYER_STATE::kSelectBoardSquare)
+		{
+			ChangeSelectBoardToStand();
+		}
+		else if (_state == PLAYER_STATE::kSelectPieceStandSquare)
+		{
+			ChangeSelectStandToBoard();
+		}
+	}
+
 	// マスを選択
 	SelectSquare(trg);
 	
@@ -52,16 +75,11 @@ bool Player::Process()
 	int index = _suji * BOARD_SIZE + _dan;
 	if (trg & PAD_INPUT_4) 
 	{
-		if (_selectedPieceIndex == -1) 
-		{
-			// もし選択されたマスに駒がある場合、駒を選択する
-			SelectPiece(index);
-		}
-		else 
-		{
-			MovePiece(index);
-			_game->ChangeCurrentPlayer();
-		}	
+		// 将棋盤のマスを選択する
+		if(_state == PLAYER_STATE::kSelectBoardSquare) SelectBoardSquare(index);
+		
+		// 駒台のマスを選択する
+		else if(_state == PLAYER_STATE::kSelectPieceStandSquare) SelectPieceStandSquare(index);
 	}
 
 	return true;
@@ -69,12 +87,30 @@ bool Player::Process()
 
 bool Player::Render()
 {
-	auto board	= dynamic_cast<Board*>(_objManager->Get("board"));
-	auto square = board->GetSquare(_suji * BOARD_SIZE + _dan);
-	
 	std::unordered_map<std::string, VECTOR> box;
-	std::pair<float, float>					size	= square->GetSize();
-	VECTOR									pos		= square->GetPos();
+	std::pair<float, float>					size;
+	VECTOR									pos;
+
+	if (_state == PLAYER_STATE::kSelectBoardSquare)
+	{
+		auto board	 = dynamic_cast<Board*>(_objManager->Get("board"));
+		auto square	 = board->GetSquare(_suji * BOARD_SIZE + _dan);
+
+		size	= square->GetSize();
+		pos		= square->GetPos();
+	}
+	else if (_state == PLAYER_STATE::kSelectPieceStandSquare)
+	{
+		std::string strPieceStand	= "PieceStand";
+		strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
+		auto pieceStand				= dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
+
+		auto square = pieceStand->GetSquare(_suji * PIECESTAND_W + _dan);
+
+		size	= square->GetSize();
+		pos		= square->GetPos();
+	}
+	
 
 	int cr		= _playerType == PLAYER_TYPE::kPlayer1 ? GetColor(255, 0, 0) : GetColor(0, 0, 255);
 
@@ -91,11 +127,25 @@ bool Player::Render()
 
 void Player::SelectSquare(int trg)
 {
-	_dan	= SelectFocus(trg, "x", BOARD_SIZE, _dan);
-	_suji	= SelectFocus(trg, "y", BOARD_SIZE, _suji);
+	if(_state == PLAYER_STATE::kSelectBoardSquare) 
+	{ 
+		_dan	= SelectFocus(trg, "x", BOARD_SIZE, _dan);
+		_suji	= SelectFocus(trg, "y", BOARD_SIZE, _suji);
+	}
+	else if(_state == PLAYER_STATE::kSelectPieceStandSquare) 
+	{ 
+		
+		if(_suji == 2)	_dan = SelectFocus(trg, "x", PIECESTAND_W - 2,	_dan);
+		else			_dan = SelectFocus(trg, "x", PIECESTAND_W,		_dan);
+
+		if (_dan > 0)	_suji = SelectFocus(trg, "y", PIECESTAND_H - 1, _suji);
+		else			_suji = SelectFocus(trg, "y", PIECESTAND_H,		_suji);
+		
+	}
+	
 }
 
-void Player::SelectPiece(int index)
+void Player::SelectBoardPiece(int index)
 {
 	// 駒が選択されていない場合、選択したマスに駒があるか確認
 	auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
@@ -113,13 +163,14 @@ void Player::SelectPiece(int index)
 	_selectedPieceIndex = index;
 }
 
-void Player::MovePiece(int index)
+void Player::MoveBoardPiece(int index)
 {
 	// 駒が選択されている場合、駒を移動
 	auto board				= dynamic_cast<Board*>(_objManager->Get("board"));
 	auto ptrSelectedPiece	= board->GetPiece(_selectedPieceIndex);
 	auto ptrPiece			= board->GetPiece(index);
 
+	// 相手の駒がある場合、駒を取る
 	TakePiece(ptrPiece);
 
 	// コマの位置を交換する
@@ -130,8 +181,8 @@ void Player::MovePiece(int index)
 	board->SetPiece(index, ptrPiece);
 
 	// 選択された位置に駒がある場合、駒の位置情報を更新
-	if (ptrSelectedPiece != nullptr)	ptrSelectedPiece->SetUpdate3DPos(true);
-	if (ptrPiece != nullptr)			ptrPiece->SetUpdate3DPos(true);
+	if (ptrSelectedPiece	!= nullptr)	ptrSelectedPiece->SetUpdate3DPos(true);
+	if (ptrPiece			!= nullptr)	ptrPiece		->SetUpdate3DPos(true);
 
 	// 選択された位置の駒を非選択状態にする
 	auto ptrSquare	= board->GetSquare(_selectedPieceIndex);
@@ -167,5 +218,75 @@ void Player::TakePiece(Piece* ptrPiece)
 	auto pieceStand				= dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
 
 	pieceStand->AddPiece(ptrPiece);
+}
+
+void Player::SelectStandPiece(int index)
+{
+	// 駒台の名前
+	std::string strPieceStand	= "PieceStand";
+	strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
+
+	// 駒が選択されていない場合、選択したマスに駒があるか確認
+	auto ptrStand = dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
+	auto ptrPiece = ptrStand->GetPiece(index);
+
+	// 駒がない場合、処理を中断
+	if (ptrPiece == nullptr) return;
+
+	// 自分のコマでない場合、選択できない
+	if (ptrPiece->GetPlayerType() != _playerType) return;
+
+	// 駒がある場合、選択したマスの情報を保存する
+	auto ptrSquare = ptrStand->GetSquare(index);
+	ptrSquare->SetSelect(true);
+	_selectedPieceIndex = index;
+}
+
+void Player::MoveStandPiece(int index)
+{
+}
+
+void Player::ChangeSelectBoardToStand()
+{
+	// 駒台選択に切り替える
+	_state = PLAYER_STATE::kSelectPieceStandSquare;
+
+	// 選択されたマスの情報を保存する
+	_selectSquareBoard = std::make_pair(_dan, _suji);
+
+	// 駒台選択時の選択していたマスを入れる
+	_dan = _selectSquareStand.first;
+	_suji = _selectSquareStand.second;
+}
+
+void Player::ChangeSelectStandToBoard()
+{
+	// 将棋盤選択に切り替える
+	_state = PLAYER_STATE::kSelectBoardSquare;
+
+	// 選択されたマスの情報を保存する
+	_selectSquareStand = std::make_pair(_dan, _suji);
+
+	// 将棋盤選択時の選択していたマスを入れる
+	_dan	= _selectSquareBoard.first;
+	_suji	= _selectSquareBoard.second;
+}
+
+void Player::SelectBoardSquare(int index)
+{
+	if (_selectedPieceIndex == -1)
+	{
+		// もし選択されたマスに駒がある場合、駒を選択する
+		SelectBoardPiece(index);
+	}
+	else
+	{
+		MoveBoardPiece(index);
+		_game->ChangeCurrentPlayer();
+	}
+}
+
+void Player::SelectPieceStandSquare(int index)
+{
 }
 

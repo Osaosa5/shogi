@@ -58,6 +58,7 @@ PieceStand::PieceStand(ObjectManager* objManajer, VECTOR pos, std::string player
 PieceStand::~PieceStand()
 {
 	_vHasPieces.clear();
+	_mHasPieces.clear();
 }
 
 bool PieceStand::Initialize()
@@ -75,31 +76,44 @@ bool PieceStand::Process()
 {
 	if(_vHasPieces.empty()) return false;
 
-	float x = 3.f;
-	float y = 21.5f;
-	float z = 3.f;
-	for (auto& piece : _vHasPieces) {
-		auto type = piece->GetPieceType();
-		if (type == PIECE_TYPE::kPawn) {
-			piece->SetPos(_vSquares[0]->GetCenterPos());
-		}
-		else if (type == PIECE_TYPE::kLance) {
-			piece->SetPos(_vSquares[1]->GetCenterPos());
-		}
-		else if (type == PIECE_TYPE::kKnight) {
-			piece->SetPos(_vSquares[2]->GetCenterPos());
-		}
-		else if (type == PIECE_TYPE::kSilver) {
-			piece->SetPos(_vSquares[3]->GetCenterPos());
-		}
-		else if (type == PIECE_TYPE::kGold) {
-			piece->SetPos(_vSquares[4]->GetCenterPos());
-		}
-		else if (type == PIECE_TYPE::kBishop) {
-			piece->SetPos(_vSquares[5]->GetCenterPos());
-		}
-		else if (type == PIECE_TYPE::kRook) {
-			piece->SetPos(_vSquares[6]->GetCenterPos());
+	for(auto& piece : _vHasPieces) {
+		auto kType = piece->GetPieceType();
+		switch (kType) 
+		{
+			case PIECE_TYPE::kPawn:
+				piece->SetPos(_vSquares[0]->GetCenterPos());
+				_mHasPieces[GET_PIECE_TYPE::Pawn].emplace_back(piece);
+				break;
+
+			case PIECE_TYPE::kLance:
+				piece->SetPos(_vSquares[1]->GetCenterPos());
+				_mHasPieces[GET_PIECE_TYPE::Lance].emplace_back(piece);
+				break;
+
+			case PIECE_TYPE::kKnight:
+				piece->SetPos(_vSquares[2]->GetCenterPos());
+				_mHasPieces[GET_PIECE_TYPE::Knight].emplace_back(piece);
+				break;
+
+			case PIECE_TYPE::kSilver:
+				piece->SetPos(_vSquares[3]->GetCenterPos());
+				_mHasPieces[GET_PIECE_TYPE::Silver].emplace_back(piece);
+				break;
+
+			case PIECE_TYPE::kGold:
+				piece->SetPos(_vSquares[4]->GetCenterPos());
+				_mHasPieces[GET_PIECE_TYPE::Gold].emplace_back(piece);
+				break;
+
+			case PIECE_TYPE::kBishop:
+				piece->SetPos(_vSquares[5]->GetCenterPos());
+				_mHasPieces[GET_PIECE_TYPE::Bishop].emplace_back(piece);
+				break;
+
+			case PIECE_TYPE::kRook:
+				piece->SetPos(_vSquares[6]->GetCenterPos());
+				_mHasPieces[GET_PIECE_TYPE::Rook].emplace_back(piece);
+				break;
 		}
 	}
 
