@@ -16,6 +16,8 @@
 
 class Board : public Shogi
 {
+	using vPtrSquares = std::vector<Square*>;
+	using vPtrPieces = std::vector<Piece*>;
 public:
 	Board(ObjectManager* objManager);
 	~Board();
@@ -24,17 +26,18 @@ public:
 	bool Process()		override;
 	bool Render()		override;
 
-	Square* GetSquare(int element)					{ return _squares[element]; }
-	void	SetSquare(int element, Square* square)	{ _squares[element] = square; }
+	Square* GetSquare(int element)					{ return _vHasSquares[element]; }
+	void	SetSquare(int element, Square* square)	{ _vHasSquares[element] = square; }
 
-	Piece*	GetPiece(int element)				{ return _pieces[element]; }
-	void	SetPiece(int element, Piece* piece) { _pieces[element] = piece; }
+	Piece*	GetPiece(int element)				{ return _vHasPieces[element]; }
+	void	SetPiece(int element, Piece* piece) { _vHasPieces[element] = piece; }
 
-	void InitPiece(int element, int tile, int dan, int suji, std::string strPlayer);
+	void	InitPiece(int element, int tile, int dan, int suji, std::string strPlayer);
 
 private:
-	ObjectManager*		_objManager;
-	Square*				_squares[BOARD_TILE];
-	std::vector<Piece*> _pieces;
+	ObjectManager*	_objManager;
+
+	vPtrSquares		_vHasSquares;
+	vPtrPieces		_vHasPieces;
 };
 

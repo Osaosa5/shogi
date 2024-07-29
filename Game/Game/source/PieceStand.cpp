@@ -74,6 +74,16 @@ bool PieceStand::Terminate()
 
 bool PieceStand::Process()
 {
+
+	// _vHasPieces‚Énullptr‚ª‚ ‚ê‚Îíœ‚·‚é
+	_vHasPieces.erase(std::remove(_vHasPieces.begin(), _vHasPieces.end(), nullptr), _vHasPieces.end());
+
+	// _mHasPieces‚Énullptr‚ª‚ ‚ê‚Îíœ‚·‚é
+	for (auto& hasPiece : _mHasPieces) {
+		hasPiece.second.erase(nullptr);
+	}
+
+	// _vHasPieces‚Ì’†g‚ª‹ó‚È‚ç‰½‚à‚µ‚È‚¢
 	if(_vHasPieces.empty()) return false;
 
 	for(auto& piece : _vHasPieces) {
@@ -82,37 +92,37 @@ bool PieceStand::Process()
 		{
 			case PIECE_TYPE::kPawn:
 				piece->SetPos(_vSquares[0]->GetCenterPos());
-				_mHasPieces[GET_PIECE_TYPE::Pawn].emplace_back(piece);
+				_mHasPieces[HAS_PIECE_TYPE::Pawn].emplace(piece);
 				break;
 
 			case PIECE_TYPE::kLance:
 				piece->SetPos(_vSquares[1]->GetCenterPos());
-				_mHasPieces[GET_PIECE_TYPE::Lance].emplace_back(piece);
+				_mHasPieces[HAS_PIECE_TYPE::Lance].emplace(piece);
 				break;
 
 			case PIECE_TYPE::kKnight:
 				piece->SetPos(_vSquares[2]->GetCenterPos());
-				_mHasPieces[GET_PIECE_TYPE::Knight].emplace_back(piece);
+				_mHasPieces[HAS_PIECE_TYPE::Knight].emplace(piece);
 				break;
 
 			case PIECE_TYPE::kSilver:
 				piece->SetPos(_vSquares[3]->GetCenterPos());
-				_mHasPieces[GET_PIECE_TYPE::Silver].emplace_back(piece);
+				_mHasPieces[HAS_PIECE_TYPE::Silver].emplace(piece);
 				break;
 
 			case PIECE_TYPE::kGold:
 				piece->SetPos(_vSquares[4]->GetCenterPos());
-				_mHasPieces[GET_PIECE_TYPE::Gold].emplace_back(piece);
+				_mHasPieces[HAS_PIECE_TYPE::Gold].emplace(piece);
 				break;
 
 			case PIECE_TYPE::kBishop:
 				piece->SetPos(_vSquares[5]->GetCenterPos());
-				_mHasPieces[GET_PIECE_TYPE::Bishop].emplace_back(piece);
+				_mHasPieces[HAS_PIECE_TYPE::Bishop].emplace(piece);
 				break;
 
 			case PIECE_TYPE::kRook:
 				piece->SetPos(_vSquares[6]->GetCenterPos());
-				_mHasPieces[GET_PIECE_TYPE::Rook].emplace_back(piece);
+				_mHasPieces[HAS_PIECE_TYPE::Rook].emplace(piece);
 				break;
 		}
 	}
@@ -125,4 +135,14 @@ bool PieceStand::Render()
 	MV1SetPosition(_handle, _pos);
 	MV1DrawModel(_handle);
 	return true;
+}
+
+Piece* PieceStand::GetMPiece(HAS_PIECE_TYPE type)
+{
+	auto itr = _mHasPieces.find(type);
+	if (itr != _mHasPieces.end()) {
+		auto piece = *itr->second.begin();
+		return piece;
+	}
+	return nullptr;
 }

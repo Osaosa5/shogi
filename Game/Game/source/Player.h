@@ -36,8 +36,8 @@ public:
 
 	enum class PLAYER_STATE
 	{
-		kSelectBoardSquare,
-		kSelectPieceStandSquare
+		SelectBoardSquare,
+		SelectPieceStandSquare
 	};
 
 	PLAYER_STATE	GetState()const					{ return _state; }
@@ -58,5 +58,6 @@ private:
 
 	// ÉvÉåÉCÉÑÅ[ÇÃèÛë‘
 	PLAYER_STATE	_state;
+	bool			_isSelectPieceOfPieceStand;
 };
 

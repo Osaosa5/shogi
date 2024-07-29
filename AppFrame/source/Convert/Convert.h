@@ -12,3 +12,10 @@ int ConvertEnumToInt(T e)
 	static_assert(std::is_enum<T>::value, "T must be an enum type");
 	return static_cast<int>(e);
 }
+
+template<typename T>
+T ConvertIntToEnum(int i)
+{
+	static_assert(std::is_enum<T>::value, "T must be an enum type");
+	return static_cast<T>(i);
+}

@@ -90,7 +90,7 @@ bool ModeDebug::Render()
 	float dispW = app->DispSizeW();
 	float dispH = app->DispSizeH();
 
-	VECTOR boxPos = ConvertPosToFullHD(VGet(200,100,0), dispW, dispH);
+	VECTOR boxPos = ConvertPosToFullHD(VGet(300,100,0), dispW, dispH);
 	DrawBox(0, 0, boxPos.x, boxPos.y, GetColor(0, 0, 0), TRUE);
 
 	VECTOR lineFeed = ConvertPosToFullHD(VGet(0, 20, 0), dispW, dispH);

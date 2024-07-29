@@ -6,11 +6,12 @@
 #include "Piece.h"
 
 #include "appframe.h"
+#include <unordered_set>
 
 class PieceStand : public Shogi
 {
 public:
-	enum class GET_PIECE_TYPE
+	enum class HAS_PIECE_TYPE
 	{
 		Pawn,
 		Lance,
@@ -24,7 +25,7 @@ public:
 private:
 	using vPtrSquares	= std::vector<Square*>;
 	using vPtrPieces	= std::vector<Piece*>;
-	using mPtrPieces = std::unordered_map < GET_PIECE_TYPE, std::unordered_set<Piece*> > ;
+	using mPtrPieces	= std::unordered_map < HAS_PIECE_TYPE, std::unordered_set<Piece*>>;
 
 public:
 	PieceStand(ObjectManager* objManajer, VECTOR pos, std::string player);
@@ -41,8 +42,10 @@ public:
 	Square* 	GetSquare(int index) const				{ return _vSquares[index]; }
 	void		SetSquare(int index, Square* square)	{ _vSquares[index] = square; }
 
-	Piece*		GetPiece(int index) const			{ return _vHasPieces[index]; }
-	void		SetPiece(int index, Piece* piece)	{ _vHasPieces[index] = piece; }
+	Piece*		GetVPiece(int index) const			{ return _vHasPieces[index]; }
+	void		SetVPiece(int index, Piece* piece)	{ _vHasPieces[index] = piece; }
+	Piece*		GetMPiece(HAS_PIECE_TYPE type);
+
 	vPtrPieces	GetVPieces() const					{ return _vHasPieces; }
 	void		SetVPieces(vPtrPieces vPieces)		{ _vHasPieces = vPieces; }
 		

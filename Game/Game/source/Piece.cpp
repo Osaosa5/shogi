@@ -83,13 +83,17 @@ void Piece::HitTest()
 void Piece::SetPieceCentralTile()
 {
 	// 駒と同じ位置にあるタイルを取得する
-	auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
-	int index = -1;
+	auto ptrBoard	= dynamic_cast<Board*>(_objManager->Get("board"));
+	int index		= -1;
 	for (int y = 0; y < BOARD_SIZE; y++) {
 		for (int x = 0; x < BOARD_SIZE; x++) {
-			if(ptrBoard->GetPiece(y * BOARD_SIZE + x) == this)	index = y * BOARD_SIZE + x;
+			if (ptrBoard->GetPiece(y * BOARD_SIZE + x) == this)
+			{
+				index = y * BOARD_SIZE + x;
+			}
 		}
 	}
+
 	auto ptrSquare = ptrBoard->GetSquare(index);
 
 	// タイルの中央に駒の位置をセットする

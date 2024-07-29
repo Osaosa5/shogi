@@ -29,7 +29,9 @@ bool Player::Initialize()
 	_selectSquareBoard = std::make_pair(_dan, _suji);
 	_selectSquareStand = std::make_pair(_dan, _suji);
 
-	_state = PLAYER_STATE::kSelectBoardSquare;
+	_state = PLAYER_STATE::SelectBoardSquare;
+
+	_isSelectPieceOfPieceStand = false;
 
 	return true;
 }
@@ -54,11 +56,11 @@ bool Player::Process()
 	// 将棋盤選択か駒台選択かを切り替える
 	if (trg & PAD_INPUT_2)
 	{
-		if (_state == PLAYER_STATE::kSelectBoardSquare)
+		if (_state == PLAYER_STATE::SelectBoardSquare)
 		{
 			ChangeSelectBoardToStand();
 		}
-		else if (_state == PLAYER_STATE::kSelectPieceStandSquare)
+		else if (_state == PLAYER_STATE::SelectPieceStandSquare)
 		{
 			ChangeSelectStandToBoard();
 		}
@@ -76,10 +78,10 @@ bool Player::Process()
 	if (trg & PAD_INPUT_4) 
 	{
 		// 将棋盤のマスを選択する
-		if(_state == PLAYER_STATE::kSelectBoardSquare) SelectBoardSquare(index);
+		if(_state == PLAYER_STATE::SelectBoardSquare && !_isSelectPieceOfPieceStand) SelectBoardSquare(index);
 		
 		// 駒台のマスを選択する
-		else if(_state == PLAYER_STATE::kSelectPieceStandSquare) SelectPieceStandSquare(index);
+		else if(_state == PLAYER_STATE::SelectPieceStandSquare || _isSelectPieceOfPieceStand) SelectPieceStandSquare(index);
 	}
 
 	return true;
@@ -91,7 +93,7 @@ bool Player::Render()
 	std::pair<float, float>					size;
 	VECTOR									pos;
 
-	if (_state == PLAYER_STATE::kSelectBoardSquare)
+	if (_state == PLAYER_STATE::SelectBoardSquare)
 	{
 		auto board	 = dynamic_cast<Board*>(_objManager->Get("board"));
 		auto square	 = board->GetSquare(_suji * BOARD_SIZE + _dan);
@@ -99,7 +101,7 @@ bool Player::Render()
 		size	= square->GetSize();
 		pos		= square->GetPos();
 	}
-	else if (_state == PLAYER_STATE::kSelectPieceStandSquare)
+	else if (_state == PLAYER_STATE::SelectPieceStandSquare)
 	{
 		std::string strPieceStand	= "PieceStand";
 		strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
@@ -127,12 +129,12 @@ bool Player::Render()
 
 void Player::SelectSquare(int trg)
 {
-	if(_state == PLAYER_STATE::kSelectBoardSquare) 
+	if(_state == PLAYER_STATE::SelectBoardSquare) 
 	{ 
 		_dan	= SelectFocus(trg, "x", BOARD_SIZE, _dan);
 		_suji	= SelectFocus(trg, "y", BOARD_SIZE, _suji);
 	}
-	else if(_state == PLAYER_STATE::kSelectPieceStandSquare) 
+	else if(_state == PLAYER_STATE::SelectPieceStandSquare) 
 	{ 
 		
 		if(_suji == 2)	_dan = SelectFocus(trg, "x", PIECESTAND_W - 2,	_dan);
@@ -190,6 +192,9 @@ void Player::MoveBoardPiece(int index)
 
 	// 選択した駒の情報を初期化
 	_selectedPieceIndex = -1;
+
+	// プレイヤーを交代する
+	_game->ChangeCurrentPlayer();
 }
 
 void Player::TakePiece(Piece* ptrPiece)
@@ -227,42 +232,79 @@ void Player::SelectStandPiece(int index)
 	strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
 
 	// 駒が選択されていない場合、選択したマスに駒があるか確認
-	auto ptrStand = dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
-	auto ptrPiece = ptrStand->GetPiece(index);
+	auto						ptrStand	= dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
+	PieceStand::HAS_PIECE_TYPE	type		= ConvertIntToEnum<PieceStand::HAS_PIECE_TYPE>(index);
+	auto						ptrPiece	= ptrStand->GetMPiece(type);
 
 	// 駒がない場合、処理を中断
 	if (ptrPiece == nullptr) return;
 
-	// 自分のコマでない場合、選択できない
-	if (ptrPiece->GetPlayerType() != _playerType) return;
-
 	// 駒がある場合、選択したマスの情報を保存する
-	auto ptrSquare = ptrStand->GetSquare(index);
-	ptrSquare->SetSelect(true);
-	_selectedPieceIndex = index;
+	auto ptrSquare	= ptrStand->GetSquare(index);
+	ptrSquare		->SetSelect(true);
+
+	_selectedPieceIndex			= index;
+	_isSelectPieceOfPieceStand	= true;
 }
 
 void Player::MoveStandPiece(int index)
 {
+	// 駒が選択されている場合、駒を移動
+	std::string strPieceStand	= "PieceStand";
+	strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
+
+	auto pieceStand			= dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
+	auto ptrBoard			= dynamic_cast<Board*>(_objManager->Get("board"));
+
+	auto ptrSelectedPiece	= pieceStand->GetMPiece(ConvertIntToEnum<PieceStand::HAS_PIECE_TYPE>(_selectedPieceIndex));
+	auto ptrPiece			= ptrBoard	->GetPiece(index);
+
+	// 駒がある場合、処理を中断
+	if(ptrPiece) return;
+
+	// コマの位置を交換する
+	std::swap(ptrPiece, ptrSelectedPiece);
+
+	ptrPiece->SetDan(_dan);
+	ptrPiece->SetSuji(_suji);
+	ptrPiece->SetOwnerType(Piece::OWNER_TYPE::kBoard);
+
+	// 駒の配列を更新
+	pieceStand	->SetVPiece(_selectedPieceIndex, ptrSelectedPiece);
+	ptrBoard	->SetPiece(index, ptrPiece);
+
+	// 選択された位置に駒がある場合、駒の位置情報を更新
+	if (ptrPiece != nullptr) ptrPiece->SetUpdate3DPos(true);
+
+	// 選択された位置の駒を非選択状態にする
+	auto ptrSquare	= pieceStand->GetSquare(_selectedPieceIndex);
+	ptrSquare		->SetSelect(false);
+
+	// 選択した駒の情報を初期化
+	_selectedPieceIndex			= -1;
+	_isSelectPieceOfPieceStand	= false;
+
+	// プレイヤーを交代する
+	_game->ChangeCurrentPlayer();
 }
 
 void Player::ChangeSelectBoardToStand()
 {
 	// 駒台選択に切り替える
-	_state = PLAYER_STATE::kSelectPieceStandSquare;
+	_state = PLAYER_STATE::SelectPieceStandSquare;
 
 	// 選択されたマスの情報を保存する
 	_selectSquareBoard = std::make_pair(_dan, _suji);
 
 	// 駒台選択時の選択していたマスを入れる
-	_dan = _selectSquareStand.first;
-	_suji = _selectSquareStand.second;
+	_dan	= _selectSquareStand.first;
+	_suji	= _selectSquareStand.second;
 }
 
 void Player::ChangeSelectStandToBoard()
 {
 	// 将棋盤選択に切り替える
-	_state = PLAYER_STATE::kSelectBoardSquare;
+	_state = PLAYER_STATE::SelectBoardSquare;
 
 	// 選択されたマスの情報を保存する
 	_selectSquareStand = std::make_pair(_dan, _suji);
@@ -282,11 +324,19 @@ void Player::SelectBoardSquare(int index)
 	else
 	{
 		MoveBoardPiece(index);
-		_game->ChangeCurrentPlayer();
 	}
 }
 
 void Player::SelectPieceStandSquare(int index)
 {
+	if (_selectedPieceIndex == -1)
+	{
+		// もし選択されたマスに駒がある場合、駒を選択する
+		SelectStandPiece(index);
+	}
+	else
+	{
+		MoveStandPiece(index);
+	}
 }
 

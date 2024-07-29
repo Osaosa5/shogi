@@ -49,6 +49,9 @@ bool WidgetPieceNumber::Process()
 		// ‹î‘ä‚É‚ ‚é‹î‚ğæ“¾
 		std::vector<Piece*> vHasPieces = pieceStand->GetVPieces();
 
+		// vHasPieces‚Énullptr‚ª‚ ‚ê‚Îíœ‚·‚é
+		vHasPieces.erase(std::remove(vHasPieces.begin(), vHasPieces.end(), nullptr), vHasPieces.end());
+
 		// ‹î‚Ìí—Ş‚²‚Æ‚É”‚ğ‹L˜^‚·‚é
 		for (auto& type : pieceNum.second) {
 			auto pieceType = type.first;
@@ -72,6 +75,9 @@ bool WidgetPieceNumber::Render()
 
 		// ‹î‘ä‚É‚ ‚é‹î‚ğæ“¾
 		std::vector<Piece*> vHasPieces = pieceStand->GetVPieces();
+
+		// vHasPieces‚Énullptr‚ª‚ ‚ê‚Îíœ‚·‚é
+		vHasPieces.erase(std::remove(vHasPieces.begin(), vHasPieces.end(), nullptr), vHasPieces.end());
 
 		// ‹î‚Ìí—Ş‚²‚Æ‚É”‚ğ•\¦‚·‚é
 		for (auto& type : pieceNum.second) {
