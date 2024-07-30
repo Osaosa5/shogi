@@ -1,9 +1,10 @@
 
+#include "appframe.h"
 #include "ModeDebug.h"
+
 #include "ApplicationMain.h"
 #include "Camera.h"
 #include "ModeGame.h"
-#include "appframe.h"
 
 ModeDebug::ModeDebug(ObjectManager* objManager)
 {
@@ -16,7 +17,7 @@ ModeDebug::~ModeDebug()
 
 bool ModeDebug::Initialize()
 {
-	DEBUG_MENU debugCamera;
+	BUTTON debugCamera;
 	debugCamera.name		= "DebugCamera";
 	debugCamera.isSelect	= false;
 	debugCamera.objFunc		= [](ObjectManager* objManager) 
@@ -26,15 +27,15 @@ bool ModeDebug::Initialize()
 		};
 	_debugItems.emplace_back(debugCamera);
 
-	DEBUG_MENU DoNotChangeTurn;
-	DoNotChangeTurn.name		= "DoNotChangeTurn";
-	DoNotChangeTurn.isSelect	= false;
-	DoNotChangeTurn.objFunc		= [](ObjectManager* objManager)
+	BUTTON doNotChangeTurn;
+	doNotChangeTurn.name		= "DoNotChangeTurn";
+	doNotChangeTurn.isSelect	= false;
+	doNotChangeTurn.objFunc		= [](ObjectManager* objManager)
 		{
 			auto game = dynamic_cast<ModeGame*>(ModeServer::GetInstance()->Get("Game"));
 			game->SetDebugCurrentPlayer(!game->IsDebugCurrentPlayer());
-		};								 
-	_debugItems.emplace_back(DoNotChangeTurn);
+		};	
+	_debugItems.emplace_back(doNotChangeTurn);
 
 	_selectIndex = 0;
 

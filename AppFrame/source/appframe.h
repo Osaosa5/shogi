@@ -2,6 +2,8 @@
 
 #pragma comment(lib,"AppFrame.lib")
 
+#define ON_DEBUG
+
 #include "DxLib.h"
 #include "Application/ApplicationBase.h"
 #include "Convert/Convert.h"

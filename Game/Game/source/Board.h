@@ -26,8 +26,9 @@ public:
 	bool Process()		override;
 	bool Render()		override;
 
-	Square* GetSquare(int element)					{ return _vHasSquares[element]; }
-	void	SetSquare(int element, Square* square)	{ _vHasSquares[element] = square; }
+	Square*		GetSquare(int element)					{ return _vHasSquares[element]; }
+	void		SetSquare(int element, Square* square)	{ _vHasSquares[element] = square; }
+	vPtrSquares GetSquares() const						{ return _vHasSquares; }
 
 	Piece*	GetPiece(int element)				{ return _vHasPieces[element]; }
 	void	SetPiece(int element, Piece* piece) { _vHasPieces[element] = piece; }

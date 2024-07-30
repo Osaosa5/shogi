@@ -19,25 +19,31 @@ public:
 
 	void SelectSquare(int trg);	
 
+	// 将棋盤と駒台、それぞれのマスを選択する処理
+	void SelectBoardSquare(int index);
+	void SelectPieceStandSquare(int index);
+
+	// 将棋盤と駒台、どちらのマスを選択しているかを切り替える処理
+	void ChangeSelectBoardToStand();
+	void ChangeSelectDestinationBoard();
+	void ChangeSelectStandToBoard();
+	void ChangeSelectDestinationStandToBoard();
+
 	// 将棋盤の駒を動かす処理
-	void SelectBoardPiece(int index);
-	void MoveBoardPiece(int index);
-	Piece* TakePiece(Piece* ptrPiece);
+	void	SelectBoardPiece(int index);
+	void	MoveBoardPiece(int index);
+	Piece*	TakePiece(Piece* ptrPiece);
 
 	// 駒台の駒を動かす処理
 	void SelectStandPiece(int index);
 	void MoveStandPiece(int index);
 
-	void ChangeSelectBoardToStand();
-	void ChangeSelectStandToBoard();
-
-	void SelectBoardSquare(int index);
-	void SelectPieceStandSquare(int index);
-
 	enum class PLAYER_STATE
 	{
-		SelectBoardSquare,
-		SelectPieceStandSquare
+		SelectBoardSquare,					// 将棋盤にある動かしたい駒を選択中
+		SelectDestinationBoardSquare,		// 将棋盤にある駒の移動先を選択中
+		SelectPieceStandSquare,				// 駒台にある動かしたい駒を選択中
+		SelectDestinationPieceStandSquare,	// 駒台にある駒の移動先を選択中
 	};
 
 	PLAYER_STATE	GetState()const					{ return _state; }

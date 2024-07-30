@@ -79,6 +79,8 @@ bool WidgetManager::Render()
 		// 削除リストに登録されていないか
 		if (!IsDelRegister((*ite)))
 		{
+			if((*ite)->_isView == false) continue;
+
 			// オブジェクトの描画
 			(*ite)->Render();
 

@@ -6,8 +6,6 @@
 #include "ApplicationMain.h"
 #include "ModeGame.h"
 
-#define ON_DEBUG
-
 Player::Player(ObjectManager* objManeger, std::string player, ModeGame* game)
 {
 	_objManager = objManeger;
@@ -144,6 +142,70 @@ void Player::SelectSquare(int trg)
 		
 	}
 	
+}
+
+void Player::SelectBoardSquare(int index)
+{
+	if (_selectedPieceIndex == -1)
+	{
+		// もし選択されたマスに駒がある場合、駒を選択する
+		SelectBoardPiece(index);
+	}
+	else
+	{
+		MoveBoardPiece(index);
+	}
+}
+
+void Player::SelectPieceStandSquare(int index)
+{
+	if (_selectedPieceIndex == -1)
+	{
+		// もし選択されたマスに駒がある場合、駒を選択する
+		SelectStandPiece(index);
+	}
+	else
+	{
+		MoveStandPiece(index);
+	}
+}
+
+void Player::ChangeSelectBoardToStand()
+{
+	// 駒台選択に切り替える
+	_state = PLAYER_STATE::SelectPieceStandSquare;
+
+	// 選択されたマスの情報を保存する
+	_selectSquareBoard = std::make_pair(_dan, _suji);
+
+	// 駒台選択時の選択していたマスを入れる
+	_dan = _selectSquareStand.first;
+	_suji = _selectSquareStand.second;
+}
+
+void Player::ChangeSelectDestinationBoard()
+{
+	// 将棋盤にある駒の移動先選択に切り替える
+	_state = PLAYER_STATE::SelectDestinationBoardSquare;
+}
+
+void Player::ChangeSelectStandToBoard()
+{
+	// 将棋盤選択に切り替える
+	_state = PLAYER_STATE::SelectBoardSquare;
+
+	// 選択されたマスの情報を保存する
+	_selectSquareStand = std::make_pair(_dan, _suji);
+
+	// 将棋盤選択時の選択していたマスを入れる
+	_dan = _selectSquareBoard.first;
+	_suji = _selectSquareBoard.second;
+}
+
+void Player::ChangeSelectDestinationStandToBoard()
+{
+	// 駒台にある駒の移動先選択に切り替える
+	_state = PLAYER_STATE::SelectDestinationPieceStandSquare;
 }
 
 void Player::SelectBoardPiece(int index)
@@ -292,55 +354,5 @@ void Player::MoveStandPiece(int index)
 	_game->ChangeCurrentPlayer();
 }
 
-void Player::ChangeSelectBoardToStand()
-{
-	// 駒台選択に切り替える
-	_state = PLAYER_STATE::SelectPieceStandSquare;
 
-	// 選択されたマスの情報を保存する
-	_selectSquareBoard = std::make_pair(_dan, _suji);
-
-	// 駒台選択時の選択していたマスを入れる
-	_dan	= _selectSquareStand.first;
-	_suji	= _selectSquareStand.second;
-}
-
-void Player::ChangeSelectStandToBoard()
-{
-	// 将棋盤選択に切り替える
-	_state = PLAYER_STATE::SelectBoardSquare;
-
-	// 選択されたマスの情報を保存する
-	_selectSquareStand = std::make_pair(_dan, _suji);
-
-	// 将棋盤選択時の選択していたマスを入れる
-	_dan	= _selectSquareBoard.first;
-	_suji	= _selectSquareBoard.second;
-}
-
-void Player::SelectBoardSquare(int index)
-{
-	if (_selectedPieceIndex == -1)
-	{
-		// もし選択されたマスに駒がある場合、駒を選択する
-		SelectBoardPiece(index);
-	}
-	else
-	{
-		MoveBoardPiece(index);
-	}
-}
-
-void Player::SelectPieceStandSquare(int index)
-{
-	if (_selectedPieceIndex == -1)
-	{
-		// もし選択されたマスに駒がある場合、駒を選択する
-		SelectStandPiece(index);
-	}
-	else
-	{
-		MoveStandPiece(index);
-	}
-}
 

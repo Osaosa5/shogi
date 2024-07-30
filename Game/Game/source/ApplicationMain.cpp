@@ -4,9 +4,9 @@
 #include "ApplicationGlobal.h"
 
 #ifdef ON_DEBUG
-#include "ModeTitle.h"
-#else
 #include "ModeGame.h"
+#else
+#include "ModeTitle.h"
 #endif
 
 // 実体
@@ -17,12 +17,15 @@ bool ApplicationMain::Initialize(HINSTANCE hInstance) {
 
 	// アプリケーショングローバルの初期化
 	gGlobal.Init();
+
 #ifdef ON_DEBUG
 	// モードの登録
-	ModeServer::GetInstance()->Add(new ModeTitle(), 1, "Title");
+	ModeServer::GetInstance()->Add(new ModeGame(), 1, "Game");
+
 #else
 	// モードの登録
-	ModeServer::GetInstance()->Add(new ModeGame(), 1, "Game");
+	ModeServer::GetInstance()->Add(new ModeTitle(), 1, "Title");
+
 #endif
 
 	return true;

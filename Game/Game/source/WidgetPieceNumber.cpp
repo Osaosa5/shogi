@@ -13,21 +13,21 @@ WidgetPieceNumber::~WidgetPieceNumber()
 
 bool WidgetPieceNumber::Initialize()
 {
-	_mPieceNums["PieceStand1"][PIECE::Pawn]	= 0;
+	_mPieceNums["PieceStand1"][PIECE::Pawn]		= 0;
 	_mPieceNums["PieceStand1"][PIECE::Lance]	= 0;
 	_mPieceNums["PieceStand1"][PIECE::Knight]	= 0;
 	_mPieceNums["PieceStand1"][PIECE::Silver]	= 0;
-	_mPieceNums["PieceStand1"][PIECE::Gold]	= 0;
+	_mPieceNums["PieceStand1"][PIECE::Gold]		= 0;
 	_mPieceNums["PieceStand1"][PIECE::Bishop]	= 0;
-	_mPieceNums["PieceStand1"][PIECE::Rook]	= 0;
+	_mPieceNums["PieceStand1"][PIECE::Rook]		= 0;
 
-	_mPieceNums["PieceStand2"][PIECE::Pawn]	= 0;
+	_mPieceNums["PieceStand2"][PIECE::Pawn]		= 0;
 	_mPieceNums["PieceStand2"][PIECE::Lance]	= 0;
 	_mPieceNums["PieceStand2"][PIECE::Knight]	= 0;
 	_mPieceNums["PieceStand2"][PIECE::Silver]	= 0;
-	_mPieceNums["PieceStand2"][PIECE::Gold]	= 0;
+	_mPieceNums["PieceStand2"][PIECE::Gold]		= 0;
 	_mPieceNums["PieceStand2"][PIECE::Bishop]	= 0;
-	_mPieceNums["PieceStand2"][PIECE::Rook]	= 0;
+	_mPieceNums["PieceStand2"][PIECE::Rook]		= 0;
 
 	return true;
 }

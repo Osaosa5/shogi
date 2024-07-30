@@ -2,6 +2,7 @@
 #include "ModeWidget.h"
 
 #include "WidgetPieceNumber.h"
+#include "WidgetSquareNum.h"
 
 ModeWidget::ModeWidget(ObjectManager* objManager)
 {
@@ -19,6 +20,10 @@ bool ModeWidget::Initialize()
 	_ptrWidgetManager = std::make_unique<WidgetManager>();
 
 	_ptrWidgetManager->Add(new WidgetPieceNumber(_objManager), "PieceNumber");
+
+#ifdef ON_DEBUG
+	_ptrWidgetManager->Add(new WidgetSquareNum(_objManager), "SquareNum");
+#endif
 
 	_ptrWidgetManager->Initialize();
 
@@ -49,6 +54,5 @@ bool ModeWidget::Render()
 
 	_ptrWidgetManager->Render();
 
-	DrawString(300, 0, "ModeWidget", GetColor(255, 255, 255));
 	return true;
 }

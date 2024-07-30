@@ -22,14 +22,13 @@ public:
 private:
 	ObjectManager* _objManager;
 
-	struct DEBUG_MENU 
+	struct BUTTON 
 	{
 		std::string name;
 		bool		isSelect;
-
-		std::function<void(ObjectManager* objManager)>	objFunc;
+		std::function<void(ObjectManager* ptrObjManager)>	objFunc;
 	};
-	std::vector<DEBUG_MENU> _debugItems;
+	std::vector<BUTTON> _debugItems;
 
 	int _selectIndex;
 };

@@ -18,15 +18,20 @@ public:
 	virtual bool Render()		= 0;
 
 	// セッター・ゲッター
-	VECTOR GetPos() const { return _pos; }
-	void SetPos(VECTOR pos) { _pos = pos; }
+	VECTOR		GetPos() const		{ return _pos; }
+	void		SetPos(VECTOR pos)	{ _pos = pos; }
+
+	bool		GetIsView() const		{ return _isView; }
+	void		SetIsView(bool isView)	{ _isView = isView; }
+
 	const char* GetName() const { return _name.c_str(); }
-	int GetId() const { return _id; }
+	int			GetId() const	{ return _id; }
 
 
 protected:
 	ObjectManager*	_ptrObjManager;	// オブジェクト管理
 	VECTOR			_pos;			// 位置
+	bool			_isView;		// 表示フラグ
 
 private:
 	friend class WidgetManager;

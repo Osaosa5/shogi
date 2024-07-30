@@ -79,8 +79,11 @@ bool ModeGame::Process()
 	// モードサーバークラスのインスタンスを取得
 	auto modeServer = ModeServer::GetInstance();
 
+#ifdef ON_DEBUG
 	// デバッグモードに遷移
 	if (trg & PAD_INPUT_10) modeServer->Add(new ModeDebug(_objectManager), 200, "debug");
+
+#endif
 
 	// Zキーが押されたら終了モードに遷移
 	if (trg & PAD_INPUT_1 && _isWin) 

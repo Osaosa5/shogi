@@ -90,9 +90,6 @@
     <ClCompile Include="source\Pawn.cpp">
       <Filter>ソース ファイル\Object\Shogi\Koma</Filter>
     </ClCompile>
-    <ClCompile Include="source\ShogiBan.cpp">
-      <Filter>ソース ファイル\Object\Shogi\ShogiBoard</Filter>
-    </ClCompile>
     <ClCompile Include="source\Square.cpp">
       <Filter>ソース ファイル\Object\Shogi\ShogiBoard</Filter>
     </ClCompile>
@@ -153,6 +150,12 @@
     <ClCompile Include="source\WidgetPieceNumber.cpp">
       <Filter>ソース ファイル\Widget</Filter>
     </ClCompile>
+    <ClCompile Include="source\WidgetSquareNum.cpp">
+      <Filter>ソース ファイル\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ShogiBan.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ApplicationGlobal.h">
@@ -181,9 +184,6 @@
     </ClInclude>
     <ClInclude Include="source\Pawn.h">
       <Filter>ヘッダー ファイル\Object\Shogi\Koma</Filter>
-    </ClInclude>
-    <ClInclude Include="source\ShogiBan.h">
-      <Filter>ヘッダー ファイル\Object\Shogi\ShogiBoard</Filter>
     </ClInclude>
     <ClInclude Include="source\Square.h">
       <Filter>ヘッダー ファイル\Object\Shogi\ShogiBoard</Filter>
@@ -244,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="source\WidgetPieceNumber.h">
       <Filter>ヘッダー ファイル\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WidgetSquareNum.h">
+      <Filter>ヘッダー ファイル\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ShogiBan.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
