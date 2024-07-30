@@ -6,8 +6,9 @@ Rook::Rook(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/hisha.mv1");
+
 	// コマのタイプを飛車にする
-	_pieceType = kRook;
+	_kPieceType = PIECE_TYPE::Rook;
 }
 
 Rook::~Rook()

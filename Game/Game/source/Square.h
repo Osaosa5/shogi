@@ -21,7 +21,7 @@ public:
 	bool GetSelect() const { return _bSelect; }
 	void SetSelect(bool bSelect) { _bSelect = bSelect; }
 
-	AREA_TYPE GetAreaType() const { return _areaType; }
+	AREA_TYPE GetAreaType() const { return _kAreaType; }
 
 private:
 	std::pair<float, float> _size;

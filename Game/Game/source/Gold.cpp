@@ -6,8 +6,9 @@ Gold::Gold(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/kin.mv1");
+
 	// コマのタイプを金にする
-	_pieceType = kGold;
+	_kPieceType = PIECE_TYPE::Gold;
 }
 
 Gold::~Gold()

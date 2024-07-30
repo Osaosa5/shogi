@@ -7,8 +7,9 @@ Lance::Lance(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/kyousha.mv1");
+
 	// コマのタイプを香車にする
-	_pieceType = kLance;
+	_kPieceType = PIECE_TYPE::Lance;
 }
 
 Lance::~Lance()

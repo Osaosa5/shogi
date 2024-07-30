@@ -7,8 +7,9 @@ Pawn::Pawn(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 	: Piece(objManajer, dan, suji, strPlayer)
 {
 	_handle = RM::MV1LoadModel("res/3D/shogi/fuhyo.mv1");
+
 	// コマのタイプを歩にする
-	_pieceType = kPawn;
+	_kPieceType = PIECE_TYPE::Pawn;
 }
 
 Pawn::~Pawn()

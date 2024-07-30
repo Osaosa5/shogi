@@ -6,8 +6,10 @@ PieceStand::PieceStand(ObjectManager* objManajer, VECTOR pos, std::string player
 {
 	_objManager = objManajer;
 	_pos = pos;
-	if(player == "player1") _playerType = kPlayer1;
-	else if(player == "player2") _playerType = kPlayer2;
+
+	if(player == "player1")			_kPlayerType = PLAYER_TYPE::Player1;
+	else if(player == "player2")	_kPlayerType = PLAYER_TYPE::Player2;
+
 	_handle = RM::MV1LoadModel("res/3D/将棋の駒台.mv1");
 
 	// マスの追加
@@ -78,9 +80,16 @@ bool PieceStand::Process()
 	// _vHasPiecesにnullptrがあれば削除する
 	_vHasPieces.erase(std::remove(_vHasPieces.begin(), _vHasPieces.end(), nullptr), _vHasPieces.end());
 
-	// _mHasPiecesにnullptrがあれば削除する
+	// _mHasPiecesに_kOwnerTypeがBoardの駒があれば削除する
 	for (auto& hasPiece : _mHasPieces) {
-		hasPiece.second.erase(nullptr);
+		for (auto it = hasPiece.second.begin(); it != hasPiece.second.end(); ) {
+			if ((*it)->GetOwnerType() == Piece::OWNER_TYPE::Board) {
+				it = hasPiece.second.erase(it);  // イテレータを無効にしないように削除
+			}
+			else {
+				++it;
+			}
+		}
 	}
 
 	// _vHasPiecesの中身が空なら何もしない
@@ -90,37 +99,37 @@ bool PieceStand::Process()
 		auto kType = piece->GetPieceType();
 		switch (kType) 
 		{
-			case PIECE_TYPE::kPawn:
+			case PIECE_TYPE::Pawn:
 				piece->SetPos(_vSquares[0]->GetCenterPos());
 				_mHasPieces[HAS_PIECE_TYPE::Pawn].emplace(piece);
 				break;
 
-			case PIECE_TYPE::kLance:
+			case PIECE_TYPE::Lance:
 				piece->SetPos(_vSquares[1]->GetCenterPos());
 				_mHasPieces[HAS_PIECE_TYPE::Lance].emplace(piece);
 				break;
 
-			case PIECE_TYPE::kKnight:
+			case PIECE_TYPE::Knight:
 				piece->SetPos(_vSquares[2]->GetCenterPos());
 				_mHasPieces[HAS_PIECE_TYPE::Knight].emplace(piece);
 				break;
 
-			case PIECE_TYPE::kSilver:
+			case PIECE_TYPE::Silver:
 				piece->SetPos(_vSquares[3]->GetCenterPos());
 				_mHasPieces[HAS_PIECE_TYPE::Silver].emplace(piece);
 				break;
 
-			case PIECE_TYPE::kGold:
+			case PIECE_TYPE::Gold:
 				piece->SetPos(_vSquares[4]->GetCenterPos());
 				_mHasPieces[HAS_PIECE_TYPE::Gold].emplace(piece);
 				break;
 
-			case PIECE_TYPE::kBishop:
+			case PIECE_TYPE::Bishop:
 				piece->SetPos(_vSquares[5]->GetCenterPos());
 				_mHasPieces[HAS_PIECE_TYPE::Bishop].emplace(piece);
 				break;
 
-			case PIECE_TYPE::kRook:
+			case PIECE_TYPE::Rook:
 				piece->SetPos(_vSquares[6]->GetCenterPos());
 				_mHasPieces[HAS_PIECE_TYPE::Rook].emplace(piece);
 				break;

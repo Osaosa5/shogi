@@ -7,8 +7,9 @@ Silver::Silver(ObjectManager* objManajer, int dan, int suji, std::string strPlay
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/gin.mv1");
+
 	// コマのタイプを銀にする
-	_pieceType = kSilver;
+	_kPieceType = PIECE_TYPE::Silver;
 }
 
 Silver::~Silver()

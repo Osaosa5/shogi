@@ -17,8 +17,8 @@ public:
 
 	enum class OWNER_TYPE 
 	{
-		kBoard,
-		kPieceStand
+		Board,
+		PieceStand
 	};
 
 	virtual bool Move();
@@ -30,15 +30,15 @@ public:
 	bool GetUpdate3DPos() const				{ return _bUpdate3DPos; }
 	void SetUpdate3DPos(bool bUpdate3DPos)	{ _bUpdate3DPos = bUpdate3DPos; }
 
-	OWNER_TYPE	GetOwnerType() const				{ return _ownerType; }
-	void		SetOwnerType(OWNER_TYPE ownerType)	{ _ownerType = ownerType; }
+	OWNER_TYPE	GetOwnerType() const				{ return _kOwnerType; }
+	void		SetOwnerType(OWNER_TYPE ownerType)	{ _kOwnerType = ownerType; }
 
 protected:
-	VECTOR _oldPos;
+	VECTOR		_oldPos;
 
-	bool _bUpdate3DPos;
+	bool		_bUpdate3DPos;
 
-	OWNER_TYPE _ownerType;
+	OWNER_TYPE	_kOwnerType;
 
 private:
 	ObjectManager* _objManager;

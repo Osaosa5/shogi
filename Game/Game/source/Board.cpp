@@ -60,43 +60,43 @@ Board::Board(ObjectManager* objManager)
 		std::string strKing;
 		switch (type)
 		{
-		case PIECE_TYPE::kPawn:
+		case PIECE_TYPE::Pawn:
 			baseName = "Pawn";
 			strPawn = baseName + std::to_string(pawn);
 			_objManager->Add(piece, strPawn.c_str());
 			pawn++;
 			break;
-		case PIECE_TYPE::kLance:
+		case PIECE_TYPE::Lance:
 			baseName = "Lance";
 			strLance = baseName + std::to_string(lance);
 			_objManager->Add(piece, strLance.c_str());
 			lance++;
 			break;
-		case PIECE_TYPE::kKnight:
+		case PIECE_TYPE::Knight:
 			baseName = "Knight";
 			strKnight = baseName + std::to_string(knight);
 			_objManager->Add(piece, strKnight.c_str());
 			knight++;
 			break;
-		case PIECE_TYPE::kSilver:
+		case PIECE_TYPE::Silver:
 			baseName = "Silver";
 			strSilver = baseName + std::to_string(silver);
 			_objManager->Add(piece, strSilver.c_str());
 			silver++;
 			break;
-		case PIECE_TYPE::kGold:
+		case PIECE_TYPE::Gold:
 			baseName = "Gold";
 			strGold = baseName + std::to_string(gold);
 			_objManager->Add(piece, strGold.c_str());
 			gold++;
 			break;
-		case PIECE_TYPE::kBishop:
+		case PIECE_TYPE::Bishop:
 			baseName = "Bishop";
 			strBishop = baseName + std::to_string(bishop);
 			_objManager->Add(piece, strBishop.c_str());
 			bishop++;
 			break;
-		case PIECE_TYPE::kRook:
+		case PIECE_TYPE::Rook:
 			baseName = "Rook";
 			strRook = baseName + std::to_string(rook);
 			_objManager->Add(piece, strRook.c_str());

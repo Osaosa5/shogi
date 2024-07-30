@@ -8,8 +8,9 @@ Bishop::Bishop(ObjectManager* objManajer, int dan, int suji, std::string strPlay
 {
 	// モデル読み込み
 	_handle = RM::MV1LoadModel("res/3D/shogi/kaku.mv1");
+
 	// コマのタイプを角にする
-	_pieceType = kBishop;
+	_kPieceType = PIECE_TYPE::Bishop;
 }
 
 Bishop::~Bishop()

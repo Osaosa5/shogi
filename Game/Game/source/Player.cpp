@@ -13,8 +13,8 @@ Player::Player(ObjectManager* objManeger, std::string player, ModeGame* game)
 	_objManager = objManeger;
 	_game = game;
 
-	if (player == "player1") _playerType = PLAYER_TYPE::kPlayer1;
-	if (player == "player2") _playerType = PLAYER_TYPE::kPlayer2;
+	if (player == "player1") _kPlayerType = PLAYER_TYPE::Player1;
+	if (player == "player2") _kPlayerType = PLAYER_TYPE::Player2;
 }
 
 Player::~Player()
@@ -43,7 +43,7 @@ bool Player::Terminate()
 
 bool Player::Process()
 {
-	int		player	= _playerType;
+	int		player	= ConvertEnumToInt<PLAYER_TYPE>(_kPlayerType);
 	auto	app		= ApplicationMain::GetInstance();
 	int		trg		= app->GetTrg(player - 1);
 
@@ -104,7 +104,7 @@ bool Player::Render()
 	else if (_state == PLAYER_STATE::SelectPieceStandSquare)
 	{
 		std::string strPieceStand	= "PieceStand";
-		strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
+		strPieceStand				+= _kPlayerType == PLAYER_TYPE::Player1 ? "1" : "2";
 		auto pieceStand				= dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
 
 		auto square = pieceStand->GetSquare(_suji * PIECESTAND_W + _dan);
@@ -113,8 +113,7 @@ bool Player::Render()
 		pos		= square->GetPos();
 	}
 	
-
-	int cr		= _playerType == PLAYER_TYPE::kPlayer1 ? GetColor(255, 0, 0) : GetColor(0, 0, 255);
+	int cr		= _kPlayerType == PLAYER_TYPE::Player1 ? GetColor(255, 0, 0) : GetColor(0, 0, 255);
 
 	box["lUp"]		= pos;
 	box["lBottom"]	= VGet(pos.x, pos.y, pos.z + size.second);
@@ -157,7 +156,7 @@ void Player::SelectBoardPiece(int index)
 	if (ptrPiece == nullptr) return;
 
 	// 自分のコマでない場合、選択できない
-	if (ptrPiece->GetPlayerType() != _playerType) return;
+	if (ptrPiece->GetPlayerType() != _kPlayerType) return;
 
 	// 駒がある場合、選択したマスの情報を保存する
 	auto ptrSquare		= ptrBoard->GetSquare(index);
@@ -173,10 +172,14 @@ void Player::MoveBoardPiece(int index)
 	auto ptrPiece			= board->GetPiece(index);
 
 	// 相手の駒がある場合、駒を取る
-	TakePiece(ptrPiece);
+	ptrPiece = TakePiece(ptrPiece);
 
 	// コマの位置を交換する
 	std::swap(ptrPiece, ptrSelectedPiece);
+
+	// コマの位置情報を更新
+	ptrPiece->SetDan(_dan);
+	ptrPiece->SetSuji(_suji);
 
 	// 駒の配列を更新
 	board->SetPiece(_selectedPieceIndex, ptrSelectedPiece);
@@ -197,39 +200,41 @@ void Player::MoveBoardPiece(int index)
 	_game->ChangeCurrentPlayer();
 }
 
-void Player::TakePiece(Piece* ptrPiece)
+Piece* Player::TakePiece(Piece* ptrPiece)
 {
 	// 指定されたインデックスの駒が存在しない場合は処理を中断
-	if(!ptrPiece) return;
+	if(!ptrPiece) return ptrPiece;
 
 	// 自分の駒を指定された場合、処理を中断
-	if(ptrPiece->GetPlayerType() == _playerType) return;
+	if(ptrPiece->GetPlayerType() == _kPlayerType) return ptrPiece;
 
 	 // 相手のキングを取った場合、勝利処理を行う
 	if (ptrPiece->GetPieceType() == PIECE_TYPE::kKing) 
 	{
 		_game->SetWin(true);
-		_game->SetWinPlayer(_playerType == PLAYER_TYPE::kPlayer1 ? "player1" : "player2");
-		return;
+		_game->SetWinPlayer(_kPlayerType == PLAYER_TYPE::Player1 ? "player1" : "player2");
+		return nullptr;
 	}
 
 	// 相手の駒を自分の持ち駒に追加
-	ptrPiece->SetPlayerType(_playerType);
-	ptrPiece->SetOwnerType(Piece::OWNER_TYPE::kPieceStand);
+	ptrPiece->SetPlayerType(_kPlayerType);
+	ptrPiece->SetOwnerType(Piece::OWNER_TYPE::PieceStand);
 
 	// 相手の駒を自分の駒台に置く
 	std::string strPieceStand	= "PieceStand";
-	strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
+	strPieceStand				+= _kPlayerType == PLAYER_TYPE::Player1 ? "1" : "2";
 	auto pieceStand				= dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
 
 	pieceStand->AddPiece(ptrPiece);
+
+	return nullptr;
 }
 
 void Player::SelectStandPiece(int index)
 {
 	// 駒台の名前
 	std::string strPieceStand	= "PieceStand";
-	strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
+	strPieceStand				+= _kPlayerType == PLAYER_TYPE::Player1 ? "1" : "2";
 
 	// 駒が選択されていない場合、選択したマスに駒があるか確認
 	auto						ptrStand	= dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
@@ -251,7 +256,7 @@ void Player::MoveStandPiece(int index)
 {
 	// 駒が選択されている場合、駒を移動
 	std::string strPieceStand	= "PieceStand";
-	strPieceStand				+= _playerType == PLAYER_TYPE::kPlayer1 ? "1" : "2";
+	strPieceStand				+= _kPlayerType == PLAYER_TYPE::Player1 ? "1" : "2";
 
 	auto pieceStand			= dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
 	auto ptrBoard			= dynamic_cast<Board*>(_objManager->Get("board"));
@@ -263,11 +268,10 @@ void Player::MoveStandPiece(int index)
 	if(ptrPiece) return;
 
 	// コマの位置を交換する
+	ptrSelectedPiece->SetDan(_dan);
+	ptrSelectedPiece->SetSuji(_suji);
+	ptrSelectedPiece->SetOwnerType(Piece::OWNER_TYPE::Board);
 	std::swap(ptrPiece, ptrSelectedPiece);
-
-	ptrPiece->SetDan(_dan);
-	ptrPiece->SetSuji(_suji);
-	ptrPiece->SetOwnerType(Piece::OWNER_TYPE::kBoard);
 
 	// 駒の配列を更新
 	pieceStand	->SetVPiece(_selectedPieceIndex, ptrSelectedPiece);

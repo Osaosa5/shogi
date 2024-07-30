@@ -9,16 +9,16 @@ Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 	_objManager = objManajer;
 	_oldPos = VGet(0, 0, 0);
 	_bUpdate3DPos = true;
-	_ownerType = OWNER_TYPE::kBoard;
+	_kOwnerType = OWNER_TYPE::Board;
 
 	// 駒の位置情報
 	_dan = dan; _suji = suji;
 	_tile = _suji * BOARD_SIZE + _dan;
 
 	// プレイヤー情報
-	if (strPlayer == "player1") _playerType = kPlayer1;
-	if (strPlayer == "player2") _playerType = kPlayer2;
-	UpdateDirectionForPlayer(_playerType);
+	if (strPlayer == "player1") _kPlayerType = PLAYER_TYPE::Player1;
+	if (strPlayer == "player2") _kPlayerType = PLAYER_TYPE::Player2;
+	UpdateDirectionForPlayer(_kPlayerType);
 }
 
 Piece::~Piece()
@@ -34,9 +34,10 @@ bool Piece::Process()
 {
 	_oldPos = _pos;
 
-	if (_bUpdate3DPos) SetPieceCentralTile();
+	//if (_bUpdate3DPos) 
+	SetPieceCentralTile();
 
-	UpdateDirectionForPlayer(_playerType);
+	UpdateDirectionForPlayer(_kPlayerType);
 
 	return true;
 }
@@ -85,14 +86,16 @@ void Piece::SetPieceCentralTile()
 	// 駒と同じ位置にあるタイルを取得する
 	auto ptrBoard	= dynamic_cast<Board*>(_objManager->Get("board"));
 	int index		= -1;
-	for (int y = 0; y < BOARD_SIZE; y++) {
+	/*for (int y = 0; y < BOARD_SIZE; y++) {
 		for (int x = 0; x < BOARD_SIZE; x++) {
 			if (ptrBoard->GetPiece(y * BOARD_SIZE + x) == this)
 			{
 				index = y * BOARD_SIZE + x;
 			}
 		}
-	}
+	}*/
+
+	index = this->_suji * BOARD_SIZE + this->_dan;
 
 	auto ptrSquare = ptrBoard->GetSquare(index);
 
@@ -105,12 +108,12 @@ void Piece::SetPieceCentralTile()
 
 void Piece::UpdateDirectionForPlayer(PLAYER_TYPE playerType)
 {
-	if (_ownerType == OWNER_TYPE::kBoard) 
+	if (_kOwnerType == OWNER_TYPE::Board) 
 	{
-		if (playerType == kPlayer1) { _rot = VGet(0, 0, 0); }
-		if (playerType == kPlayer2) { _rot = VGet(0, DEG2RAD(180), 0); }
+		if (playerType == PLAYER_TYPE::Player1) { _rot = VGet(0, 0, 0); }
+		if (playerType == PLAYER_TYPE::Player2) { _rot = VGet(0, DEG2RAD(180), 0); }
 	}
-	else if (_ownerType == OWNER_TYPE::kPieceStand)
+	else if (_kOwnerType == OWNER_TYPE::PieceStand)
 	{
 		_rot = VGet(0, 0, 0);
 	}

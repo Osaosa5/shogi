@@ -14,9 +14,9 @@ Square::Square(VECTOR pos, std::string area, int dan, int suji)
 	_bSelect = false;
 
 	// ƒGƒŠƒA‚Ìí—Ş‚ğİ’è
-	if (area == "player1") _areaType = AREA_TYPE::kPlayer1Area;
-	else if (area == "player2") _areaType = AREA_TYPE::kPlayer2Area;
-	else _areaType = AREA_TYPE::kNeutral;
+	if (area == "player1") _kAreaType = AREA_TYPE::Player1Area;
+	else if (area == "player2") _kAreaType = AREA_TYPE::Player2Area;
+	else _kAreaType = AREA_TYPE::Neutral;
 
 	// c‚Ì—ñ‚Æ‰¡‚Ìs‚ğİ’è
 	_dan = dan; _suji = suji;

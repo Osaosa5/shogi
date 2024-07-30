@@ -22,7 +22,7 @@ public:
 	// «Šû”Õ‚Ì‹î‚ğ“®‚©‚·ˆ—
 	void SelectBoardPiece(int index);
 	void MoveBoardPiece(int index);
-	void TakePiece(Piece* ptrPiece);
+	Piece* TakePiece(Piece* ptrPiece);
 
 	// ‹î‘ä‚Ì‹î‚ğ“®‚©‚·ˆ—
 	void SelectStandPiece(int index);

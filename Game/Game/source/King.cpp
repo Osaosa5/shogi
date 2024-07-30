@@ -7,8 +7,9 @@ King::King(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 {
 	// モデル読み込み
 	_handle = (strPlayer == "player1") ? RM::MV1LoadModel("res/3D/shogi/oh.mv1") : RM::MV1LoadModel("res/3D/shogi/gyoku.mv1");
+
 	// コマのタイプを王将にする
-	_pieceType = kKing;
+	_kPieceType = PIECE_TYPE::kKing;
 }
 
 King::~King()
