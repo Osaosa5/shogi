@@ -6,13 +6,13 @@
 
 constexpr int STAND_NUM = 2;
 
-class WidgetPieceNumber : public Widget
+class WPieceNumber : public Widget
 {
 	using PIECE		= Shogi::PIECE_TYPE;
 	using PieceNums = std::unordered_map<PIECE, int>;
 public:
-	WidgetPieceNumber(ObjectManager* ptrObjManager);
-	~WidgetPieceNumber();
+	WPieceNumber(ObjectManager* ptrObjManager);
+	~WPieceNumber();
 
 	bool Initialize()	override;
 	bool Terminate()	override;

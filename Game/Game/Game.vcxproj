@@ -194,8 +194,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="source\WidgetPieceNumber.cpp" />
-    <ClCompile Include="source\WidgetSquareNum.cpp" />
+    <ClCompile Include="source\WPieceNumber.cpp" />
+    <ClCompile Include="source\WPrintPieces.cpp" />
+    <ClCompile Include="source\WSquareNum.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Bishop.h" />
@@ -227,8 +228,9 @@
     <ClInclude Include="source\Tatami.h" />
     <ClInclude Include="source\Widget.h" />
     <ClInclude Include="source\WidgetManager.h" />
-    <ClInclude Include="source\WidgetPieceNumber.h" />
-    <ClInclude Include="source\WidgetSquareNum.h" />
+    <ClInclude Include="source\WPieceNumber.h" />
+    <ClInclude Include="source\WPrintPieces.h" />
+    <ClInclude Include="source\WSquareNum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

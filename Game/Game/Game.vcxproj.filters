@@ -147,14 +147,17 @@
     <ClCompile Include="source\WidgetManager.cpp">
       <Filter>ソース ファイル\Widget</Filter>
     </ClCompile>
-    <ClCompile Include="source\WidgetPieceNumber.cpp">
+    <ClCompile Include="source\WPieceNumber.cpp">
       <Filter>ソース ファイル\Widget</Filter>
     </ClCompile>
-    <ClCompile Include="source\WidgetSquareNum.cpp">
+    <ClCompile Include="source\WSquareNum.cpp">
       <Filter>ソース ファイル\Widget</Filter>
     </ClCompile>
     <ClCompile Include="source\ShogiBan.cpp">
       <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\WPrintPieces.cpp">
+      <Filter>ソース ファイル\Widget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -242,14 +245,17 @@
     <ClInclude Include="source\WidgetManager.h">
       <Filter>ヘッダー ファイル\Widget</Filter>
     </ClInclude>
-    <ClInclude Include="source\WidgetPieceNumber.h">
+    <ClInclude Include="source\WPieceNumber.h">
       <Filter>ヘッダー ファイル\Widget</Filter>
     </ClInclude>
-    <ClInclude Include="source\WidgetSquareNum.h">
+    <ClInclude Include="source\WSquareNum.h">
       <Filter>ヘッダー ファイル\Widget</Filter>
     </ClInclude>
     <ClInclude Include="source\ShogiBan.h">
       <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\WPrintPieces.h">
+      <Filter>ヘッダー ファイル\Widget</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

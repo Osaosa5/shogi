@@ -1,5 +1,7 @@
 #pragma once
 
+#include "appframe.h"
+
 #include "Shogi.h"
 #include "Square.h"
 #include "ObjectManager.h"
@@ -14,10 +16,12 @@
 #include "Bishop.h"
 #include "Rook.h"
 
+#include <iostream>
+
 class Board : public Shogi
 {
-	using vPtrSquares = std::vector<Square*>;
-	using vPtrPieces = std::vector<Piece*>;
+	using vPtrSquares	= std::vector<Square*>;
+	using vPtrPieces	= std::vector<Piece*>;
 public:
 	Board(ObjectManager* objManager);
 	~Board();
@@ -26,17 +30,26 @@ public:
 	bool Process()		override;
 	bool Render()		override;
 
-	Square*		GetSquare(int element)					{ return _vHasSquares[element]; }
-	void		SetSquare(int element, Square* square)	{ _vHasSquares[element] = square; }
+	Square*		GetSquare(int index)					{ return _vHasSquares[index]; }
+	void		SetSquare(int index, Square* square)	{ _vHasSquares[index] = square; }
 	vPtrSquares GetSquares() const						{ return _vHasSquares; }
 
-	Piece*	GetPiece(int element)				{ return _vHasPieces[element]; }
-	void	SetPiece(int element, Piece* piece) { _vHasPieces[element] = piece; }
+	Piece*	GetPiece(int index)				{ return _vHasPieces[index]; }
+	void	SetPiece(int index, Piece* piece) 
+	{
+		if (index < 0 || index >= _vHasPieces.size()) 
+		{
+			std::cerr << "Index out of range: " << index << std::endl;
+			return;
+		}
+		_vHasPieces[index] = piece;
+	}
+	vPtrPieces GetPieces() const			{ return _vHasPieces; }
 
-	void	InitPiece(int element, int tile, int dan, int suji, std::string strPlayer);
+	void	InitPiece(int index, int tile, int dan, int suji, std::string strPlayer);
 
 private:
-	ObjectManager*	_objManager;
+	ObjectManager*	_ptrObjManager;
 
 	vPtrSquares		_vHasSquares;
 	vPtrPieces		_vHasPieces;

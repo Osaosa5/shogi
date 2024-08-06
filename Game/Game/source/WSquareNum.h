@@ -5,11 +5,11 @@
 #include "Widget.h"
 #include "ObjectManager.h"
 
-class WidgetSquareNum :  public Widget
+class WSquareNum :  public Widget
 {
 public:
-	WidgetSquareNum(ObjectManager* ptrObjManager);
-	~WidgetSquareNum();
+	WSquareNum(ObjectManager* ptrObjManager);
+	~WSquareNum();
 
 	bool Initialize() override;
 	bool Terminate() override;

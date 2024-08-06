@@ -1,17 +1,17 @@
 
-#include "WidgetPieceNumber.h"
+#include "WPieceNumber.h"
 #include "PieceStand.h"
 
-WidgetPieceNumber::WidgetPieceNumber(ObjectManager* ptrObjManager)
+WPieceNumber::WPieceNumber(ObjectManager* ptrObjManager)
 	: Widget(ptrObjManager)
 {
 }
 
-WidgetPieceNumber::~WidgetPieceNumber()
+WPieceNumber::~WPieceNumber()
 {
 }
 
-bool WidgetPieceNumber::Initialize()
+bool WPieceNumber::Initialize()
 {
 	_mPieceNums["PieceStand1"][PIECE::Pawn]		= 0;
 	_mPieceNums["PieceStand1"][PIECE::Lance]	= 0;
@@ -32,13 +32,13 @@ bool WidgetPieceNumber::Initialize()
 	return true;
 }
 
-bool WidgetPieceNumber::Terminate()
+bool WPieceNumber::Terminate()
 {
 	_mPieceNums.clear();
 	return true;
 }
 
-bool WidgetPieceNumber::Process()
+bool WPieceNumber::Process()
 {
 	// Še‹î‘ä‚Ì‹î‚Ì”‚ğ‹L˜^‚·‚é
 	for (auto& pieceNum : _mPieceNums) {
@@ -65,7 +65,7 @@ bool WidgetPieceNumber::Process()
 	return true;
 }
 
-bool WidgetPieceNumber::Render()
+bool WPieceNumber::Render()
 {
 	// ‹î‘ä‚Ì‹î‚Ì”‚ğ•\¦‚·‚é
 	for (auto& pieceNum : _mPieceNums) {

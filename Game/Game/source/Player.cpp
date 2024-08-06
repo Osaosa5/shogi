@@ -89,7 +89,7 @@ bool Player::Render()
 {
 	std::unordered_map<std::string, VECTOR> box;
 	std::pair<float, float>					size;
-	VECTOR									pos;
+	VECTOR									pos = { 0,0,0 };
 
 	if (_state == PLAYER_STATE::SelectBoardSquare)
 	{
@@ -271,7 +271,7 @@ Piece* Player::TakePiece(Piece* ptrPiece)
 	if(ptrPiece->GetPlayerType() == _kPlayerType) return ptrPiece;
 
 	 // 相手のキングを取った場合、勝利処理を行う
-	if (ptrPiece->GetPieceType() == PIECE_TYPE::kKing) 
+	if (ptrPiece->GetPieceType() == PIECE_TYPE::King) 
 	{
 		_game->SetWin(true);
 		_game->SetWinPlayer(_kPlayerType == PLAYER_TYPE::Player1 ? "player1" : "player2");

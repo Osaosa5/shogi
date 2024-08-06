@@ -1,8 +1,9 @@
 
 #include "ModeWidget.h"
 
-#include "WidgetPieceNumber.h"
-#include "WidgetSquareNum.h"
+#include "WPieceNumber.h"
+#include "WSquareNum.h"
+#include "WPrintPieces.h"
 
 ModeWidget::ModeWidget(ObjectManager* objManager)
 {
@@ -19,10 +20,11 @@ bool ModeWidget::Initialize()
 
 	_ptrWidgetManager = std::make_unique<WidgetManager>();
 
-	_ptrWidgetManager->Add(new WidgetPieceNumber(_objManager), "PieceNumber");
+	_ptrWidgetManager->Add(new WPieceNumber(_objManager), "PieceNumber");
 
 #ifdef ON_DEBUG
-	_ptrWidgetManager->Add(new WidgetSquareNum(_objManager), "SquareNum");
+	_ptrWidgetManager->Add(new WSquareNum(_objManager), "SquareNum");
+	_ptrWidgetManager->Add(new WPrintPieces(_objManager), "PrintPieces");
 #endif
 
 	_ptrWidgetManager->Initialize();

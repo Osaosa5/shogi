@@ -45,14 +45,14 @@ public:
 		None,
 		Pawn,		// 歩兵
 		Lance,		// 香車
-		Knight,	// 桂馬
-		Silver,	// 銀将
+		Knight,		// 桂馬
+		Silver,		// 銀将
 		Gold,		// 金将
-		Bishop,	// 角行
-		kRyume,		// 龍馬
+		Bishop,		// 角行
+		Ryume,		// 龍馬
 		Rook,		// 飛車
-		kRyuo,		// 竜王
-		kKing,		// 王将
+		Ryuo,		// 竜王
+		King,		// 王将
 	};
 
 	enum class PLAYER_TYPE	// プレイヤーの種類
