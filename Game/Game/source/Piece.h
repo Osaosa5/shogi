@@ -33,12 +33,17 @@ public:
 	OWNER_TYPE	GetOwnerType() const				{ return _kOwnerType; }
 	void		SetOwnerType(OWNER_TYPE ownerType)	{ _kOwnerType = ownerType; }
 
+	std::vector<int> GetMoveRange() const			{ return _vMoveRange; }
+	void SetMoveRange(std::vector<int> vMoveRange)	{ _vMoveRange = vMoveRange; }
+
 protected:
 	VECTOR		_oldPos;
 
 	bool		_bUpdate3DPos;
 
 	OWNER_TYPE	_kOwnerType;
+
+	std::vector<int> _vMoveRange;
 
 private:
 	ObjectManager* _objManager;

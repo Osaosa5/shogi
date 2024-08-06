@@ -37,7 +37,7 @@ public:
 		None,			// ‚È‚µ
 		Neutral,		// ’†—§
 		Player1Area,	// Player1
-		Player2Area	// Player2
+		Player2Area		// Player2
 	};
 
 	enum class PIECE_TYPE	// ‹î‚ÌŽí—Þ

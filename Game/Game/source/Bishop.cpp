@@ -11,6 +11,8 @@ Bishop::Bishop(ObjectManager* objManajer, int dan, int suji, std::string strPlay
 
 	// コマのタイプを角にする
 	_kPieceType = PIECE_TYPE::Bishop;
+
+	_vMoveRange = JsonManeger::LoadJsonFile("JSON/board.json")["Bishop"].get<std::vector<int>>();
 }
 
 Bishop::~Bishop()

@@ -9,7 +9,7 @@
 Player::Player(ObjectManager* objManeger, std::string player, ModeGame* game)
 {
 	_objManager = objManeger;
-	_game = game;
+	_game		= game;
 
 	if (player == "player1") _kPlayerType = PLAYER_TYPE::Player1;
 	if (player == "player2") _kPlayerType = PLAYER_TYPE::Player2;
@@ -43,7 +43,7 @@ bool Player::Process()
 {
 	int		player	= ConvertEnumToInt<PLAYER_TYPE>(_kPlayerType);
 	auto	app		= ApplicationMain::GetInstance();
-	int		trg		= app->GetTrg(player - 1);
+	int		trg		= 0;
 
 #ifdef ON_DEBUG
 	trg = app->GetTrg(player - 1);
@@ -189,8 +189,8 @@ void Player::ChangeSelectBoardToStand()
 	_selectSquareBoard = std::make_pair(_dan, _suji);
 
 	// 駒台選択時の選択していたマスを入れる
-	_dan = _selectSquareStand.first;
-	_suji = _selectSquareStand.second;
+	_dan	= _selectSquareStand.first;
+	_suji	= _selectSquareStand.second;
 }
 
 void Player::ChangeSelectDestinationBoard()
@@ -208,8 +208,8 @@ void Player::ChangeSelectStandToBoard()
 	_selectSquareStand = std::make_pair(_dan, _suji);
 
 	// 将棋盤選択時の選択していたマスを入れる
-	_dan = _selectSquareBoard.first;
-	_suji = _selectSquareBoard.second;
+	_dan	= _selectSquareBoard.first;
+	_suji	= _selectSquareBoard.second;
 }
 
 void Player::ChangeSelectDestinationStandToBoard()
@@ -221,8 +221,8 @@ void Player::ChangeSelectDestinationStandToBoard()
 	_selectSquareStand = std::make_pair(_dan, _suji);
 
 	// 将棋盤選択時の選択していたマスを入れる
-	_dan = _selectSquareBoard.first;
-	_suji = _selectSquareBoard.second;
+	_dan	= _selectSquareBoard.first;
+	_suji	= _selectSquareBoard.second;
 }
 
 void Player::SelectBoardPiece(int index)

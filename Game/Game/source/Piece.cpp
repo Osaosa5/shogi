@@ -20,6 +20,9 @@ Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 	if (strPlayer == "player1") _kPlayerType = PLAYER_TYPE::Player1;
 	if (strPlayer == "player2") _kPlayerType = PLAYER_TYPE::Player2;
 	UpdateDirectionForPlayer(_kPlayerType);
+
+	// ‹î‚ÌˆÚ“®”ÍˆÍ
+	_vMoveRange.resize(17 * 17);
 }
 
 Piece::~Piece()
@@ -28,6 +31,7 @@ Piece::~Piece()
 
 bool Piece::Terminate()
 {
+	_vMoveRange.clear();
 	return true;
 }
 
