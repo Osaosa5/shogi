@@ -10,6 +10,8 @@ Pawn::Pawn(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 
 	// コマのタイプを歩にする
 	_kPieceType = PIECE_TYPE::Pawn;
+
+	_vMoveRange = JsonManeger::LoadJsonFile("JSON/board.json")["Pawn"].get<std::vector<int>>();
 }
 
 Pawn::~Pawn()

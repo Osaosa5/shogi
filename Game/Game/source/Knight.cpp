@@ -10,6 +10,8 @@ Knight::Knight(ObjectManager* objManajer, int dan, int suji, std::string strPlay
 
 	// コマのタイプを桂馬にする
 	_kPieceType = PIECE_TYPE::Knight;
+
+	_vMoveRange = JsonManeger::LoadJsonFile("JSON/board.json")["Knight"].get<std::vector<int>>();
 }
 
 Knight::~Knight()

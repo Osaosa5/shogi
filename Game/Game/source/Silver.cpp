@@ -10,6 +10,8 @@ Silver::Silver(ObjectManager* objManajer, int dan, int suji, std::string strPlay
 
 	// コマのタイプを銀にする
 	_kPieceType = PIECE_TYPE::Silver;
+
+	_vMoveRange = JsonManeger::LoadJsonFile("JSON/board.json")["Silver"].get<std::vector<int>>();
 }
 
 Silver::~Silver()

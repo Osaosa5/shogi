@@ -9,6 +9,8 @@ Gold::Gold(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 
 	// コマのタイプを金にする
 	_kPieceType = PIECE_TYPE::Gold;
+
+	_vMoveRange = JsonManeger::LoadJsonFile("JSON/board.json")["Gold"].get<std::vector<int>>();
 }
 
 Gold::~Gold()

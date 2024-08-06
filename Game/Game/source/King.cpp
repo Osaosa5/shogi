@@ -10,6 +10,8 @@ King::King(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 
 	// コマのタイプを王将にする
 	_kPieceType = PIECE_TYPE::King;
+
+	_vMoveRange = JsonManeger::LoadJsonFile("JSON/board.json")["King"].get<std::vector<int>>();
 }
 
 King::~King()

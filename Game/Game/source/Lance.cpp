@@ -10,6 +10,8 @@ Lance::Lance(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 
 	// コマのタイプを香車にする
 	_kPieceType = PIECE_TYPE::Lance;
+
+	_vMoveRange = JsonManeger::LoadJsonFile("JSON/board.json")["Lance"].get<std::vector<int>>();
 }
 
 Lance::~Lance()

@@ -9,6 +9,8 @@ Rook::Rook(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 
 	// コマのタイプを飛車にする
 	_kPieceType = PIECE_TYPE::Rook;
+
+	_vMoveRange = JsonManeger::LoadJsonFile("JSON/board.json")["Rook"].get<std::vector<int>>();
 }
 
 Rook::~Rook()
