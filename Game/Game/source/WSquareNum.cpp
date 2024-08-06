@@ -37,7 +37,7 @@ bool WSquareNum::Render()
 	{
 		// ワールド座標からスクリーン座標に変換
 		VECTOR pos = ConvWorldPosToScreenPos(square->GetCenterPos());
-		pos.y -= 10;
+		pos.x -= 20; pos.y -= 10;
 		DrawFormatString(pos.x, pos.y, GetColor(255, 255, 255), "%d", num);
 		num++;
 	}

@@ -58,7 +58,7 @@ bool WPrintPieces::Render()
 
 		// ワールド座標からスクリーン座標に変換
 		VECTOR pos = ConvWorldPosToScreenPos(piece->GetPos());
-		pos.y += 10;
+		pos.x -= 20; pos.y += 10;
 		DrawFormatString(pos.x, pos.y, GetColor(255, 255, 255), strType.c_str());
 	}
 

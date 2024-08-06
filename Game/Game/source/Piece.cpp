@@ -3,6 +3,7 @@
 
 #include "appframe.h"
 #include "Board.h"
+#include "PieceStand.h"
 
 Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 {
@@ -75,7 +76,7 @@ void Piece::HitTest()
 	else
 	{
 		// 駒がない場合
-		_pos = _oldPos;
+		//_pos = _oldPos;
 	}
 
 }
@@ -83,24 +84,29 @@ void Piece::HitTest()
 // タイルの中央に駒をセットする 
 void Piece::SetPieceCentralTile()
 {
+	// 駒がいる場所を取得する
+	auto owner = this->GetOwnerType();
+
+	VECTOR pos = { 0, 0, 0 };
+
 	// 駒と同じ位置にあるタイルを取得する
-	auto ptrBoard	= dynamic_cast<Board*>(_objManager->Get("board"));
-	int index		= -1;
-	/*for (int y = 0; y < BOARD_SIZE; y++) {
-		for (int x = 0; x < BOARD_SIZE; x++) {
-			if (ptrBoard->GetPiece(y * BOARD_SIZE + x) == this)
-			{
-				index = y * BOARD_SIZE + x;
-			}
-		}
-	}*/
+	if (owner == OWNER_TYPE::Board)
+	{
+		auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
+		auto ptrSquare = ptrBoard->GetSquare(this->_suji * BOARD_SIZE + this->_dan);
+		pos = ptrSquare->GetCenterPos();
+	}
+	else if(owner == OWNER_TYPE::PieceStand)
+	{
+		std::string strPieceStand = "PieceStand";
+		strPieceStand += _kPlayerType == PLAYER_TYPE::Player1 ? "1" : "2";
+		auto ptrPieceStand = dynamic_cast<PieceStand*>(_objManager->Get(strPieceStand.c_str()));
 
-	index = this->_suji * BOARD_SIZE + this->_dan;
-
-	auto ptrSquare = ptrBoard->GetSquare(index);
-
+		auto ptrSquare = ptrPieceStand->GetSquare(this->_suji * PIECESTAND_W + this->_dan);
+		pos = ptrSquare->GetCenterPos();
+	}
 	// タイルの中央に駒の位置をセットする
-	this->SetPos(ptrSquare->GetCenterPos());
+	this->SetPos(pos);
 
 	// 駒の位置がセットされたことを記録する
 	_bUpdate3DPos = false;
