@@ -21,7 +21,8 @@ public:
 		PieceStand
 	};
 
-	virtual bool Move();
+	bool IsMove(int index);
+	bool Move(int index);
 	void HitTest();
 
 	void SetPieceCentralTile();

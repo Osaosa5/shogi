@@ -22,7 +22,7 @@ Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer
 	UpdateDirectionForPlayer(_kPlayerType);
 
 	// 駒の移動範囲
-	_vMoveRange.resize(17 * 17);
+	_vMoveRange.resize(MOVE_RANGE_W * MOVE_RANGE_H);
 }
 
 Piece::~Piece()
@@ -57,8 +57,54 @@ bool Piece::Render()
 	return true;
 }
 
-bool Piece::Move()
+bool Piece::IsMove(int index)
 {
+	// 駒の移動範囲を取得する
+	int rowMin = index % BOARD_SIZE;
+	int colMin = index / BOARD_SIZE;
+
+	// 移動先のマスに駒があるか確認
+	auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
+	auto ptrPiece = ptrBoard->GetPiece(index);
+
+	if(ptrPiece->GetPlayerType() == _kPlayerType) return false;
+
+	// 移動可能範囲にあるか確認
+
+
+	// 移動不可
+	return false;
+}
+
+bool Piece::Move(int index)
+{
+	// 移動可能か確認
+	if (!IsMove(index)) return false;
+
+	// 移動先のマスを取得する
+	auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
+	auto ptrPiece = ptrBoard->GetPiece(index);
+
+	if (ptrPiece)
+	{
+		int tmp = ptrPiece->GetDan();
+		ptrPiece->SetDan(_dan);
+		_dan = tmp;
+
+		tmp = ptrPiece->GetSuji();
+		ptrPiece->SetSuji(_suji);
+		_suji = tmp;
+	}
+	else
+	{
+		ptrBoard->SetPiece(index, ptrPiece);
+		ptrBoard->SetPiece(_tile, nullptr);
+	}
+
+	// 駒の位置情報を更新
+	
+
+
 	return true;
 }
 
