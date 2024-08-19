@@ -12,5 +12,6 @@
 #include "File/JSONFile.h"
 #include "JsonManeger/JsonManeger.h"
 #include "MyMath/mymath.h"
+#include "MyMath//Easing.h"
 #include "Vector/Vector2.h"
 #include "ResourceManager/ResourceManager.h"

@@ -49,6 +49,7 @@
     <ClCompile Include="source\JsonManeger\JsonManeger.cpp" />
     <ClCompile Include="source\EventSystem\EventSystem.cpp" />
     <ClCompile Include="source\Convert\Convert.cpp" />
+    <ClCompile Include="source\MyMath\Easing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Application\ApplicationBase.h">
@@ -80,5 +81,7 @@
     <ClInclude Include="source\JsonManeger\JsonManeger.h" />
     <ClInclude Include="source\EventSystem\EventSystem.h" />
     <ClInclude Include="source\Convert\Convert.h" />
+    <ClInclude Include="source\MyMath\Shape.h" />
+    <ClInclude Include="source\MyMath\Easing.h" />
   </ItemGroup>
 </Project>

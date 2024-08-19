@@ -12,6 +12,6 @@ public:
 	bool Process()override;
 	bool Render()override;
 
-	bool Move()override;
+	bool Move(int index)override;
 };
 

@@ -169,6 +169,7 @@
     <ClCompile Include="source\JsonManeger\JsonManeger.cpp" />
     <ClCompile Include="source\Mode\ModeBase.cpp" />
     <ClCompile Include="source\Mode\ModeServer.cpp" />
+    <ClCompile Include="source\MyMath\Easing.cpp" />
     <ClCompile Include="source\MyMath\mymath.cpp" />
     <ClCompile Include="source\ResourceManager\ResourceManager.cpp" />
     <ClCompile Include="source\Vector\Vector2.cpp" />
@@ -184,7 +185,9 @@
     <ClInclude Include="source\JsonManeger\JsonManeger.h" />
     <ClInclude Include="source\Mode\ModeBase.h" />
     <ClInclude Include="source\Mode\ModeServer.h" />
+    <ClInclude Include="source\MyMath\Easing.h" />
     <ClInclude Include="source\MyMath\mymath.h" />
+    <ClInclude Include="source\MyMath\Shape.h" />
     <ClInclude Include="source\ResourceManager\ResourceManager.h" />
     <ClInclude Include="source\Vector\Vector2.h" />
   </ItemGroup>

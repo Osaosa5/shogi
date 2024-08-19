@@ -22,7 +22,7 @@ public:
 	};
 
 	bool IsMove(int index);
-	bool Move(int index);
+	virtual bool Move(int index);
 	void HitTest();
 
 	void SetPieceCentralTile();

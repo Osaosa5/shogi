@@ -39,7 +39,7 @@ bool Pawn::Render()
 	return true;
 }
 
-bool Pawn::Move()
+bool Pawn::Move(int index)
 {
 	auto app = ApplicationMain::GetInstance();
 	int key = app->GetKey();
