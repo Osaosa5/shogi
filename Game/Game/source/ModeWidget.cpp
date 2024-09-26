@@ -22,7 +22,7 @@ bool ModeWidget::Initialize()
 
 	_ptrWidgetManager->Add(new WPieceNumber(_objManager), "PieceNumber");
 
-#ifdef ON_DEBUG
+#ifdef _DEBUG
 	_ptrWidgetManager->Add(new WSquareNum(_objManager), "SquareNum");
 	_ptrWidgetManager->Add(new WPrintPieces(_objManager), "PrintPieces");
 #endif

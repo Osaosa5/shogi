@@ -11,5 +11,6 @@ public:
 	bool Terminate()override;
 	bool Process()override;
 	bool Render()override;
+
 };
 

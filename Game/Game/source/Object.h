@@ -18,10 +18,12 @@ public:
 	virtual bool Process();
 	virtual bool Render();
 
-	int GetHandle() const { return _handle; }
-	VECTOR GetPos() const { return _pos; }
-	void SetPos(VECTOR pos) { _pos = pos; }
-	VECTOR GetRot() const { return _rot; }
+	int		GetHandle() const	{ return _handle; }
+	VECTOR	GetPos() const		{ return _pos; }
+	VECTOR	GetRot() const		{ return _rot; }
+
+	void	SetPos(VECTOR pos) { _pos = pos; }
+	void	SetRot(VECTOR rot) { _rot = rot; }
 
 	virtual void DebugRenderPos();
 

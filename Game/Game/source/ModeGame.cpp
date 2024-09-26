@@ -79,7 +79,7 @@ bool ModeGame::Process()
 	// モードサーバークラスのインスタンスを取得
 	auto modeServer = ModeServer::GetInstance();
 
-#ifdef ON_DEBUG
+#ifdef _DEBUG
 	// デバッグモードに遷移
 	if (trg & PAD_INPUT_10) modeServer->Add(new ModeDebug(_objectManager), 200, "debug");
 

@@ -45,7 +45,7 @@ bool Player::Process()
 	auto	app		= ApplicationMain::GetInstance();
 	int		trg		= 0;
 
-#ifdef ON_DEBUG
+#ifdef _DEBUG
 	trg = app->GetTrg(player - 1);
 #else
 	trg = app->GetTrg(player);

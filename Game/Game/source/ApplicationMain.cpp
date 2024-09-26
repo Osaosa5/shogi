@@ -3,7 +3,7 @@
 #include "ApplicationMain.h"
 #include "ApplicationGlobal.h"
 
-#ifdef ON_DEBUG
+#ifdef _DEBUG
 #include "ModeGame.h"
 #else
 #include "ModeTitle.h"
@@ -18,7 +18,7 @@ bool ApplicationMain::Initialize(HINSTANCE hInstance) {
 	// アプリケーショングローバルの初期化
 	gGlobal.Init();
 
-#ifdef ON_DEBUG
+#ifdef _DEBUG
 	// モードの登録
 	ModeServer::GetInstance()->Add(new ModeGame(), 1, "Game");
 
