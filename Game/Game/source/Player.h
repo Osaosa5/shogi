@@ -7,7 +7,7 @@
 
 class Player : public Shogi
 {
-	using SelectSquarePos = std::pair<int, int>;
+	using SquarePos = std::pair<int, int>;
 public:
 	Player(ObjectManager* objManeger, std::string player, ModeGame* game);
 	~Player();
@@ -40,10 +40,10 @@ public:
 
 	enum class PLAYER_STATE
 	{
-		SelectBoardSquare,					// 将棋盤にある動かしたい駒を選択中
-		SelectDestinationBoardSquare,		// 将棋盤にある駒の移動先を選択中
-		SelectPieceStandSquare,				// 駒台にある動かしたい駒を選択中
-		SelectDestinationPieceStandSquare,	// 駒台にある駒の移動先を選択中
+		BoardSquare,			// 将棋盤にある動かしたい駒を選択中
+		DestBoardSquare,		// 将棋盤にある駒の移動先を選択中
+		PieceStandSquare,		// 駒台にある動かしたい駒を選択中
+		DestPieceStandSquare,	// 駒台にある駒の移動先を選択中
 	};
 
 	PLAYER_STATE	GetState()const					{ return _state; }
@@ -59,8 +59,8 @@ private:
 
 	// 選択しているマスの座標
 	// first : 段(int), second : 筋(int)
-	SelectSquarePos	_selectSquareBoard;
-	SelectSquarePos	_selectSquareStand;
+	SquarePos	_selectSquareBoard;
+	SquarePos	_selectSquareStand;
 
 	// プレイヤーの状態
 	PLAYER_STATE	_state;

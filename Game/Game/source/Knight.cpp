@@ -26,7 +26,7 @@ bool Knight::Terminate()
 bool Knight::Process()
 {
 	Piece::Process();
-	HitTest();
+	
 	return true;
 }
 

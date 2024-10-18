@@ -25,7 +25,7 @@ bool Rook::Terminate()
 bool Rook::Process()
 {
 	Piece::Process();
-	HitTest();
+	
 	return true;
 }
 

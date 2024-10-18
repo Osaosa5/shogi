@@ -27,8 +27,7 @@ bool Pawn::Terminate()
 bool Pawn::Process()
 {
 	Piece::Process();
-	//Move();
-	HitTest();
+	
 	return true;
 }
 
@@ -39,15 +38,3 @@ bool Pawn::Render()
 	return true;
 }
 
-bool Pawn::Move(int index)
-{
-	auto app = ApplicationMain::GetInstance();
-	int key = app->GetKey();
-
-	if (key & PAD_INPUT_UP) {_pos.z += 1;}
-	if (key & PAD_INPUT_DOWN) {_pos.z -= 1;}
-	if (key & PAD_INPUT_LEFT) {_pos.x -= 1;}
-	if (key & PAD_INPUT_RIGHT) {_pos.x += 1;}
-
-	return true;
-}

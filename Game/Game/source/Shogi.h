@@ -12,8 +12,10 @@ constexpr int	PIECESTAND_NUM	= 7;
 constexpr float SQUARE_WIDTH	= 3.52f;
 constexpr float SQUARE_HEIGHT	= 3.86f;
 
-constexpr int	MOVE_RANGE_W		= 17;
-constexpr int	MOVE_RANGE_H		= 17;
+constexpr int	MOVE_RANGE_W	= 17;
+constexpr int	MOVE_RANGE_H	= 17;
+constexpr int	RANGE_CENTRAL_W = 8;
+constexpr int	RANGE_CENTRAL_H = 8;
 
 class Shogi : public Object
 {

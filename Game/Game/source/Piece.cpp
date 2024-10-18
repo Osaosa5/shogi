@@ -7,14 +7,15 @@
 
 Piece::Piece(ObjectManager* objManajer, int dan, int suji, std::string strPlayer)
 {
-	_objManager = objManajer;
-	_oldPos = VGet(0, 0, 0);
-	_bUpdate3DPos = true;
-	_kOwnerType = OWNER_TYPE::Board;
+	_objManager		= objManajer;
+	_bUpdate3DPos	= true;
+	_kOwnerType		= OWNER_TYPE::Board;
+	_kPieceState	= PIECE_STATE::None;
 
 	// 駒の位置情報
-	_dan = dan; _suji = suji;
-	_tile = _suji * BOARD_SIZE + _dan;
+	_dan	= dan; 
+	_suji	= suji;
+	_tile	= _suji * BOARD_SIZE + _dan;
 
 	// プレイヤー情報
 	if (strPlayer == "player1") _kPlayerType = PLAYER_TYPE::Player1;
@@ -37,12 +38,22 @@ bool Piece::Terminate()
 
 bool Piece::Process()
 {
-	_oldPos = _pos;
-
-	//if (_bUpdate3DPos) 
-	SetPieceCentralTile();
-
-	UpdateDirectionForPlayer(_kPlayerType);
+	// 駒の状態によって処理が変わる
+	switch (_kPieceState)
+	{
+		// 駒が何もされていない場合
+	case PIECE_STATE::None:
+		NoneProcess();
+		break;
+		// 駒が選択されている場合
+	case PIECE_STATE::Select:
+		SelectProcess();
+		break;
+		// 駒が移動している場合
+	case PIECE_STATE::Move:
+		MoveProcess();
+		break;
+	}
 
 	return true;
 }
@@ -57,23 +68,115 @@ bool Piece::Render()
 	return true;
 }
 
+bool Piece::NoneProcess()
+{
+	// 駒のインデックスを更新する
+	_tile = _suji * BOARD_SIZE + _dan;
+
+	// 駒の位置を更新する
+	if (_bUpdate3DPos)
+	{
+		// 駒の位置をマスの中央にセットする
+		PutPieceCentralTile();
+
+		// 3Dの位置を更新フラグをfalseにする
+		_bUpdate3DPos = false;
+	}
+
+	// 駒の向きを更新する
+	UpdateDirectionForPlayer(_kPlayerType);
+
+	return true;
+}
+
+bool Piece::SelectProcess()
+{
+	// 駒の位置をマスの少し上にずらす
+	auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
+	auto ptrSquare = ptrBoard->GetSquare(_tile);
+	this->_pos.y = ptrSquare->GetCenterPos().y + 1.f;
+
+	// 移動できるマスを調べる
+	if (IsMove(_tile))
+	{
+		
+	}
+
+	return true;
+}
+
+bool Piece::MoveProcess()
+{
+	return true;
+}
+
+int Piece::CheckDest(int index, int row, int col)
+{
+	// 移動範囲の範囲内の場合
+	int destRow = index % MOVE_RANGE_W;
+	int destCol = index / MOVE_RANGE_H;
+
+	// 中央からの距離を取得
+	int distanceRow = destRow - RANGE_CENTRAL_W;
+	int distanceCol = destCol - RANGE_CENTRAL_H;
+
+	// 移動先のマスを取得
+	return (col + distanceCol) * BOARD_SIZE + (row + distanceRow);
+}
+
+int Piece::CheckCntMovable(int row, int col)
+{
+	int tileIndex	= 0;
+	int moveCnt		= 0;
+	for (auto move : _vMoveRange)
+	{
+		// 移動範囲の範囲外の場合はスキップ
+		if (move == 0 || move == 11)
+		{
+			tileIndex++; continue;
+		}
+
+		// 移動先のマスを取得
+		int destIndex = CheckDest(tileIndex, row, col);
+
+		// 移動先のマスが範囲外の場合はスキップ
+		if (destIndex < 0 || destIndex >= BOARD_TILE)
+		{
+			tileIndex++; continue;
+		}
+
+		// 移動先のマスに駒があるか確認
+		auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
+		auto ptrPiece = ptrBoard->GetPiece(destIndex);
+
+		// 移動先に自分の駒がある場合は動かせない
+		if (ptrPiece->GetPlayerType() == _kPlayerType)
+		{
+			tileIndex++; continue;
+		}
+
+		// 移動先に相手の駒がある場合は取ることができる
+		ptrBoard->GetSquare(destIndex)->SetSquareState("Placeable");
+		moveCnt++;
+		tileIndex++;
+	}
+
+	// 移動可能なマスの数を返す
+	return moveCnt;
+}
+
 bool Piece::IsMove(int index)
 {
-	// 駒の移動範囲を取得する
-	int rowMin = index % BOARD_SIZE;
-	int colMin = index / BOARD_SIZE;
+	// 駒の位置を調べる
+	int row = index % BOARD_SIZE;
+	int col = index / BOARD_SIZE;
 
-	// 移動先のマスに駒があるか確認
-	auto ptrBoard = dynamic_cast<Board*>(_objManager->Get("board"));
-	auto ptrPiece = ptrBoard->GetPiece(index);
+	// 移動範囲の確認
+	int moveCnt		= CheckCntMovable(row, col);
 
-	if(ptrPiece->GetPlayerType() == _kPlayerType) return false;
-
-	// 移動可能範囲にあるか確認
-
-
-	// 移動不可
-	return false;
+	// 移動可能なマスがある場合はtrueを返す
+	if (moveCnt > 0)	return true;
+	else				return false;
 }
 
 bool Piece::Move(int index)
@@ -108,31 +211,8 @@ bool Piece::Move(int index)
 	return true;
 }
 
-void Piece::HitTest()
-{
-	float colSubY = 40.0f;
-	// 駒の当たり判定
-	MV1_COLL_RESULT_POLY hitPoly;
-	auto shogiBan = _objManager->Get("shogiban");
-	auto shogiBanHandle = shogiBan->GetHandle();
-	hitPoly = MV1CollCheck_Line(shogiBanHandle, 2,
-		VAdd(_pos, VGet(0, colSubY, 0)),
-		VAdd(_pos, VGet(0, -999, 0)));
-	if (hitPoly.HitFlag)
-	{
-		// 駒がある場合
-		_pos.y = hitPoly.HitPosition.y + 0.3f;
-	}
-	else
-	{
-		// 駒がない場合
-		//_pos = _oldPos;
-	}
-
-}
-
 // タイルの中央に駒をセットする 
-void Piece::SetPieceCentralTile()
+void Piece::PutPieceCentralTile()
 {
 	// 駒がいる場所を取得する
 	auto owner = this->GetOwnerType();
@@ -155,11 +235,13 @@ void Piece::SetPieceCentralTile()
 		auto ptrSquare = ptrPieceStand->GetSquare(this->_suji * PIECESTAND_W + this->_dan);
 		pos = ptrSquare->GetCenterPos();
 	}
+
+	// 駒の位置を少し上にずらす
+	// マスの座標をそのままをセットすると、駒が少しだけ埋まってしまうため
+	pos.y += 0.5f;
+
 	// タイルの中央に駒の位置をセットする
 	this->SetPos(pos);
-
-	// 駒の位置がセットされたことを記録する
-	_bUpdate3DPos = false;
 }
 
 void Piece::UpdateDirectionForPlayer(PLAYER_TYPE playerType)

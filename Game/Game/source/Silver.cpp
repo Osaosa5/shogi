@@ -26,7 +26,7 @@ bool Silver::Terminate()
 bool Silver::Process()
 {
 	Piece::Process();
-	HitTest();
+	
 	return true;
 }
 

@@ -27,7 +27,7 @@ bool Bishop::Terminate()
 bool Bishop::Process()
 {
 	Piece::Process();
-	HitTest();
+	
 	return true;
 }
 

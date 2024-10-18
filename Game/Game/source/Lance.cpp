@@ -26,7 +26,7 @@ bool Lance::Terminate()
 bool Lance::Process()
 {
 	Piece::Process();
-	HitTest();
+	
 	return true;
 }
 

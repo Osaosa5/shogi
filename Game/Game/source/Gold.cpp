@@ -25,7 +25,7 @@ bool Gold::Terminate()
 bool Gold::Process()
 {
 	Piece::Process();
-	HitTest();
+	
 	return true;
 }
 

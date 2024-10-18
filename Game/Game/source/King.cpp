@@ -26,7 +26,7 @@ bool King::Terminate()
 bool King::Process()
 {
 	Piece::Process();
-	HitTest();
+	
 	return true;
 }
 
